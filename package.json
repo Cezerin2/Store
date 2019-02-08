@@ -1,7 +1,7 @@
 {
-  "name": "cezerin2",
+  "name": "cezerin2-store",
   "version": "0.33.0",
-  "description": "Cezerin2 is React and Node.js based eCommerce platform. https://cezerin.com",
+  "description": "Cezerin2 is React and Node.js based eCommerce platform. https://cezerin.org",
   "keywords": [
     "cezerin2",
     "cezerin",
@@ -10,14 +10,18 @@
     "shop",
     "cms"
   ],
-  "homepage": "https://cezerin.com",
-  "bugs": "https://github.com/cezerin2/cezerin2/issues",
+  "homepage": "https://cezerin.org",
+  "bugs": "https://github.com/cezerin2/cezerin2-store/issues",
   "license": "MIT",
   "author": {
     "name": "Restmount <jsonmount@gmail.com>",
     "url": "https://github.com/restmount"
   },
   "contributors": [
+    {
+      "name": "Nitin Goyal <nitingoyal.dev@gmail.com>",
+      "url": "https://github.com/ngoyal16"
+    },
     {
       "name": "Luke Busstra <luke.busstra@gmail.com>",
       "url": "https://github.com/lubuss"
@@ -31,15 +35,14 @@
       "url": "https://github.com/sonufrienko"
     }
   ],
-  "main": "src/api/server/index.js",
+  "main": "dist/server/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cezerin2/cezerin2"
+    "url": "https://github.com/cezerin2/cezerin2-store"
   },
   "scripts": {
-    "setup": "node -r esm src/api/server/setup.js",
-    "compile": "babel src/store -d dist/store --presets react --plugins transform-class-properties --quiet",
-    "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src/store -d dist/store --presets react --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets react --plugins transform-class-properties --watch\"",
+    "compile": "babel src -d dist --presets react --plugins transform-class-properties --quiet",
+    "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src -d dist --presets react --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets react --plugins transform-class-properties --watch\"",
     "webpack:store": "webpack --config webpack.config.store.js --mode production",
     "webpack:store:watch": "webpack --config webpack.config.store.js --mode development --watch",
     "theme:install": "./scripts/theme-install.sh",
@@ -51,9 +54,7 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --write \"src/**/*.js\" \"theme/**/*.js\"",
     "precommit": "lint-staged",
-    "start-api": "node -r esm src/api/server/index.js",
-    "start-store": "node -r esm dist/store/server/index.js",
-    "start": "concurrently npm:start-*"
+    "start": "node -r esm dist/server/index.js"
   },
   "lint-staged": {
     "*.js": [

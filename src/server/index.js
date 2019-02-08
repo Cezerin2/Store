@@ -4,7 +4,7 @@ import responseTime from 'response-time';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import winston from 'winston';
-import settings from '../../../config/server';
+import settings from '../../config/store';
 import logger from './logger';
 import robotsRendering from './robotsRendering';
 import sitemapRendering from './sitemapRendering';

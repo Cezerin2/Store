@@ -1,2 +1,2 @@
-import settings from '../../../config/server';
+import settings from '../../config/store';
 export default settings;
