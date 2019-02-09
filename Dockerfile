@@ -14,7 +14,7 @@ RUN echo "deb http://nginx.org/packages/debian/ ${NGINX_CODENAME} nginx" >> /etc
 		curl \
 		nano \
 		ca-certificates \
-		nginx\
+		nginx
 
 # install PM2
 RUN npm install pm2 -g
