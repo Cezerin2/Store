@@ -1,139 +1,68 @@
 import React from 'react';
 
-let scriptAdded = false;
 export default class PayPalButton extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
-	addScript = () => {
-		if (scriptAdded) {
-			this.executeScript();
-			return;
-		}
+	componentDidMount() {
+		const { formSettings } = this.props;
 
-		const SCRIPT_URL = 'https://www.paypalobjects.com/api/checkout.min.js';
-		const container = document.body || document.head;
 		const script = document.createElement('script');
-		script.src = SCRIPT_URL;
+		//to test sandbox, just use 'sb' as client-id, client-id can be set at admin setting portal
+		//sandbox can only use USD. other currency won't work on sandbox, but production is ok.
+		script.src =
+			'https://www.paypal.com/sdk/js?client-id=' +
+			formSettings.client +
+			'&currency=' +
+			formSettings.currency;
+
+		script.async = true;
 		script.onload = () => {
 			this.executeScript();
 		};
-		container.appendChild(script);
-		scriptAdded = true;
-	};
+		document.body.appendChild(script);
+	}
 
 	executeScript = () => {
-		const { formSettings, shopSettings, onPayment } = this.props;
+		const { formSettings, onPayment } = this.props;
+		const { amount, currency, order_id } = formSettings;
 
-		document.getElementById('paypal-button-container').innerHTML = null;
-
-		paypal.Button.render(
-			{
-				// Set your environment
-				env: formSettings.env, // sandbox | production
-
-				// Specify the style of the button
+		paypal
+			.Buttons({
 				style: {
 					label: 'pay',
 					size: formSettings.size,
 					shape: formSettings.shape,
 					color: formSettings.color
 				},
-				client: {
-					sandbox: formSettings.client,
-					production: formSettings.client
-				},
-				// Wait for the PayPal button to be clicked
-				payment: function(data, actions) {
-					return actions.payment.create({
-						payment: {
-							intent: 'sale',
-							transactions: [
-								{
-									custom: formSettings.order_id,
-									notify_url: formSettings.notify_url,
-									amount: {
-										total: formSettings.amount,
-										currency: formSettings.currency
-									}
+				createOrder(data, actions) {
+					return actions.order.create({
+						purchase_units: [
+							{
+								custom_id: order_id,
+								amount: {
+									value: amount,
+									currency_code: currency
 								}
-							]
-						},
-						experience: {
-							input_fields: { no_shipping: 1 }
-						}
+							}
+						]
 					});
 				},
-				// Wait for the payment to be authorized by the customer
-
-				onAuthorize: function(data, actions) {
-					// Get the payment details
-
-					return actions.payment.get().then(function(data) {
-						if (
-							data.state.toLowerCase() === 'created' &&
-							data.payer.status.toLowerCase() === 'verified'
-						) {
-							// Display a confirmation button
-							document.querySelector('#paypal-button-container').style.display =
-								'none';
-							document.querySelector('#confirm').style.display = 'block';
-
-							// Listen for click on confirm button
-
-							document
-								.querySelector('#confirmButton')
-								.addEventListener('click', function() {
-									// Disable the button and show a loading indicator
-
-									document.querySelector('#confirmButton').innerText = '';
-									document.querySelector('#confirmButton').className =
-										'loading-process';
-									document.querySelector('#confirm').disabled = true;
-
-									// Execute the payment
-
-									return actions.payment.execute().then(function(res) {
-										if (res.state.toLowerCase() === 'approved') {
-											onPayment();
-										}
-									});
-								});
-						}
+				onApprove(data, actions) {
+					return actions.order.capture().then(function(details) {
+						// Show a success message to your buyer
+						onPayment();
 					});
 				}
-			},
-			'#paypal-button-container'
-		);
+			})
+			.render('#paypal-button-container');
 	};
 
-	componentDidMount() {
-		this.addScript();
-	}
-
-	componentDidUpdate() {
-		this.executeScript();
-	}
-
 	render() {
-		const { formSettings, shopSettings, onPayment } = this.props;
-
 		return (
 			<div>
 				<div id="paypal-button-container" />
-				<div
-					id="confirm"
-					className="checkout-button-wrap"
-					style={{ display: 'none' }}
-				>
-					<button
-						id="confirmButton"
-						className="checkout-button button confirm-checkout is-primary"
-					>
-						Confirm
-					</button>
-				</div>
 			</div>
 		);
 	}
