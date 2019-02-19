@@ -1,4 +1,4 @@
-# Cezerin - Ecommerce Progressive Web Apps
+# Cezerin-Store - Ecommerce Progressive Web Apps
 
 [![CircleCI](https://circleci.com/gh/Cezerin2/cezerin2/tree/master.svg?style=svg)](https://circleci.com/gh/Cezerin2/cezerin2/tree/master)
 
@@ -12,7 +12,6 @@ Built with:
 * Express
 * Babel
 * WebPack 4
-* MongoDB
 
 ## Links
 - [GitHub](https://github.com/cezerin2/cezerin2)
@@ -23,13 +22,6 @@ Built with:
 - [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs/getting-started.md)
 - [Facebook](https://facebook.com/cezerin)
 - [Twitter](https://twitter.com/cezerin2)
-
-## Dashboard
-Client-side dashboard use JSON Web Token (JWT) to access REST API.
-
-![Cezerin Dashboard](https://cezerin.com/assets/images/cezerin-dashboard-products.png?)
-
-![Signin email](https://cezerin.com/assets/images/cezerin-signin-email.png)
 
 ## Store
 Single-Page Application with React server-side rendering. [Demo store](https://store.cezerin.com)
@@ -47,8 +39,6 @@ Single-Page Application with React server-side rendering. [Demo store](https://s
 
 ### Requirements
 * Node.js >= 8
-* MongoDB >= 3.2
-
 
 ## Documentation
 
@@ -69,15 +59,10 @@ Single-Page Application with React server-side rendering. [Demo store](https://s
 │   └── content              # Store root folder
 |
 ├── scripts                  # Shell scripts for theme install/export
-├── src                      # Application source code
-│   ├── admin                # Dashboard application
-│   │   └── client           # Client side code
-│   ├── api                  # REST API
-│   │   └── server           # Server side code
-│   ├── store                # Store application
-│   |   ├── client             # Client side code
-│   |   ├── server             # Server side code
-│   |   └── shared             # Universal code
+├── src                      # Store Application source code
+│   ├── client             # Client side code
+│   ├── server             # Server side code
+│   └── shared             # Universal code
 │   └── index.js             # Server application start point
 ├── theme                    # Theme as a local package
 └── process.json             # pm2 process file
