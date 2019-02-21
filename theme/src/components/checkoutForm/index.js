@@ -3,6 +3,7 @@ import { themeSettings, text } from '../../lib/settings';
 import CheckoutStepContacts from './stepContacts';
 import CheckoutStepShipping from './stepShipping';
 import CheckoutStepPayment from './stepPayment';
+import Lscache from 'lscache';
 
 export default class CheckoutForm extends React.Component {
 	constructor(props) {
@@ -15,6 +16,13 @@ export default class CheckoutForm extends React.Component {
 	componentDidMount() {
 		this.props.loadShippingMethods();
 		this.props.loadPaymentMethods();
+		this.props.customerData({
+			token: Lscache.get('auth_data')
+		});
+
+		this.props.cartLayerInitialized({
+			cartlayerBtnInitialized: false
+		})
 	}
 
 	changeStep = step => {
@@ -38,10 +46,18 @@ export default class CheckoutForm extends React.Component {
 	};
 
 	handleContactsSubmit = values => {
+		let { shipping_address, billing_address } = values;
+		shipping_address = Object.assign({full_name: `${values.first_name} ${values.last_name}`}, shipping_address);
 		this.props.updateCart({
 			email: values.email,
-			mobile: values.mobile
+			mobile: values.mobile,
+			first_name: values.first_name,
+			last_name: values.last_name,
+			password: values.password,
+			shipping_address,
+			billing_address
 		});
+
 		this.handleContactsSave();
 	};
 
@@ -121,12 +137,15 @@ export default class CheckoutForm extends React.Component {
 		const {
 			settings,
 			cart,
+			customerProperties,
 			paymentMethods,
 			shippingMethods,
+			shippingMethod,
 			loadingShippingMethods,
 			loadingPaymentMethods,
 			checkoutFields,
-			processingCheckout
+			processingCheckout,
+			cartlayerBtnInitialized
 		} = this.props.state;
 
 		const {
@@ -139,10 +158,16 @@ export default class CheckoutForm extends React.Component {
 			const showPaymentForm = this.isShowPaymentForm();
 
 			let shippingMethod = null;
-			const { shipping_method_id } = cart;
+			let paymentMethod = null;
+			const { shipping_method_id, payment_method_id } = cart;
 			if (shipping_method_id && shippingMethods && shippingMethods.length > 0) {
 				shippingMethod = shippingMethods.find(
 					method => method.id === shipping_method_id
+				);
+			}
+			if (payment_method_id && paymentMethods && paymentMethods.length > 0) {
+				paymentMethod = paymentMethods.find(
+					method => method.id === payment_method_id
 				);
 			}
 
@@ -156,7 +181,9 @@ export default class CheckoutForm extends React.Component {
 						editButtonClassName={checkoutEditButtonClass}
 						initialValues={cart}
 						settings={settings}
+						customerProperties={customerProperties}
 						paymentMethods={paymentMethods}
+						shippingMethod={shippingMethod}
 						shippingMethods={shippingMethods}
 						loadingShippingMethods={loadingShippingMethods}
 						loadingPaymentMethods={loadingPaymentMethods}
@@ -166,6 +193,7 @@ export default class CheckoutForm extends React.Component {
 						saveShippingLocation={this.handleLocationSave}
 						saveShippingMethod={this.handleShippingMethodSave}
 						savePaymentMethod={this.handlePaymentMethodSave}
+						cartlayerBtnInitialized={cartlayerBtnInitialized}
 					/>
 
 					<CheckoutStepShipping
@@ -179,6 +207,7 @@ export default class CheckoutForm extends React.Component {
 						settings={settings}
 						processingCheckout={processingCheckout}
 						shippingMethod={shippingMethod}
+						paymentMethod={paymentMethod}
 						checkoutFields={checkoutFields}
 						showPaymentForm={showPaymentForm}
 						onSave={this.handleShippingSave}

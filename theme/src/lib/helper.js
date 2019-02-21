@@ -122,6 +122,20 @@ export const getShippingMethodFromOrder = (order, shippingMethods) => {
 	return null;
 };
 
+export const getPaymentMethodFromOrder = (order, paymentMethods) => {
+	if (
+		order &&
+		order.shipping_method_id &&
+		paymentMethods &&
+		paymentMethods.length > 0
+	) {
+		return paymentMethods.find(
+			method => method.id === order.payment_method_id
+		);
+	}
+	return null;
+};
+
 export const getFieldLabelByKey = key => {
 	switch (key) {
 		case 'full_name':
@@ -136,16 +150,24 @@ export const getFieldLabelByKey = key => {
 			return text.phone;
 		case 'company':
 			return text.company;
+		case 'password':
+			return text.password;
 		case 'mobile':
 			return text.mobile;
 		case 'city':
 			return text.city;
+		case 'state':
+			return text.state;
+		case 'country':
+			return text.country;
 		case 'comments':
 			return text.comments;
 		default:
 			return '';
 	}
 };
+
+export const getShippingFieldLabelOrderSuccess = ( key ) => getFieldLabelByKey(key);
 
 export const getShippingFieldLabel = ({ label, key }) =>
 	label && label.length > 0 ? label : getFieldLabelByKey(key);

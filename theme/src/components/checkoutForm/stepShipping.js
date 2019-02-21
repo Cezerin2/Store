@@ -273,7 +273,7 @@ class CheckoutStepShipping extends React.Component {
 						<div className="checkout-button-wrap">
 							<button
 								type="submit"
-								disabled={submitting || processingCheckout || invalid}
+								disabled={submitting || processingCheckout || invalid || initialValues.shipping_method_id === null || initialValues.payment_method_id === null}
 								className={`${buttonClassName}${
 									processingCheckout ? ' is-loading' : ''
 								}`}

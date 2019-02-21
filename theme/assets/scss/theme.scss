@@ -1,6 +1,8 @@
 @import "~bulma/sass/utilities/initial-variables";
 
 $green: #00b366;
+$login: #116363;
+$registry: orange;
 $primary: $green;
 $link: #000;
 
@@ -10,6 +12,8 @@ $tag-radius: 3px;
 
 $breadcrumb-item-color: #7a7a7a;
 $breadcrumb-item-separator-color: #7a7a7a;
+
+$error-alert-text: #e5443e;
 
 @import "~bulma";
 @import "~rc-slider/assets/index.css";
@@ -123,3 +127,5 @@ MOBILE
 @import "product.scss";
 @import "page.scss";
 @import "custom.scss";
+@import "login.scss";
+@import "account.scss";

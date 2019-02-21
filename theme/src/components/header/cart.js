@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
+import Lscache from 'lscache';
 import * as helper from '../../lib/helper';
 
 const CartItem = ({ item, deleteCartItem, settings }) => {
@@ -73,7 +74,10 @@ export default class Cart extends React.PureComponent {
 					<NavLink
 						className="button is-primary is-fullwidth has-text-centered"
 						style={{ textTransform: 'uppercase' }}
-						to="/checkout"
+						to={{
+							pathname: Lscache.get('auth_data') !== null ? "/checkout" : "/login",
+							state: { cartLayer: true }
+						}}
 						onClick={cartToggle}
 					>
 						{text.proceedToCheckout}
