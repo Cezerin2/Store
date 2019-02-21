@@ -1,68 +1,25 @@
 # Getting Started with Docker
 
 * [Docker](#docker)
-* [Docker Compose](#docker-compose)
 
-## Docker
+## Docker Local
 
-We'll use `cezerin/cezerin` image. [About image](https://github.com/cezerin2/docker-cezerin2).
+`cezerin2` is required to run this.
 
-1. Run MongoDB
+1. Build Cezerin2-store local
 ```shell
-docker run --name store-db -v /var/www/store-db:/data/db -d mongo:latest
+docker build \
+-t cezerin2-store \
+.
 ```
 
-2. Run Cezerin2
+2. Run Cezerin2-store
 ```shell
 docker run -d \
---name store \
---link store-db:db \
--p 80:80 \
--e DB_HOST=db \
--e DB_PORT=27017 \
--e DB_NAME=shop \
--e DB_USER=user \
--e DB_PASS=password \
--v /var/www/store:/var/www/cezerin \
-cezerin2/cezerin2:latest
+--name cezerin2-store \
+--link cezerin2:cezerin2 \
+-p 3000:80 \
+-e API_BASE_URL=http://cezerin2/api/v1 \
+-e AJAX_BASE_URL=http://cezerin2/ajax \
+cezerin2-store
 ```
-
-Open http://localhost to see your store.  
-Dashboard - http://localhost/admin  
-API - http://localhost
-
-## Docker Compose
-
-Create `docker-compose.yml` by examples.
-
-```yml
-version: '3'
-
-services:
-  app:
-    image: cezerin2/cezerin2
-    environment:
-      - DB_HOST=db
-      - DB_PORT=27017
-      - DB_NAME=shop
-      - DB_USER=
-      - DB_PASS=
-    ports:
-      - 4000:80
-    volumes:
-      - /var/www/store:/var/www/cezerin
-    depends_on:
-      - db
-    restart: always
-
-  db:
-    image: mongo
-    ports:
-      - 27017
-    volumes:
-      - /var/www/store-db:/data/db
-    restart: always
-```
-
-`/var/www/store` - folder with Cezerin2 
-`/var/www/store-db` - folder with MongoDB data

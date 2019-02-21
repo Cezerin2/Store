@@ -5,7 +5,7 @@
 			"script": "./dist/server/index.js",
 			"node_args": "-r esm",
 			"watch": [
-				"./config/storer.js",
+				"./config/store.js",
 				"./dist/store/",
 				"./theme/dist/",
 				"./theme/assets/index.html"
