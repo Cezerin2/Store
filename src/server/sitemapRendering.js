@@ -10,7 +10,8 @@ const SITEMAP_EXCLUDE_PATH = [
 	'/cart',
 	'/login',
 	'/logout',
-	'/register'
+	'/register',
+	'/customer-account'
 ];
 
 const sitemapRendering = (req, res) => {

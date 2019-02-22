@@ -13,17 +13,28 @@ import pageRendering from './pageRendering';
 
 const app = express();
 
+const ADMIN_INDEX_PATH = path.resolve('public/admin/index.html');
 const STATIC_OPTIONS = {
 	maxAge: 31536000000 // One year
 };
 
 app.set('trust proxy', 1);
 app.use(helmet());
-
+app.get('/images/:entity/:id/:size/:filename', (req, res, next) => {
+	// A stub of image resizing (can be done with Nginx)
+	const newUrl = `/images/${req.params.entity}/${req.params.id}/${
+		req.params.filename
+	}`;
+	req.url = newUrl;
+	next();
+});
 app.use(express.static('public/content', STATIC_OPTIONS));
 app.use('/assets', express.static('theme/assets', STATIC_OPTIONS));
+app.use('/admin-assets', express.static('public/admin-assets', STATIC_OPTIONS));
 app.use('/sw.js', express.static('theme/assets/sw.js'));
-
+app.use('/admin', (req, res) => {
+	res.sendFile(ADMIN_INDEX_PATH);
+});
 app.get(
 	/^.+\.(jpg|jpeg|gif|png|bmp|ico|webp|svg|css|js|zip|rar|flv|swf|xls)$/,
 	(req, res) => {
