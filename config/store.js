@@ -12,8 +12,8 @@ module.exports = {
 	storeListenPort: process.env.STORE_PORT || 3000,
 
 	// key to sign tokens
-	jwtSecretKey: 'SP69kXFR3znRi7kL8Max2GTB24wOtEQj',
+	jwtSecretKey: '-',
 
 	// key to sign store cookies
-	cookieSecretKey: '123'
+	cookieSecretKey: '-'
 };
