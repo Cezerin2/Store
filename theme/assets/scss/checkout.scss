@@ -33,6 +33,7 @@
 .checkout-field input[type="text"],
 .checkout-field input[type="email"],
 .checkout-field input[type="tel"],
+.checkout-field input[type="password"],
 .checkout-field textarea {
   width: 100%;
   border: 1px solid #e0e0e0;
@@ -43,6 +44,7 @@
 .checkout-field input[type="text"]:focus,
 .checkout-field input[type="email"]:focus,
 .checkout-field input[type="tel"]:focus,
+.checkout-field input[type="password"]:focus,
 .checkout-field textarea:focus {
   outline: none;
   border: 1px solid #a1a1a1;
@@ -51,6 +53,7 @@
 .checkout-field input[type="text"].invalid,
 .checkout-field input[type="email"].invalid,
 .checkout-field input[type="tel"].invalid,
+.checkout-field input[type="password"].invalid,
 .checkout-field textarea.invalid {
   border: 1px solid #e96161;
   background-color: rgba(233, 97, 97, 0.05);
@@ -76,7 +79,7 @@
   font-size: 0.8rem;
 }
 .checkout-field-preview .name {
-  width: 50%;
+  //width: 50%;
   color: #747679;
   text-align: right;
   padding-right: 10px;

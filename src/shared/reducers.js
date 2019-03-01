@@ -45,6 +45,24 @@ const appReducer = (state = initialState, action) => {
 
 		case t.CART_RECEIVE:
 			return Object.assign({}, state, { cart: action.cart });
+		
+		case t.REGISTER_PROPERTIES:
+			return Object.assign({}, state, { registerProperties: action.data });
+
+		case t.ACCOUNT_RECEIVE:
+			return Object.assign({}, state, { customerProperties: action.data });
+
+		case t.CART_LAYER_INITIALIZED:
+			return Object.assign({}, state, { cartlayerBtnInitialized: action.data });
+
+		case t.CHANGE_CUSTOMER_PROPERTIES:
+			return Object.assign({}, state, { customer_properties: action.data });
+
+		case t.FORGOT_PASSWORD_PROPERTIES:
+			return Object.assign({}, state, { forgotPasswordProperties: action.data });
+
+		case t.RESET_PASSWORD_PROPERTIES:
+			return Object.assign({}, state, { resetPasswordProperties: action.data });
 
 		case t.SHIPPING_METHODS_REQUEST:
 			return Object.assign({}, state, { loadingShippingMethods: true });

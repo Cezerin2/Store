@@ -10,6 +10,7 @@ const InputField = field => (
 		<input
 			{...field.input}
 			placeholder={field.placeholder}
+			disabled={field.disabled}
 			type={field.type}
 			id={field.id}
 			className={field.meta.touched && field.meta.error ? 'invalid' : ''}

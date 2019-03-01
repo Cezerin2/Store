@@ -13,17 +13,16 @@ import pageRendering from './pageRendering';
 
 const app = express();
 
+const ADMIN_INDEX_PATH = path.resolve('public/admin/index.html');
 const STATIC_OPTIONS = {
 	maxAge: 31536000000 // One year
 };
 
 app.set('trust proxy', 1);
 app.use(helmet());
-
 app.use(express.static('public/content', STATIC_OPTIONS));
 app.use('/assets', express.static('theme/assets', STATIC_OPTIONS));
 app.use('/sw.js', express.static('theme/assets/sw.js'));
-
 app.get(
 	/^.+\.(jpg|jpeg|gif|png|bmp|ico|webp|svg|css|js|zip|rar|flv|swf|xls)$/,
 	(req, res) => {

@@ -13,6 +13,10 @@
   "checkoutPageTitle": "Checkout",
   "grandTotal": "Gesamtsumme",
   "orderSummary": "Zusammenfassung",
+  "cardNumber": "Card Number",
+  "expirationDate": "Expiration Date",
+  "CVC": "CVC",
+  "pay": "Pay",
   "checkoutSuccessTitle": "Vielen Dank für Ihre Bestellung!",
   "outOfStock": "ausverkauft",
   "inStock": "lagernd",
@@ -72,5 +76,7 @@
   "edit": "Bearbeiten",
   "next": "Weiter",
   "customerDetails": "Kundendetails",
-  "payment": "Zahlung"
+  "payment": "Zahlung",
+  "login_success": "Sie sind erfolgreich eingeloggt.",
+  "login_failed": "Die Email oder Passwort stimmt nicht. Bitte versuchen Sie es erneut einzugeben."  
 }

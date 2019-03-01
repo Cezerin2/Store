@@ -10,6 +10,7 @@ const CheckoutStepPayment = props => {
 		handleSuccessPayment,
 		inputClassName,
 		buttonClassName,
+		shippingMethod,
 		show,
 		title,
 		onCreateToken
@@ -39,6 +40,7 @@ const CheckoutStepPayment = props => {
 						gateway={payment_method_gateway}
 						amount={grand_total}
 						shopSettings={settings}
+						shippingMethod={shippingMethod}
 						onPayment={handleSuccessPayment}
 						inputClassName={inputClassName}
 						buttonClassName={buttonClassName}
