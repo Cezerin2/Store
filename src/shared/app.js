@@ -3,6 +3,8 @@ import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { animateScroll } from 'react-scroll';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import IndexContainer from './containers/index';
 import SharedContainer from './containers/shared';
@@ -21,6 +23,8 @@ import ResetPasswordContainer from './containers/resetPassword';
 
 import { setCurrentPage } from './actions';
 import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from './pageTypes';
+
+const muiTheme = getMuiTheme();
 
 class SwitchContainers extends React.Component {
 	constructor(props) {
@@ -110,9 +114,11 @@ const SwitchContainersConnected = connect(
 )(SwitchContainers);
 
 const App = () => (
-	<SharedContainer>
-		<Route component={SwitchContainersConnected} />
-	</SharedContainer>
+		<SharedContainer>
+			<MuiThemeProvider muiTheme={muiTheme}>
+				<Route component={SwitchContainersConnected} />
+			</MuiThemeProvider>
+		</SharedContainer>
 );
 
 export default App;

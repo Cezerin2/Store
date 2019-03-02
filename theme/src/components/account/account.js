@@ -1,6 +1,7 @@
 import React from 'react';
 import api from '../../../dist/lib/api';
 import { Redirect, Link } from 'react-router-dom';
+import FontIcon from 'material-ui/FontIcon';
 import Lscache from 'lscache';
 import { Field, reduxForm } from 'redux-form';
 import { themeSettings, text } from '../../lib/settings';
@@ -57,20 +58,20 @@ class Account extends React.Component {
 			last_name: this.props.customerProperties.customer_settings.last_name,
 			email: this.props.customerProperties.customer_settings.email,
 			password: this.props.customerProperties.customer_settings.password,
-			shipping_address: {
-				address1: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.address1 : '',
-				address2: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.address2 : '',
-				city: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.city : '',
-				postal_code: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.postal_code : '',
-				state: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.state : '',
-				country: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.country : ''
-			}, billing_address: {
-				address1: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.address1 : '',
-				address2: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.address2 : '',
-				city: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.city : '',
-				postal_code: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.postal_code : '',
-				state: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.state : '',
-				country: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.country : ''
+			billing_address: {
+				address1: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].address1 : '',
+				address2: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].address2 : '',
+				city: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].city : '',
+				postal_code: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].postal_code : '',
+				state: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].state : '',
+				country: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].country : ''
+			}, shipping_address: {
+				address1: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].address1 : '',
+				address2: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].address2 : '',
+				city: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].city : '',
+				postal_code: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].postal_code : '',
+				state: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].state : '',
+				country: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].country : ''
 			}
 		});
 		this.setState({ reinitialized: true });
@@ -164,6 +165,41 @@ class Account extends React.Component {
 		}
 	};
 
+	getTableHeaderLabel = tableHeaderLabel => {
+		switch (tableHeaderLabel) {
+			case 'product_image':
+				return text.product_image;
+			case 'id':
+				return text.order_line_id;
+			case 'product_id':
+				return text.product_id;
+			case 'variant_id':
+				return text.product_variant_id;
+			case 'quantity':
+				return text.product_qty;
+			case 'discount_total':
+				return text.product_discount_total;
+			case 'name':
+				return text.product_name;
+			case 'price':
+				return text.product_price;
+			case 'price_total':
+				return text.product_price_total;
+			case 'sku':
+				return text.product_sku;
+			case 'tax_class':
+				return text.product_tax_class;
+			case 'tax_total':
+				return text.product_tax_total;
+			case 'variant_name':
+				return text.product_variant_name;
+			case 'weight':
+				return text.product_weight;
+			default:
+				return 'Unnamed field';
+		}
+	};
+
 	getFieldLabel = fieldName => {
 		const labelText = this.getFieldLabelText(fieldName);
 		return this.isFieldOptional(fieldName)
@@ -196,7 +232,7 @@ class Account extends React.Component {
 		} = this.props;
 
 		Lscache.flushExpired();
-		
+
 		const accountInputField = 'account-field';
 		const accountForm = 'account-form';
 		const titleClassName = 'login-title';
@@ -218,7 +254,7 @@ class Account extends React.Component {
 		let keyCounter = 0;
 		let listHeader = [];
 
-		if (this.props.customerProperties === undefined || Lscache.get('auth_data') === null) {
+		if (customerProperties === undefined || Lscache.get('auth_data') === null) {
 			return (
 			  	<Redirect to={{
 					pathname: '/login'
@@ -226,37 +262,36 @@ class Account extends React.Component {
 			);
 		}
 
-		if (this.props.customerProperties !== undefined && this.props.customerProperties.cartLayer && Lscache.get('auth_data') !== null) {
+		if (customerProperties !== undefined && customerProperties.cartLayer && Lscache.get('auth_data') !== null) {
 			return (
 				<Redirect to={{
 					pathname: '/checkout'
 				}}/>
 			);
 		}
-		
-		if (this.props.customerProperties !== undefined && this.props.customerProperties.order_statuses !== null) {
-			if('data' in this.props.customerProperties.order_statuses) {
-				billingAddress = this.props.customerProperties.order_statuses.data.filter(obj => obj.draft !== true).reduce(function(map, obj) {
-					map['address1'] = obj.billing_address.address1;
-					map['address2'] = obj.billing_address.address2;
-					map['city'] = obj.billing_address.city;
-					map['postal_code'] = obj.billing_address.postal_code;
-					map['state'] = obj.billing_address.state;
-					map['country'] = obj.billing_address.country;
-					return map;
-				}, {});
 
-				shippingAddress = this.props.customerProperties.order_statuses.data.filter(obj => obj.draft !== true).reduce(function(map, obj) {
-					map['address1'] = obj.shipping_address.address1;
-					map['address2'] = obj.shipping_address.address2;
-					map['city'] = obj.shipping_address.city;
-					map['postal_code'] = obj.shipping_address.postal_code;
-					map['state'] = obj.shipping_address.state;
-					map['country'] = obj.shipping_address.country;
-					return map;
-				}, {});
+		if (customerProperties !== undefined) {
+			if (customerProperties.customer_settings !== null && 'addresses' in customerProperties.customer_settings) {
+				[].slice.call(customerProperties.customer_settings.addresses).forEach(function(key, i) {
+					if(i < 1) {
+						billingAddress['address1'] = key.address1;
+						billingAddress['address2'] = key.address2;
+						billingAddress['city'] = key.city;
+						billingAddress['postal_code'] = key.postal_code;
+						billingAddress['state'] = key.state;
+						billingAddress['country'] = key.country;
+					}
+					if(i > 0) {
+						shippingAddress['address1'] = key.address1;
+						shippingAddress['address2'] = key.address2;
+						shippingAddress['city'] = key.city;
+						shippingAddress['postal_code'] = key.postal_code;
+						shippingAddress['state'] = key.state;
+						shippingAddress['country'] = key.country;
+					}
+				});
 
-				orderHistory = this.props.customerProperties.order_statuses.data.filter(obj => obj.draft !== true).reduce(function(map, obj, i) {
+				orderHistory = customerProperties.order_statuses.data.filter(obj => obj.draft !== true).reduce(function(map, obj, i) {
 					map['ordered_items' + i] = obj.items;
 					return map;
 				}, {});
@@ -266,25 +301,55 @@ class Account extends React.Component {
 			keyCounter = 0;
 			for(var i in orderHistory) {
 				listHeader = orderHistory[i].map((p, j) =>{
-					return (
-						<tr className="tr-header" key={keyCounter}>
-							{Object.keys(p).map((k, l) => {
-								return (
-									<th className="td-header" key={keyCounter+l}>
-										{k}
-									</th>
-								);
-							})}
-						</tr>
-					);
+					if (j < 1) {
+						return (
+							<tr className="tr-header" key={keyCounter}>
+								{Object.keys(p).map((k, l) => {
+									return (
+										<th className="td-header" key={keyCounter+l}>
+											{this.getTableHeaderLabel(k)}
+										</th>
+									);
+								})}
+							</tr>
+						);
+					}
 				});
 				keyCounter++;
 			};
+			keyCounter = 0;
 			for(var i in orderHistory) {
 				list.push(orderHistory[i].map(p => {
 					return (
 						<tr className="tr-body" key={p.id+''+i}>
-							{Object.keys(p).map(k => {
+							{Object.keys(p).map((k, d) => {
+								if(k.indexOf('product_image') !== -1) {
+									const setCounter = i.replace( /^\D+/g, '');
+									let urlContent = customerProperties.order_statuses.data[setCounter].landing_url.split(',');
+									if (p.product_image === null){
+										return (
+											<td className="td-body" key={p.id+''+k}>
+											<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
+												<a href={urlContent.length <= 1 ? customerProperties.order_statuses.data[setCounter].landing_url : urlContent[keyCounter++]}>
+													<FontIcon style={{ fontSize: 60, color: '#cccccc' }}
+														className="material-icons"
+														key={p.id+''+k}>
+														photo_camera
+													</FontIcon>
+												</a>
+											</div>
+											</td>
+										);
+									}
+									return (
+										<td className="td-body" key={p.id+''+k}>
+											<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
+												<a href={urlContent.length <= 1 ? customerProperties.order_statuses.data[setCounter].landing_url : urlContent[keyCounter++]}><img src={p[k][0].url} alt="thumbnail" /></a>
+											</div>
+										</td>
+									);
+								} 
+								
 								return (
 									<td className="td-body" key={p.id+''+k}>
 										<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
@@ -419,7 +484,7 @@ class Account extends React.Component {
 							<p>{Object.keys(shippingAddress).length === 0 ? text.empty : ''}</p>
 						</div>
 					</div>}
-					{this.state.profileSection === 1 && this.state.profileEdit && <div className={accountProfileContainer}>						
+					{this.state.profileSection === 1 && this.state.profileEdit && <div className={accountProfileContainer}>
 						<form onSubmit={handleSubmit} className={accountForm}>
 							<h3 className={titleClassName}>
 								{text.edit_profile}
@@ -440,7 +505,7 @@ class Account extends React.Component {
 								name="last_name"
 								id="customer.last_name"
 								autoComplete="new-password"
-								component={InputField}						
+								component={InputField}
 								type="text"
 								label={this.getFieldLabel('last_name')}
 								validate={this.getFieldValidators('last_name')}
@@ -469,7 +534,7 @@ class Account extends React.Component {
 								validate={this.getFieldValidators('password')}
 								placeholder={this.getFieldPlaceholder('password')}
 							/>
-	
+
 							<Field
 								className={accountInputField}
 								name="password_verify"
@@ -612,7 +677,7 @@ class Account extends React.Component {
 								validate={this.getFieldValidators('city')}
 								placeholder={this.getFieldPlaceholder('city')}
 							/>
-	
+
 							<div className="checkout-button-wrap">
 								<button
 									type="submit"
@@ -625,10 +690,11 @@ class Account extends React.Component {
 						</form>
 					</div>}
 					{this.state.profileSection === 2 && <div className={accountProfileContainer}>
-						<div className="spread-sheet-container">
+						<div className="orders-history-container">
 							<fieldset className="orders-history-fieldset">
 								<div className="heading">
-									<h3>{text.order_history}</h3>
+									{Object.keys(orderHistory).length < 1 && <p>{text.order_history_empty}</p>}
+									{Object.keys(orderHistory).length > 0 &&<h4>{text.order_history}</h4>}
 								</div>
 								<div className="schedule padd-lr">
 									<div className="tbl-header">
@@ -646,7 +712,7 @@ class Account extends React.Component {
 						</div>
 					</div>}
 					<div className={accountButtonContainer}>
-					{this.state.profileSection !== 2 && Object.keys(shippingAddress).length !== 0 && <button
+					{this.state.profileSection !== 2 && <button
 							type="button"
 							onClick={this.handleContactsEdit}
 							className={accountEditButtonClass}
@@ -660,10 +726,6 @@ class Account extends React.Component {
 							<Link  to="/" style={{textDecoration:'none'}} key={'account-continue-shopping'}>{text.continueshopping}</Link>
 						</button>
 					</div>
-					<form onSubmit={handleSubmit} className="login-form">
-						
-					</form>
-					
 				</div>
 			)
 		}
