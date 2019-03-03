@@ -358,5 +358,6 @@
   "themeInstalled": "installation completed",
   "category": "Category",
   "additionalCategories": "Additional Categories",
-  "alt": "Alternative text"
+  "alt": "Alternative text",
+  "no_image": "no image"
 }

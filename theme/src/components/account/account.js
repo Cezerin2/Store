@@ -330,7 +330,7 @@ class Account extends React.Component {
 											<td className="td-body" key={p.id+''+k}>
 											<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
 												<a href={urlContent.length <= 1 ? customerProperties.order_statuses.data[setCounter].landing_url : urlContent[keyCounter++]}>
-													<span key={p.id+''+k}>no image</span>
+													<span key={p.id+''+k}>{text.no_image}</span>
 												</a>
 											</div>
 											</td>
