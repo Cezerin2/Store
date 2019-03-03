@@ -1,7 +1,6 @@
 import React from 'react';
 import api from '../../../dist/lib/api';
 import { Redirect, Link } from 'react-router-dom';
-import FontIcon from 'material-ui/FontIcon';
 import Lscache from 'lscache';
 import { Field, reduxForm } from 'redux-form';
 import { themeSettings, text } from '../../lib/settings';
@@ -331,11 +330,7 @@ class Account extends React.Component {
 											<td className="td-body" key={p.id+''+k}>
 											<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
 												<a href={urlContent.length <= 1 ? customerProperties.order_statuses.data[setCounter].landing_url : urlContent[keyCounter++]}>
-													<FontIcon style={{ fontSize: 60, color: '#cccccc' }}
-														className="material-icons"
-														key={p.id+''+k}>
-														photo_camera
-													</FontIcon>
+													<span key={p.id+''+k}>no image</span>
 												</a>
 											</div>
 											</td>
