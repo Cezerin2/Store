@@ -49,21 +49,20 @@ class CheckoutStepContacts extends React.Component {
 				first_name: this.props.customerProperties.customer_settings.first_name,
 				last_name: this.props.customerProperties.customer_settings.last_name,
 				email: this.props.customerProperties.customer_settings.email,
-				shipping_address: {
-					address1: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.address1 : '',
-					address2: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.address2 : '',
-					city: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.city : '',
-					postal_code: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.postal_code : '',
-					state: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.state : '',
-					country: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].shipping_address.country : ''
-				},
 				billing_address: {
-					address1: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.address1 : '',
-					address2: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.address2 : '',
-					city: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.city : '',
-					postal_code: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.postal_code : '',
-					state: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.state : '',
-					country: this.props.customerProperties.order_statuses.data.length > 0 ? this.props.customerProperties.order_statuses.data[this.props.customerProperties.order_statuses.data.length - 1].billing_address.country : ''
+					address1: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].address1 : '',
+					address2: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].address2 : '',
+					city: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].city : '',
+					postal_code: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].postal_code : '',
+					state: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].state : '',
+					country: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[0].country : ''
+				}, shipping_address: {
+					address1: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].address1 : '',
+					address2: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].address2 : '',
+					city: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].city : '',
+					postal_code: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].postal_code : '',
+					state: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].state : '',
+					country: this.props.customerProperties.customer_settings.addresses.length > 0 ? this.props.customerProperties.customer_settings.addresses[1].country : ''
 				}
 			});
 		}
