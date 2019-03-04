@@ -10,6 +10,20 @@
   "remove": "Удалить",
   "qty": "Количество",
   "price": "Цена",
+  "product_variant_id": "Номер опции",
+  "product_id": "Номер товара",
+  "order_line_id": "Номер заказа",
+  "product_image": "Картинка",
+  "product_discount_total": "Скидка",
+  "product_name": "Название",
+  "product_qty": "Количество",
+  "product_price": "Цена",
+  "product_price_total": "Сумма",
+  "product_sku": "Артикул",
+  "product_tax_class": "Ставка налога",
+  "product_tax_total": "Сумма налога",
+  "product_variant_name": "Опции товара",
+  "product_weight": "Вес товара",
   "checkoutPageTitle": "Оформление заказа",
   "grandTotal": "К оплате",
   "orderSummary": "Ваш заказ",
@@ -115,5 +129,6 @@
   "reset_password_subtitle_success": "Ваш пароль успешно изменён.",
   "back_to_login": "Вернуться на страницу входа",
   "login_success": "Вы успешно вошли в систему.",
-  "login_failed": "Неверный адрес электронной почты или пароль. Пожалуйста, попробуйте еще раз."  
+  "login_failed": "Неверный адрес электронной почты или пароль. Пожалуйста, попробуйте еще раз.",  
+  "no_image": "Нет картинки"
 }

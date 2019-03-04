@@ -358,5 +358,6 @@
   "themeInstalled": "установка завершена",
   "category": "Категория",
   "additionalCategories": "Дополнительные категории",
-  "alt": "Атрибут alt"
+  "alt": "Атрибут alt",
+  "no_image": "нет картинки"
 }
