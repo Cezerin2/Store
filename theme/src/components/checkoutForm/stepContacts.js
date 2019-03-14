@@ -235,7 +235,7 @@ class CheckoutStepContacts extends React.Component {
 							value={initialValues.email}
 						/>
 					)}
-					{this.isFieldHidden('mobile') && (
+					{!this.isFieldHidden('mobile') && (
 						<ReadOnlyField
 							name={text.mobile}
 							value={initialValues.mobile}
