@@ -421,7 +421,7 @@ class CheckoutStepContacts extends React.Component {
 							/>
 						)}
 
-						{this.isFieldHidden('mobile') && (
+						{!this.isFieldHidden('mobile') && (
 							<Field
 								className={inputClassName}
 								name="mobile"
