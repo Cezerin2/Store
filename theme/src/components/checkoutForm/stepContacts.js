@@ -464,8 +464,6 @@ class CheckoutStepContacts extends React.Component {
 							/>
 						)}
 
-						<h2>{text.shippingTo}</h2>
-
 						{!this.isFieldHidden('address1') && (
 							<Field
 								className={inputClassName}
