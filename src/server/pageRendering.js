@@ -13,6 +13,8 @@ import reducers from '../shared/reducers';
 import { loadState } from './loadState';
 import { indexHtml } from './readIndexHtml';
 import App from '../shared/app';
+import fs from 'fs';
+import path from 'path';
 
 initOnServer({
 	language: serverSettings.language,
@@ -95,12 +97,19 @@ const getPlaceholder = placeholders => {
 	return placeholder;
 };
 
+const FILE_PATH = path.resolve('theme/assets/index.html');
 const renderPage = (req, res, store, themeText, placeholders) => {
 	const appHtml = getAppHtml(store, req.url);
 	const state = store.getState();
 	const head = getHead();
 	const placeholder = getPlaceholder(placeholders);
 
+	fs.readFile(FILE_PATH, 'utf8', (err, data) => {
+		if (err) {
+		 	let indexHtml = '';
+			winston.error('Fail to read file', FILE_PATH, err);
+		} else {
+			let indexHtml = data;
 	const html = indexHtml
 		.replace('{placeholder_head_start}', placeholder.head_start)
 		.replace('{placeholder_head_end}', placeholder.head_end)
@@ -131,6 +140,8 @@ const renderPage = (req, res, store, themeText, placeholders) => {
 
 	const httpStatusCode = state.app.currentPage.type === 404 ? 404 : 200;
 	res.status(httpStatusCode).send(html);
+		}
+	});
 };
 
 const pageRendering = (req, res) => {
