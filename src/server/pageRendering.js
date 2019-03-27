@@ -1,5 +1,5 @@
 import winston from 'winston';
-import CezerinClient from 'pz-client';
+import CezerinClient from 'cezerin2-client';
 import React from 'react';
 import { StaticRouter } from 'react-router';
 import { renderToString } from 'react-dom/server';
