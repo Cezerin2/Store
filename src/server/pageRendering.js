@@ -132,8 +132,9 @@ const renderPage = (req, res, store, themeText, placeholders) => {
     const state = store.getState();
     const head = getHead();
     const placeholder = getPlaceholder(placeholders);
-    IndexHtmlSingleton.getInstance().then((html) => {
-         html = html
+
+    IndexHtmlSingleton.getInstance(html => {
+        html = html
         .replace('{placeholder_head_start}', placeholder.head_start)
         .replace('{placeholder_head_end}', placeholder.head_end)
         .replace('{placeholder_body_start}', placeholder.body_start)
@@ -163,8 +164,6 @@ const renderPage = (req, res, store, themeText, placeholders) => {
     
         const httpStatusCode = state.app.currentPage.type === 404 ? 404 : 200;
         res.status(httpStatusCode).send(html);
-    }).catch(err => {
-        renderError(req, res, err);
     });
 };
 
