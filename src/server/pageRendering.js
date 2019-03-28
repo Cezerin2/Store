@@ -128,43 +128,44 @@ const getPlaceholder = placeholders => {
 };
 
 const renderPage = (req, res, store, themeText, placeholders) => {
-	const appHtml = getAppHtml(store, req.url);
-	const state = store.getState();
-	const head = getHead();
-	const placeholder = getPlaceholder(placeholders);
-
-	IndexHtmlSingleton.getInstance(async html => {
-		html
-		.replace('{placeholder_head_start}', placeholder.head_start)
-		.replace('{placeholder_head_end}', placeholder.head_end)
-		.replace('{placeholder_body_start}', placeholder.body_start)
-		.replace('{placeholder_body_end}', placeholder.body_end)
-		.replace('{language}', serverSettings.language)
-		.replace('{title}', head.title)
-		.replace('{meta}', head.meta)
-		.replace('{link}', head.link)
-		.replace('{script}', head.script)
-		.replace('{app_text}', JSON.stringify(themeText))
-		.replace('{app_state}', JSON.stringify(state))
-		.replace('{app}', appHtml);
-	
-		const isHttps = req.protocol === 'https';
-		const full_url = `${req.protocol}://${req.hostname}${req.url}`;
-		const referrer_url =
-			req.get('referrer') === undefined ? '' : req.get('referrer');
-		const REFERRER_COOKIE_OPTIONS = getReferrerCookieOptions(isHttps);
-	
-		if (!req.signedCookies.referrer_url) {
-			res.cookie('referrer_url', referrer_url, REFERRER_COOKIE_OPTIONS);
-		}
-	
-		if (!req.signedCookies.landing_url) {
-			res.cookie('landing_url', full_url, REFERRER_COOKIE_OPTIONS);
-		}
-	
-		const httpStatusCode = state.app.currentPage.type === 404 ? 404 : 200;
-		res.status(httpStatusCode).send(html);
-	});
+    const appHtml = getAppHtml(store, req.url);
+    const state = store.getState();
+    const head = getHead();
+    const placeholder = getPlaceholder(placeholders);
+    IndexHtmlSingleton.getInstance().then((html) => {
+         html = html
+        .replace('{placeholder_head_start}', placeholder.head_start)
+        .replace('{placeholder_head_end}', placeholder.head_end)
+        .replace('{placeholder_body_start}', placeholder.body_start)
+        .replace('{placeholder_body_end}', placeholder.body_end)
+        .replace('{language}', serverSettings.language)
+        .replace('{title}', head.title)
+        .replace('{meta}', head.meta)
+        .replace('{link}', head.link)
+        .replace('{script}', head.script)
+        .replace('{app_text}', JSON.stringify(themeText))
+        .replace('{app_state}', JSON.stringify(state))
+        .replace('{app}', appHtml);
+    
+        const isHttps = req.protocol === 'https';
+        const full_url = `${req.protocol}://${req.hostname}${req.url}`;
+        const referrer_url =
+            req.get('referrer') === undefined ? '' : req.get('referrer');
+        const REFERRER_COOKIE_OPTIONS = getReferrerCookieOptions(isHttps);
+    
+        if (!req.signedCookies.referrer_url) {
+            res.cookie('referrer_url', referrer_url, REFERRER_COOKIE_OPTIONS);
+        }
+    
+        if (!req.signedCookies.landing_url) {
+            res.cookie('landing_url', full_url, REFERRER_COOKIE_OPTIONS);
+        }
+    
+        const httpStatusCode = state.app.currentPage.type === 404 ? 404 : 200;
+        res.status(httpStatusCode).send(html);
+    }).catch(err => {
+        renderError(req, res, err);
+    });
 };
 
 const pageRendering = (req, res) => {
