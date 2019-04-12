@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../lib/settings';
+import storeSettings from '../../../config/store';
 
 class FooterMenu extends React.Component {
 	constructor(props) {
@@ -94,7 +95,7 @@ export default class Footer extends React.PureComponent {
 		const { settings } = this.props;
 		const footerLogoUrl =
 			themeSettings.footer_logo_url && themeSettings.footer_logo_url.length > 0
-				? settings.domain + '/assets/images/' + themeSettings.footer_logo_url
+				? storeSettings.assetsBaseURL + '/assets/images/' + themeSettings.footer_logo_url
 				: settings.logo;
 
 		return (
