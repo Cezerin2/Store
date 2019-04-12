@@ -20,7 +20,7 @@ const renderItem = item => (
 	</div>
 );
 
-const HomeSlider = ({ images, settings }) => {
+const HomeSlider = ({ images }) => {
 	if (images && images.length > 0) {
 		const items = images.map(item => ({
 			original: `${storeSettings.assetsBaseURL}/assets/images/${item.image}`,
@@ -56,7 +56,6 @@ const HomeSlider = ({ images, settings }) => {
 
 HomeSlider.propTypes = {
 	images: PropTypes.arrayOf(PropTypes.shape({}))
-	//settings: PropTypes.shape({}).isRequired
 };
 
 HomeSlider.defaultProps = {

@@ -21,7 +21,7 @@ const IndexContainer = props => {
 				ogDescription={pageDetails.meta_description}
 			/>
 
-			<HomeSlider images={themeSettings.home_slider} settings={settings} />
+			<HomeSlider images={themeSettings.home_slider} />
 
 			{pageDetails.content &&
 				pageDetails.content.length > 10 && (
