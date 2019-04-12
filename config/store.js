@@ -6,6 +6,9 @@ module.exports = {
 	// used by Store (server side)
 	apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:3001/api/v1',
 
+	// used by API to service assets
+	assetsBaseURL: process.env.ASSETS_BASE_URL || 'http://localhost:3001',
+
 	// used by Store (server side)
 	ajaxBaseUrl: process.env.AJAX_BASE_URL || 'http://localhost:3001/ajax',
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import ImageGallery from 'react-image-gallery';
 import { themeSettings } from '../lib/settings';
+import storeSettings from '../../../config/store';
 
 const renderItem = item => (
 	<div className="image-gallery-image">
@@ -19,10 +20,10 @@ const renderItem = item => (
 	</div>
 );
 
-const HomeSlider = ({ images }) => {
+const HomeSlider = ({ images, settings }) => {
 	if (images && images.length > 0) {
 		const items = images.map(item => ({
-			original: `/assets/images/${item.image}`,
+			original: `http://localhost:3001/assets/images/${item.image}`,
 			title: item.title,
 			description: item.description,
 			path: item.path || '',
@@ -54,7 +55,8 @@ const HomeSlider = ({ images }) => {
 };
 
 HomeSlider.propTypes = {
-	images: PropTypes.arrayOf(PropTypes.shape({}))
+	images: PropTypes.arrayOf(PropTypes.shape({})),
+	settings: PropTypes.shape({}).isRequired
 };
 
 HomeSlider.defaultProps = {
