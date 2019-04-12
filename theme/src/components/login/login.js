@@ -202,17 +202,19 @@ class Login extends React.Component {
 						</NavLink>
 					</div>
 				</form>
-				{this.props.cartlayerBtnInitialized !== undefined && this.props.cartlayerBtnInitialized && 
-					(<div className={loginSectionGuest}>
-						<h2>{text.continue_guest_headline}</h2>
-						<p>{text.continue_guest_text}</p>
-						<NavLink
-							className="button loginButtonClass"
-							style={{ textTransform: 'uppercase' }}
-							to="/checkout"
-						>
-							{text.proceedToCheckout}
-						</NavLink>
+				{this.props.cartlayerBtnInitialized !== undefined && this.props.cartlayerBtnInitialized &&
+					(<div className="login-button-wrap">
+						<div className={loginSectionGuest}>
+							<h2>{text.continue_guest_headline}</h2>
+							<p>{text.continue_guest_text}</p>
+							<NavLink
+								className="button loginButtonClass"
+								style={{ textTransform: 'uppercase' }}
+								to="/checkout"
+							>
+								{text.proceedToCheckout}
+							</NavLink>
+						</div>
 					</div>)}
 			</div>
 		);

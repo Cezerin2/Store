@@ -55,12 +55,13 @@
 }
 
 .login-form-with-guest {
-     margin: 0;   
+     margin: auto;
 }
 
 .login-section-guest {
     width: 300px;
-    padding-left: 100px
+    padding-top:100px;
+	  margin-right:100px;
 }
 
 .login-button-wrap {
@@ -124,4 +125,19 @@
 
 .login-icon {
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 769px) {
+	.login-container {
+		align-items: baseline;
+		margin: auto;
+		width: auto;
+		display: table;
+	}
+
+	.login-section-guest {
+		padding-top:15px;
+		margin-right:0px;
+	}
 }
