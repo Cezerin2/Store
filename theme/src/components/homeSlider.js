@@ -56,6 +56,7 @@ const HomeSlider = ({ images, settings }) => {
 
 HomeSlider.propTypes = {
 	images: PropTypes.arrayOf(PropTypes.shape({}))
+	settings: PropTypes.shape({}).isRequired
 };
 
 HomeSlider.defaultProps = {
