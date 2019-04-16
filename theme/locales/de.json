@@ -95,7 +95,7 @@
   "next": "Weiter",
   "customerDetails": "Kundendetails",
   "login_success": "Sie sind erfolgreich eingeloggt.",
-  "login_failed": "Die Email oder Passwort stimmt nicht. Bitte versuchen Sie es erneut einzugeben."  
+  "login_failed": "Die Email oder Passwort stimmt nicht. Bitte versuchen Sie es erneut einzugeben.",  
   "registry_success": "You have been successful as customer registered.",
   "registry_failed": "The email account is no more available. Please try with an other..",
   "registry_doi_success": "Thank you for preaccomplishing the registry. We sent you an email for the last step.",
