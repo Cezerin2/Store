@@ -127,6 +127,5 @@
   "reset_password_subtitle": "Now you can reset your password.",
   "reset_password_subtitle_success": "Your password is now resetted.",
   "back_to_login": "Back to login",
-  "login_success": "You are logged in successfully.",
-  "login_failed": "The email or password is wrong. Please try again."
+  "no_image": "No image"
 }

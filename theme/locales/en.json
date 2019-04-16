@@ -97,6 +97,8 @@
   "register": "Register",
   "login_title": "Log In",
   "register_title": "Register",
+  "login_success": "You are logged in successfully.",
+  "login_failed": "The email or password is wrong. Please try again.",
   "registry_success": "You have been successful as customer registered.",
   "registry_failed": "The email account is no more available. Please try with an other..",
   "registry_doi_success": "Thank you for preaccomplishing the registry. We sent you an email for the last step.",
@@ -128,6 +130,5 @@
   "reset_password_subtitle": "Now you can reset your password.",
   "reset_password_subtitle_success": "Your password is now resetted.",
   "back_to_login": "Back to login",
-  "login_success": "You are logged in successfully.",
-  "login_failed": "The email or password is wrong. Please try again."
+  "no_image": "No image"
 }
