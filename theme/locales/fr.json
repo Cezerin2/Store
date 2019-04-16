@@ -92,7 +92,6 @@
   "edit": "Modifier",
   "next": "Suivant",
   "customerDetails": "Détails Client",
-  "payment": "Paiement"
   "login": "Log In",
   "register": "Register",
   "login_title": "Log In",
@@ -103,7 +102,7 @@
   "registry_completed": "You accomplished the registry. Now you can log in to your account",
   "registry_wrong_token": "The URL you have pasted is wrong.",
   "customerDetails": "Customer Details",
-  "payment": "Payment",
+  "payment": "Paiement",
   "welcome": "Welcome ",
   "profile": "Profile",
   "orders": "Orders",

@@ -80,7 +80,6 @@
   "edit": "Modifica",
   "next": "Prossimo",
   "customerDetails": "Dettagli cliente",
-  "payment": "Pagamento"
   "login_title": "Log In",
   "register_title": "Register",
   "registry_success": "You have been successful as customer registered.",
@@ -89,7 +88,7 @@
   "registry_completed": "You accomplished the registry. Now you can log in to your account",
   "registry_wrong_token": "The URL you have pasted is wrong.",
   "customerDetails": "Customer Details",
-  "payment": "Payment",
+  "payment": "Pagamento",
   "welcome": "Welcome ",
   "profile": "Profile",
   "orders": "Orders",
