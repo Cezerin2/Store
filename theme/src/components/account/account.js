@@ -171,7 +171,7 @@ class Account extends React.Component {
 			case 'id':
 				return text.order_line_id;
 			case 'product_id':
-				return text.product_id;
+				return text.order_line_id;
 			case 'variant_id':
 				return text.product_variant_id;
 			case 'quantity':
@@ -291,6 +291,7 @@ class Account extends React.Component {
 				});
 
 				orderHistory = customerProperties.order_statuses.data.filter(obj => obj.draft !== true).reduce(function(map, obj, i) {
+					obj.items.forEach(function(element) { element.product_id = obj.number });
 					map['ordered_items' + i] = obj.items;
 					return map;
 				}, {});
@@ -304,11 +305,13 @@ class Account extends React.Component {
 						return (
 							<tr className="tr-header" key={keyCounter}>
 								{Object.keys(p).map((k, l) => {
-									return (
-										<th className="td-header" key={keyCounter+l}>
-											{this.getTableHeaderLabel(k)}
-										</th>
-									);
+									if (!['id','variant_id'].includes(k)) {
+										return (
+											<th className="td-header" key={keyCounter + l}>
+												{this.getTableHeaderLabel(k)}
+											</th>
+										);
+									}
 								})}
 							</tr>
 						);
@@ -343,15 +346,17 @@ class Account extends React.Component {
 											</div>
 										</td>
 									);
-								} 
-								
-								return (
-									<td className="td-body" key={p.id+''+k}>
-										<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
-											{p[k]}
-										</div>
-									</td>
-								);
+								}
+
+								if (!['id','variant_id'].includes(k)) {
+									return (
+										<td className="td-body" key={p.id + '' + k}>
+											<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
+												{p[k]}
+											</div>
+										</td>
+									);
+								}
 							})}
 						</tr>
 					);
