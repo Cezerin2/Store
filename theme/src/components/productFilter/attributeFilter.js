@@ -48,7 +48,7 @@ class AttributeValue extends React.Component {
 					onChange={this.onChange}
 					checked={this.state.checked}
 				/>
-				{valueName}
+				{valueName} ({count})
 			</label>
 		);
 	}
