@@ -168,8 +168,6 @@ class Account extends React.Component {
 		switch (tableHeaderLabel) {
 			case 'product_image':
 				return text.product_image;
-			case 'id':
-				return text.order_line_id;
 			case 'product_id':
 				return text.order_line_id;
 			case 'variant_id':
