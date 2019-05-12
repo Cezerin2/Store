@@ -6,6 +6,8 @@
   "subtotal": "Sous-total",
   "shipping": "Livraison",
   "discount": "Réduction",
+  "tax": "Tax",
+  "included_tax": "Included Tax",
   "total": "Total",
   "remove": "Supprimer",
   "qty": "Quantité",

@@ -6,6 +6,8 @@
   "subtotal": "小计",
   "shipping": "运送",
   "discount": "折扣",
+  "tax": "Tax",
+  "included_tax": "Included Tax",
   "total": "总数",
   "remove": "移除",
   "qty": "数量",

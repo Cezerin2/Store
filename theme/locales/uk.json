@@ -6,6 +6,8 @@
   "subtotal": "Разом",
   "shipping": "Доставка",
   "discount": "Знижка",
+  "tax": "Tax",
+  "included_tax": "Included Tax",
   "total": "До сплати",
   "remove": "Видалити",
   "qty": "Кількість",
