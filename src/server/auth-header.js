@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import serverConfigs from '../../config/store';
+import serverConfigs from './settings';
 
 const cert = serverConfigs.jwtSecretKey;
 class AuthHeader {
