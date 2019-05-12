@@ -159,6 +159,15 @@ const CheckoutSuccess = ({
 
 				<div className="columns">
 					<div className="column is-offset-7 checkout-success-totals">
+						{order.tax_total > 0 && order.item_tax_included && (
+							<div>
+								<span>{text.included_tax}:</span>
+								<span>
+									{helper.formatCurrency(order.tax_total, settings)}
+								</span>
+							</div>
+						)}
+
 						<div>
 							<span>{text.subtotal}:</span>
 							<span>{helper.formatCurrency(order.subtotal, settings)}</span>
@@ -170,7 +179,7 @@ const CheckoutSuccess = ({
 							</span>
 						</div>
 
-						{order.tax_total > 0 && (
+						{order.tax_total > 0 && !order.item_tax_included && (
 							<div>
 								<span>{text.tax}:</span>
 								<span>
