@@ -2,7 +2,6 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
-import AuthHeader from '../../../../src/server/auth-header';
 import Account from './account';
 
 export default class AccountForm extends React.Component {
@@ -22,7 +21,7 @@ export default class AccountForm extends React.Component {
 			first_name: values.first_name,
 			last_name: values.last_name,
 			email: values.email,
-			password: AuthHeader.encodeUserPassword(values.password),
+			password: values.password,
 			token: Lscache.get('auth_data'),
 			shipping_address,
 			billing_address,
