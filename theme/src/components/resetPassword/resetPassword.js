@@ -16,8 +16,9 @@ const InputField = field => (
 	<div className={field.className}>
 		<label htmlFor={field.id}>
 			{field.label}
-			{field.meta.touched &&
-				field.meta.error && <span className="error">{field.meta.error}</span>}
+			{field.meta.touched && field.meta.error && (
+				<span className="error">{field.meta.error}</span>
+			)}
 		</label>
 		<input
 			{...field.input}
@@ -35,12 +36,12 @@ class ResetPassword extends React.Component {
 
 		this.state = {
 			comparePassword: ''
-		}
+		};
 	}
 
 	passwordTemp = value => {
-		this.setState( {comparePassword: value.currentTarget.defaultValue} );
-	}
+		this.setState({ comparePassword: value.currentTarget.defaultValue });
+	};
 
 	getField = fieldName => {
 		const fields = this.props.checkoutFields || [];
@@ -78,11 +79,11 @@ class ResetPassword extends React.Component {
 	};
 
 	confirmPassword = value => {
-		if(value !== this.state.comparePassword ) {
+		if (value !== this.state.comparePassword) {
 			return text.password_verify_failed;
 		}
 		return undefined;
-	}
+	};
 
 	getFieldPlaceholder = fieldName => {
 		const field = this.getField(fieldName);
@@ -117,7 +118,7 @@ class ResetPassword extends React.Component {
 	};
 
 	render() {
-		const { 
+		const {
 			handleSubmit,
 			forgotPasswordProperties,
 			resetPasswordProperties
@@ -131,14 +132,21 @@ class ResetPassword extends React.Component {
 			<div className="login-container">
 				<form onSubmit={handleSubmit} className="login-form">
 					<div className="login-section">
-						<h1 className={loginTitleClassName}>
-							{text.reset_password}
-						</h1>
-						<p className={!resetPasswordProperties.verified ? loginTitleClassName : loginSuccessTitleClassName}>
-							{!resetPasswordProperties.verified ? text.reset_password_subtitle : text.reset_password_subtitle_success}
+						<h1 className={loginTitleClassName}>{text.reset_password}</h1>
+						<p
+							className={
+								!resetPasswordProperties.verified
+									? loginTitleClassName
+									: loginSuccessTitleClassName
+							}
+						>
+							{!resetPasswordProperties.verified
+								? text.reset_password_subtitle
+								: text.reset_password_subtitle_success}
 						</p>
-						
-							{!resetPasswordProperties.verified && <Field
+
+						{!resetPasswordProperties.verified && (
+							<Field
 								className={inputClassName}
 								name="password"
 								id="customer.password"
@@ -149,8 +157,10 @@ class ResetPassword extends React.Component {
 								label={this.getFieldLabel('password')}
 								validate={this.getFieldValidators('password')}
 								placeholder={this.getFieldPlaceholder('password')}
-							/>}
-							{!resetPasswordProperties.verified && <Field
+							/>
+						)}
+						{!resetPasswordProperties.verified && (
+							<Field
 								className={inputClassName}
 								name="password_verify"
 								id="customer.password_verify"
@@ -161,16 +171,25 @@ class ResetPassword extends React.Component {
 								label={this.getFieldLabel('password_verify')}
 								validate={this.getFieldValidators('password_verify')}
 								placeholder={this.getFieldPlaceholder('password_verify')}
-							/>}
-				
+							/>
+						)}
+
 						<div className="login-button-wrap">
-						{!resetPasswordProperties.verified && <button
-								type="submit"
-								className={loginButtonClass}
-							>
-								{text.forgot_password_submit}
-							</button>}
-							{resetPasswordProperties.verified && <Link  to="/login" style={{textDecoration:'none'}} key={'back-to-login'} className={loginButtonClass}>{text.back_to_login}</Link>}
+							{!resetPasswordProperties.verified && (
+								<button type="submit" className={loginButtonClass}>
+									{text.forgot_password_submit}
+								</button>
+							)}
+							{resetPasswordProperties.verified && (
+								<Link
+									to="/login"
+									style={{ textDecoration: 'none' }}
+									key={'back-to-login'}
+									className={loginButtonClass}
+								>
+									{text.back_to_login}
+								</Link>
+							)}
 						</div>
 					</div>
 				</form>

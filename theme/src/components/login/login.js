@@ -25,8 +25,9 @@ const InputField = field => (
 	<div className={field.className}>
 		<label htmlFor={field.id}>
 			{field.label}
-			{field.meta.touched &&
-				field.meta.error && <span className="error">{field.meta.error}</span>}
+			{field.meta.touched && field.meta.error && (
+				<span className="error">{field.meta.error}</span>
+			)}
 		</label>
 		<input
 			{...field.input}
@@ -47,8 +48,8 @@ class Login extends React.Component {
 	}
 
 	verifyAuth() {
-		this.setState({unauthorized: true});
-	};
+		this.setState({ unauthorized: true });
+	}
 
 	getField = fieldName => {
 		const fields = this.props.checkoutFields || [];
@@ -115,17 +116,22 @@ class Login extends React.Component {
 	};
 
 	render() {
-		const { 
+		const {
 			handleSubmit,
 			customerProperties,
 			cartlayerBtnInitialized
 		} = this.props;
 
-		if (this.props.customerProperties !== undefined && Lscache.get('auth_data') !== null) {
+		if (
+			this.props.customerProperties !== undefined &&
+			Lscache.get('auth_data') !== null
+		) {
 			return (
-			  <Redirect to={{
-					pathname: '/customer-account'
-				}}/>
+				<Redirect
+					to={{
+						pathname: '/customer-account'
+					}}
+				/>
 			);
 		}
 
@@ -142,16 +148,23 @@ class Login extends React.Component {
 		const loginButtonClass = 'account-button button';
 		const loginSectionGuest = 'login-section-guest';
 		const errorAlertText = 'error-alert-text';
-		const loginForm = this.props.cartlayerBtnInitialized !== undefined && this.props.cartlayerBtnInitialized ? 'login-form login-form login-form-with-guest' : 'login-form';
+		const loginForm =
+			this.props.cartlayerBtnInitialized !== undefined &&
+			this.props.cartlayerBtnInitialized
+				? 'login-form login-form login-form-with-guest'
+				: 'login-form';
 
 		return (
 			<div className="login-container">
 				<form onSubmit={handleSubmit} className={loginForm}>
 					<div className="login-section">
-						<h2 className={titleClassName}>
-							{text.login_title}
-						</h2>
-						{ this.props.customerProperties !== undefined && this.props.customerProperties.loggedin_failed ? <p className={errorAlertText}>{text.login_failed}</p> : '' }
+						<h2 className={titleClassName}>{text.login_title}</h2>
+						{this.props.customerProperties !== undefined &&
+						this.props.customerProperties.loggedin_failed ? (
+							<p className={errorAlertText}>{text.login_failed}</p>
+						) : (
+							''
+						)}
 						{!this.isFieldHidden('email') && (
 							<Field
 								className={inputClassName}
@@ -181,14 +194,11 @@ class Login extends React.Component {
 							<Link to="/forgot-password">{text.forgot_password}</Link>
 						</div>
 						<div className="login-button-wrap">
-							<button
-								type="submit"
-								className={loginButtonClass}
-							>
+							<button type="submit" className={loginButtonClass}>
 								{text.login}
 							</button>
 						</div>
-						
+
 						<NavLink className="logo-image" to="/register">
 							<div className="login-button-wrap">
 								<button
@@ -202,20 +212,22 @@ class Login extends React.Component {
 						</NavLink>
 					</div>
 				</form>
-				{this.props.cartlayerBtnInitialized !== undefined && this.props.cartlayerBtnInitialized &&
-					(<div className="login-button-wrap">
-						<div className={loginSectionGuest}>
-							<h2>{text.continue_guest_headline}</h2>
-							<p>{text.continue_guest_text}</p>
-							<NavLink
-								className="button loginButtonClass"
-								style={{ textTransform: 'uppercase' }}
-								to="/checkout"
-							>
-								{text.proceedToCheckout}
-							</NavLink>
+				{this.props.cartlayerBtnInitialized !== undefined &&
+					this.props.cartlayerBtnInitialized && (
+						<div className="login-button-wrap">
+							<div className={loginSectionGuest}>
+								<h2>{text.continue_guest_headline}</h2>
+								<p>{text.continue_guest_text}</p>
+								<NavLink
+									className="button loginButtonClass"
+									style={{ textTransform: 'uppercase' }}
+									to="/checkout"
+								>
+									{text.proceedToCheckout}
+								</NavLink>
+							</div>
 						</div>
-					</div>)}
+					)}
 			</div>
 		);
 	}

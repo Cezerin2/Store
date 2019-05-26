@@ -22,7 +22,7 @@ export default class CheckoutForm extends React.Component {
 
 		this.props.cartLayerInitialized({
 			cartlayerBtnInitialized: false
-		})
+		});
 	}
 
 	changeStep = step => {
@@ -47,7 +47,10 @@ export default class CheckoutForm extends React.Component {
 
 	handleContactsSubmit = values => {
 		let { shipping_address, billing_address } = values;
-		shipping_address = Object.assign({full_name: `${values.first_name} ${values.last_name}`}, shipping_address);
+		shipping_address = Object.assign(
+			{ full_name: `${values.first_name} ${values.last_name}` },
+			shipping_address
+		);
 		this.props.updateCart({
 			email: values.email,
 			mobile: values.mobile,

@@ -76,14 +76,13 @@ export default class SearchBox extends React.Component {
 					title={text.search}
 					onClick={this.handleSearch}
 				/>
-				{this.state.value &&
-					this.state.value !== '' && (
-						<img
-							className="search-icon-clear"
-							src="/assets/images/close.svg"
-							onClick={this.handleClear}
-						/>
-					)}
+				{this.state.value && this.state.value !== '' && (
+					<img
+						className="search-icon-clear"
+						src="/assets/images/close.svg"
+						onClick={this.handleClear}
+					/>
+				)}
 			</div>
 		);
 	}

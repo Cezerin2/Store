@@ -16,15 +16,16 @@ const InputField = field => (
 	<div className={field.className}>
 		<label htmlFor={field.id}>
 			{field.label}
-			{field.meta.touched &&
-				field.meta.error && <span className="error">{field.meta.error}</span>}
+			{field.meta.touched && field.meta.error && (
+				<span className="error">{field.meta.error}</span>
+			)}
 		</label>
 		<input
 			{...field.input}
 			placeholder={field.placeholder}
 			type={field.type}
 			id={field.id}
-      		disabled={field.disabled} 
+			disabled={field.disabled}
 			className={field.meta.touched && field.meta.error ? 'invalid' : ''}
 		/>
 	</div>
@@ -104,10 +105,7 @@ class ForgotPassword extends React.Component {
 	};
 
 	render() {
-		const { 
-			handleSubmit,
-			forgotPasswordProperties,
-		} = this.props;
+		const { handleSubmit, forgotPasswordProperties } = this.props;
 
 		const inputClassName = 'login-input-field';
 		const loginTitleClassName = 'login-title';
@@ -118,21 +116,40 @@ class ForgotPassword extends React.Component {
 			<div className="login-container">
 				<form onSubmit={handleSubmit} className="login-form">
 					<div className="login-section">
-						<h1 className={loginTitleClassName}>
-							{text.forgot_password}
-						</h1>
+						<h1 className={loginTitleClassName}>{text.forgot_password}</h1>
 						<p className={loginTitleClassName}>
-							{forgotPasswordProperties === undefined ? text.forgot_password_subtitle : ''}
+							{forgotPasswordProperties === undefined
+								? text.forgot_password_subtitle
+								: ''}
 						</p>
-						{ forgotPasswordProperties !== undefined && forgotPasswordProperties.status ? <p className={sendPasswordSuccessTitleClassName}>{text.forgot_password_email_sent_success}</p> : '' }
-						{ forgotPasswordProperties !== undefined && !forgotPasswordProperties.status ? <p className={sendPasswordFailedTitleClassName}>{text.forgot_password_email_sent_failed}</p> : '' }
+						{forgotPasswordProperties !== undefined &&
+						forgotPasswordProperties.status ? (
+							<p className={sendPasswordSuccessTitleClassName}>
+								{text.forgot_password_email_sent_success}
+							</p>
+						) : (
+							''
+						)}
+						{forgotPasswordProperties !== undefined &&
+						!forgotPasswordProperties.status ? (
+							<p className={sendPasswordFailedTitleClassName}>
+								{text.forgot_password_email_sent_failed}
+							</p>
+						) : (
+							''
+						)}
 						<Field
 							className={inputClassName}
 							name="email"
 							id="customer.email"
 							component={InputField}
 							type="email"
-							props={forgotPasswordProperties !== undefined && forgotPasswordProperties.status ? {disabled: true} : this.value}
+							props={
+								forgotPasswordProperties !== undefined &&
+								forgotPasswordProperties.status
+									? { disabled: true }
+									: this.value
+							}
 							label={this.getFieldLabel('email')}
 							validate={this.getFieldValidators('email')}
 							placeholder={this.getFieldPlaceholder('email')}
@@ -141,7 +158,10 @@ class ForgotPassword extends React.Component {
 							<button
 								type="submit"
 								className={loginButtonClass}
-								disabled={forgotPasswordProperties !== undefined && forgotPasswordProperties.status}
+								disabled={
+									forgotPasswordProperties !== undefined &&
+									forgotPasswordProperties.status
+								}
 							>
 								{text.forgot_password_submit}
 							</button>

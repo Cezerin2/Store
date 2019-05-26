@@ -75,7 +75,8 @@ export default class Cart extends React.PureComponent {
 						className="button is-primary is-fullwidth has-text-centered"
 						style={{ textTransform: 'uppercase' }}
 						to={{
-							pathname: Lscache.get('auth_data') !== null ? "/checkout" : "/login",
+							pathname:
+								Lscache.get('auth_data') !== null ? '/checkout' : '/login',
 							state: { cartLayer: true }
 						}}
 						onClick={cartToggle}

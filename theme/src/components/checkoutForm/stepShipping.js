@@ -128,13 +128,12 @@ class CheckoutStepShipping extends React.Component {
 					</h1>
 					{shippingFields}
 
-					{!hideCommentsField &&
-						initialValues.comments !== '' && (
-							<div className="checkout-field-preview">
-								<div className="name">{commentsFieldLabel}</div>
-								<div className="value">{initialValues.comments}</div>
-							</div>
-						)}
+					{!hideCommentsField && initialValues.comments !== '' && (
+						<div className="checkout-field-preview">
+							<div className="name">{commentsFieldLabel}</div>
+							<div className="value">{initialValues.comments}</div>
+						</div>
+					)}
 
 					<div className="checkout-button-wrap">
 						<button
@@ -273,7 +272,13 @@ class CheckoutStepShipping extends React.Component {
 						<div className="checkout-button-wrap">
 							<button
 								type="submit"
-								disabled={submitting || processingCheckout || invalid || initialValues.shipping_method_id === null || initialValues.payment_method_id === null}
+								disabled={
+									submitting ||
+									processingCheckout ||
+									invalid ||
+									initialValues.shipping_method_id === null ||
+									initialValues.payment_method_id === null
+								}
 								className={`${buttonClassName}${
 									processingCheckout ? ' is-loading' : ''
 								}`}

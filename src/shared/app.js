@@ -110,9 +110,9 @@ const SwitchContainersConnected = connect(
 )(SwitchContainers);
 
 const App = () => (
-		<SharedContainer>
-				<Route component={SwitchContainersConnected} />
-		</SharedContainer>
+	<SharedContainer>
+		<Route component={SwitchContainersConnected} />
+	</SharedContainer>
 );
 
 export default App;

@@ -9,7 +9,13 @@ const LoginIcon = () => {
 			className="login-icon"
 			alt={text.login}
 			title={text.login}
-			style={{ marginTop: 12+'px', minWidth: 32+'px', minHeight: 29+'px', maxWidth: 44+'px', maxHeight: 28+'px' }}
+			style={{
+				marginTop: 12 + 'px',
+				minWidth: 32 + 'px',
+				minHeight: 29 + 'px',
+				maxWidth: 44 + 'px',
+				maxHeight: 28 + 'px'
+			}}
 		/>
 	);
 };

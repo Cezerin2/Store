@@ -94,9 +94,7 @@ export default class Footer extends React.PureComponent {
 	render() {
 		const { settings } = this.props;
 		const footerLogoUrl =
-			themeSettings.footer_logo_url && themeSettings.footer_logo_url.length > 0
-				? storeSettings.assetsBaseURL + '/assets/images/' + themeSettings.footer_logo_url
-				: settings.logo;
+			settings.logo && settings.logo.length > 0 ? settings.logo : null;
 
 		return (
 			<section className="section section-footer">

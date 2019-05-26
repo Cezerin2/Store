@@ -162,9 +162,7 @@ const CheckoutSuccess = ({
 						{order.tax_total > 0 && order.item_tax_included && (
 							<div>
 								<span>{text.included_tax}:</span>
-								<span>
-									{helper.formatCurrency(order.tax_total, settings)}
-								</span>
+								<span>{helper.formatCurrency(order.tax_total, settings)}</span>
 							</div>
 						)}
 
@@ -182,12 +180,9 @@ const CheckoutSuccess = ({
 						{order.tax_total > 0 && !order.item_tax_included && (
 							<div>
 								<span>{text.tax}:</span>
-								<span>
-									{helper.formatCurrency(order.tax_total, settings)}
-								</span>
+								<span>{helper.formatCurrency(order.tax_total, settings)}</span>
 							</div>
 						)}
-
 
 						<div>
 							<b>{text.grandTotal}:</b>

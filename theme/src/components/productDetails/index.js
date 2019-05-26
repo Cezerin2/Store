@@ -107,10 +107,10 @@ export default class ProductDetails extends React.Component {
 			product.stock_status === 'discontinued'
 				? 0
 				: product.stock_backorder
-					? themeSettings.maxCartItemQty
-					: selectedVariant
-						? selectedVariant.stock_quantity
-						: product.stock_quantity;
+				? themeSettings.maxCartItemQty
+				: selectedVariant
+				? selectedVariant.stock_quantity
+				: product.stock_quantity;
 
 		if (product) {
 			return (
