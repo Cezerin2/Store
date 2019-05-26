@@ -1,8 +1,8 @@
 import React from 'react';
-import api from '../../../dist/lib/api';
 import { Redirect, Link } from 'react-router-dom';
 import Lscache from 'lscache';
 import { Field, reduxForm } from 'redux-form';
+import api from '../../../dist/lib/api';
 import { themeSettings, text } from '../../lib/settings';
 
 const validateRequired = value =>
@@ -13,14 +13,12 @@ const validateEmail = value =>
 		? text.emailInvalid
 		: undefined;
 
-const ReadOnlyField = ({ name, value }) => {
-	return (
-		<div className="checkout-field-preview">
-			<div className="name">{name}</div>
-			<div className="value">{value}</div>
-		</div>
-	);
-};
+const ReadOnlyField = ({ name, value }) => (
+	<div className="checkout-field-preview">
+		<div className="name">{name}</div>
+		<div className="value">{value}</div>
+	</div>
+);
 
 const InputField = field => (
 	<div className={field.className}>
@@ -136,17 +134,13 @@ class Account extends React.Component {
 		return field && field.status ? field.status : 'required';
 	};
 
-	isFieldOptional = fieldName => {
-		return this.getFieldStatus(fieldName) === 'optional';
-	};
+	isFieldOptional = fieldName => this.getFieldStatus(fieldName) === 'optional';
 
-	isFieldHidden = fieldName => {
-		return this.getFieldStatus(fieldName) === 'hidden';
-	};
+	isFieldHidden = fieldName => this.getFieldStatus(fieldName) === 'hidden';
 
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
-		let validatorsArray = [];
+		const validatorsArray = [];
 		if (!isOptional) {
 			validatorsArray.push(validateRequired);
 		}
@@ -168,47 +162,46 @@ class Account extends React.Component {
 		const field = this.getField(fieldName);
 		if (field && field.label && field.label.length > 0) {
 			return field.label;
-		} else {
-			switch (fieldName) {
-				case 'first_name':
-					return text.first_name;
-					break;
-				case 'last_name':
-					return text.last_name;
-					break;
-				case 'email':
-					return text.email;
-					break;
-				case 'mobile':
-					return text.mobile;
-					break;
-				case 'password':
-					return text.password;
-					break;
-				case 'password_verify':
-					return text.password_verify;
-					break;
-				case 'address1':
-					return text.address1;
-					break;
-				case 'address2':
-					return text.address2;
-					break;
-				case 'country':
-					return text.country;
-					break;
-				case 'state':
-					return text.state;
-					break;
-				case 'city':
-					return text.city;
-					break;
-				case 'postal_code':
-					return text.postal_code;
-					break;
-				default:
-					return 'Unnamed field';
-			}
+		}
+		switch (fieldName) {
+			case 'first_name':
+				return text.first_name;
+				break;
+			case 'last_name':
+				return text.last_name;
+				break;
+			case 'email':
+				return text.email;
+				break;
+			case 'mobile':
+				return text.mobile;
+				break;
+			case 'password':
+				return text.password;
+				break;
+			case 'password_verify':
+				return text.password_verify;
+				break;
+			case 'address1':
+				return text.address1;
+				break;
+			case 'address2':
+				return text.address2;
+				break;
+			case 'country':
+				return text.country;
+				break;
+			case 'state':
+				return text.state;
+				break;
+			case 'city':
+				return text.city;
+				break;
+			case 'postal_code':
+				return text.postal_code;
+				break;
+			default:
+				return 'Unnamed field';
 		}
 	};
 
@@ -293,8 +286,8 @@ class Account extends React.Component {
 		const accountProfileHeadline = 'account-profile-headline';
 		const isActive = 'is-active';
 
-		let billingAddress = {};
-		let shippingAddress = {};
+		const billingAddress = {};
+		const shippingAddress = {};
 		let orderHistory = {};
 		const list = [];
 		let tableStyle = null;
@@ -332,32 +325,32 @@ class Account extends React.Component {
 			) {
 				[].slice
 					.call(customerProperties.customer_settings.addresses)
-					.forEach(function(key, i) {
+					.forEach((key, i) => {
 						if (i < 1) {
-							billingAddress['address1'] = key.address1;
-							billingAddress['address2'] = key.address2;
-							billingAddress['city'] = key.city;
-							billingAddress['postal_code'] = key.postal_code;
-							billingAddress['state'] = key.state;
-							billingAddress['country'] = key.country;
+							billingAddress.address1 = key.address1;
+							billingAddress.address2 = key.address2;
+							billingAddress.city = key.city;
+							billingAddress.postal_code = key.postal_code;
+							billingAddress.state = key.state;
+							billingAddress.country = key.country;
 						}
 						if (i > 0) {
-							shippingAddress['address1'] = key.address1;
-							shippingAddress['address2'] = key.address2;
-							shippingAddress['city'] = key.city;
-							shippingAddress['postal_code'] = key.postal_code;
-							shippingAddress['state'] = key.state;
-							shippingAddress['country'] = key.country;
+							shippingAddress.address1 = key.address1;
+							shippingAddress.address2 = key.address2;
+							shippingAddress.city = key.city;
+							shippingAddress.postal_code = key.postal_code;
+							shippingAddress.state = key.state;
+							shippingAddress.country = key.country;
 						}
 					});
 
 				orderHistory = customerProperties.order_statuses.data
 					.filter(obj => obj.draft !== true)
-					.reduce(function(map, obj, i) {
-						obj.items.forEach(function(element) {
+					.reduce((map, obj, i) => {
+						obj.items.forEach(element => {
 							element.product_id = obj.number;
 						});
-						map['ordered_items' + i] = obj.items;
+						map[`ordered_items${i}`] = obj.items;
 						return map;
 					}, {});
 			}
@@ -387,40 +380,17 @@ class Account extends React.Component {
 			keyCounter = 0;
 			for (var i in orderHistory) {
 				list.push(
-					orderHistory[i].map(p => {
-						return (
-							<tr className="tr-body" key={p.id + '' + i}>
-								{Object.keys(p).map((k, d) => {
-									if (k.indexOf('product_image') !== -1) {
-										const setCounter = i.replace(/^\D+/g, '');
-										let urlContent = customerProperties.order_statuses.data[
-											setCounter
-										].landing_url.split(',');
-										if (p.product_image === null) {
-											return (
-												<td className="td-body" key={p.id + '' + k}>
-													<div
-														suppressContentEditableWarning="true"
-														contentEditable="false"
-														value={k}
-													>
-														<a
-															href={
-																urlContent.length <= 1
-																	? customerProperties.order_statuses.data[
-																			setCounter
-																	  ].landing_url
-																	: urlContent[keyCounter++]
-															}
-														>
-															<span key={p.id + '' + k}>{text.no_image}</span>
-														</a>
-													</div>
-												</td>
-											);
-										}
+					orderHistory[i].map(p => (
+						<tr className="tr-body" key={`${p.id}${i}`}>
+							{Object.keys(p).map((k, d) => {
+								if (k.indexOf('product_image') !== -1) {
+									const setCounter = i.replace(/^\D+/g, '');
+									const urlContent = customerProperties.order_statuses.data[
+										setCounter
+									].landing_url.split(',');
+									if (p.product_image === null) {
 										return (
-											<td className="td-body" key={p.id + '' + k}>
+											<td className="td-body" key={`${p.id}${k}`}>
 												<div
 													suppressContentEditableWarning="true"
 													contentEditable="false"
@@ -435,30 +405,51 @@ class Account extends React.Component {
 																: urlContent[keyCounter++]
 														}
 													>
-														<img src={p[k][0].url} alt="thumbnail" />
+														<span key={`${p.id}${k}`}>{text.no_image}</span>
 													</a>
 												</div>
 											</td>
 										);
 									}
-
-									if (!['id', 'variant_id'].includes(k)) {
-										return (
-											<td className="td-body" key={p.id + '' + k}>
-												<div
-													suppressContentEditableWarning="true"
-													contentEditable="false"
-													value={k}
+									return (
+										<td className="td-body" key={`${p.id}${k}`}>
+											<div
+												suppressContentEditableWarning="true"
+												contentEditable="false"
+												value={k}
+											>
+												<a
+													href={
+														urlContent.length <= 1
+															? customerProperties.order_statuses.data[
+																	setCounter
+															  ].landing_url
+															: urlContent[keyCounter++]
+													}
 												>
-													{p[k]}
-												</div>
-											</td>
-										);
-									}
-								})}
-							</tr>
-						);
-					})
+													<img src={p[k][0].url} alt="thumbnail" />
+												</a>
+											</div>
+										</td>
+									);
+								}
+
+								if (!['id', 'variant_id'].includes(k)) {
+									return (
+										<td className="td-body" key={`${p.id}${k}`}>
+											<div
+												suppressContentEditableWarning="true"
+												contentEditable="false"
+												value={k}
+											>
+												{p[k]}
+											</div>
+										</td>
+									);
+								}
+							})}
+						</tr>
+					))
 				);
 			}
 
@@ -495,7 +486,7 @@ class Account extends React.Component {
 								<Link
 									to="/"
 									style={{ textDecoration: 'none' }}
-									key={'logout'}
+									key="logout"
 									onClick={this.handleLogout}
 								>
 									{text.logout}
@@ -652,7 +643,7 @@ class Account extends React.Component {
 									name="email"
 									id="customer.email"
 									autoComplete="new-password"
-									component={InputField} //this.state.loggedin
+									component={InputField} // this.state.loggedin
 									type="email"
 									label={this.getFieldLabel('email')}
 									validate={this.getFieldValidators('email')}
@@ -813,7 +804,7 @@ class Account extends React.Component {
 								<div className="checkout-button-wrap">
 									<button
 										type="submit"
-										//disabled={invalid}
+										// disabled={invalid}
 										className={accountEditButtonClass}
 									>
 										{text.save}
@@ -849,7 +840,7 @@ class Account extends React.Component {
 											<table
 												cellPadding="0"
 												cellSpacing="0"
-												className={'orders-history-table'}
+												className="orders-history-table"
 												style={tableStyle}
 											>
 												<tbody>{list}</tbody>
@@ -874,7 +865,7 @@ class Account extends React.Component {
 							<Link
 								to="/"
 								style={{ textDecoration: 'none' }}
-								key={'account-continue-shopping'}
+								key="account-continue-shopping"
 							>
 								{text.continueshopping}
 							</Link>

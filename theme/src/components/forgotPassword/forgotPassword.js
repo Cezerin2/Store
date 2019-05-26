@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { themeSettings, text } from '../../lib/settings';
 import { Link, Redirect, NavLink } from 'react-router-dom';
 import Lscache from 'lscache';
+import { themeSettings, text } from '../../lib/settings';
 
 const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required;
@@ -47,21 +47,15 @@ class ForgotPassword extends React.Component {
 		return field && field.status ? field.status : 'required';
 	};
 
-	isFieldOptional = fieldName => {
-		return this.getFieldStatus(fieldName) === 'optional';
-	};
+	isFieldOptional = fieldName => this.getFieldStatus(fieldName) === 'optional';
 
-	isFieldHidden = fieldName => {
-		return this.getFieldStatus(fieldName) === 'hidden';
-	};
+	isFieldHidden = fieldName => this.getFieldStatus(fieldName) === 'hidden';
 
-	isFieldDisabled = fieldName => {
-		return this.getFieldStatus(fieldName) === 'disabled';
-	};
+	isFieldDisabled = fieldName => this.getFieldStatus(fieldName) === 'disabled';
 
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
-		let validatorsArray = [];
+		const validatorsArray = [];
 		if (!isOptional) {
 			validatorsArray.push(validateRequired);
 		}
@@ -83,17 +77,16 @@ class ForgotPassword extends React.Component {
 		const field = this.getField(fieldName);
 		if (field && field.label && field.label.length > 0) {
 			return field.label;
-		} else {
-			switch (fieldName) {
-				case 'email':
-					return text.email;
-					break;
-				case 'password':
-					return text.password;
-					break;
-				default:
-					return 'Unnamed field';
-			}
+		}
+		switch (fieldName) {
+			case 'email':
+				return text.email;
+				break;
+			case 'password':
+				return text.password;
+				break;
+			default:
+				return 'Unnamed field';
 		}
 	};
 

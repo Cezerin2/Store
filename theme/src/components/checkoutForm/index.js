@@ -1,9 +1,9 @@
 import React from 'react';
+import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
 import CheckoutStepContacts from './stepContacts';
 import CheckoutStepShipping from './stepShipping';
 import CheckoutStepPayment from './stepPayment';
-import Lscache from 'lscache';
 
 export default class CheckoutForm extends React.Component {
 	constructor(props) {
@@ -26,7 +26,7 @@ export default class CheckoutForm extends React.Component {
 	}
 
 	changeStep = step => {
-		this.setState({ step: step });
+		this.setState({ step });
 	};
 
 	handleContactsSave = () => {
@@ -233,8 +233,7 @@ export default class CheckoutForm extends React.Component {
 					)}
 				</div>
 			);
-		} else {
-			return <p>{text.emptyCheckout}</p>;
 		}
+		return <p>{text.emptyCheckout}</p>;
 	}
 }

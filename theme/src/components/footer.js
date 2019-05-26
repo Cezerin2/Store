@@ -33,10 +33,9 @@ class FooterMenu extends React.Component {
 		return (
 			<div className="column is-3">
 				<div
-					className={
-						'footer-title mobile-padding' +
-						(this.state.isActive ? ' footer-menu-open' : '')
-					}
+					className={`footer-title mobile-padding${
+						this.state.isActive ? ' footer-menu-open' : ''
+					}`}
 					onClick={this.isActiveToggle}
 				>
 					{title}
@@ -61,9 +60,8 @@ const SocialIcons = ({ icons }) => {
 			/>
 		));
 		return <p className="social-icons">{items}</p>;
-	} else {
-		return null;
 	}
+	return null;
 };
 
 const Contacts = ({ contacts }) => {
@@ -73,17 +71,15 @@ const Contacts = ({ contacts }) => {
 			if (contact && contact.indexOf('@') > 0) {
 				return (
 					<li key={index}>
-						<a href={'mailto:' + contact}>{contact}</a>
+						<a href={`mailto:${contact}`}>{contact}</a>
 					</li>
 				);
-			} else {
-				return <li key={index}>{contact}</li>;
 			}
+			return <li key={index}>{contact}</li>;
 		});
 		return <ul className="footer-contacts">{items}</ul>;
-	} else {
-		return null;
 	}
+	return null;
 };
 
 export default class Footer extends React.PureComponent {

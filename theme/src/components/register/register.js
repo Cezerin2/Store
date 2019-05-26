@@ -11,14 +11,12 @@ const validateEmail = value =>
 		? text.emailInvalid
 		: undefined;
 
-const ReadOnlyField = ({ name, value }) => {
-	return (
-		<div className="checkout-field-preview">
-			<div className="name">{name}</div>
-			<div className="value">{value}</div>
-		</div>
-	);
-};
+const ReadOnlyField = ({ name, value }) => (
+	<div className="checkout-field-preview">
+		<div className="name">{name}</div>
+		<div className="value">{value}</div>
+	</div>
+);
 
 const InputField = field => (
 	<div className={field.className}>
@@ -69,17 +67,13 @@ class Register extends React.Component {
 		return field && field.status ? field.status : 'required';
 	};
 
-	isFieldOptional = fieldName => {
-		return this.getFieldStatus(fieldName) === 'optional';
-	};
+	isFieldOptional = fieldName => this.getFieldStatus(fieldName) === 'optional';
 
-	isFieldHidden = fieldName => {
-		return this.getFieldStatus(fieldName) === 'hidden';
-	};
+	isFieldHidden = fieldName => this.getFieldStatus(fieldName) === 'hidden';
 
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
-		let validatorsArray = [];
+		const validatorsArray = [];
 		if (!isOptional) {
 			validatorsArray.push(validateRequired);
 		}
@@ -111,26 +105,25 @@ class Register extends React.Component {
 		const field = this.getField(fieldName);
 		if (field && field.label && field.label.length > 0) {
 			return field.label;
-		} else {
-			switch (fieldName) {
-				case 'first_name':
-					return text.first_name;
-					break;
-				case 'last_name':
-					return text.last_name;
-					break;
-				case 'email':
-					return text.email;
-					break;
-				case 'password':
-					return text.password;
-					break;
-				case 'password_verify':
-					return text.password_verify;
-					break;
-				default:
-					return 'Unnamed field';
-			}
+		}
+		switch (fieldName) {
+			case 'first_name':
+				return text.first_name;
+				break;
+			case 'last_name':
+				return text.last_name;
+				break;
+			case 'email':
+				return text.email;
+				break;
+			case 'password':
+				return text.password;
+				break;
+			case 'password_verify':
+				return text.password_verify;
+				break;
+			default:
+				return 'Unnamed field';
 		}
 	};
 
@@ -291,7 +284,7 @@ class Register extends React.Component {
 								<Link
 									to="/login"
 									style={{ textDecoration: 'none' }}
-									key={'back-to-login'}
+									key="back-to-login"
 									className={loginButtonClass}
 								>
 									{text.back_to_login}

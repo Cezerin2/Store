@@ -1,6 +1,6 @@
 import React from 'react';
-import { themeSettings, text } from '../../lib/settings';
 import Lscache from 'lscache';
+import { themeSettings, text } from '../../lib/settings';
 import Login from './login';
 
 export default class LoginForm extends React.Component {
@@ -26,7 +26,7 @@ export default class LoginForm extends React.Component {
 			email: values.email,
 			password: values.password,
 			history: this.props.history,
-			cartLayer: cartLayer
+			cartLayer
 		});
 	};
 
@@ -39,7 +39,7 @@ export default class LoginForm extends React.Component {
 
 		if (this.props.state.customerProperties !== undefined) {
 			if (this.props.state.customerProperties.authenticated) {
-				const expiryMilliseconds = 1000; //time units is seconds
+				const expiryMilliseconds = 1000; // time units is seconds
 				Lscache.setExpiryMilliseconds(expiryMilliseconds);
 				Lscache.set(
 					'auth_data',
@@ -63,7 +63,7 @@ export default class LoginForm extends React.Component {
 				settings={settings}
 				customerProperties={customerProperties}
 				cartlayerBtnInitialized={cartlayerBtnInitialized}
-				readOnly={true}
+				readOnly
 				onSubmit={this.handleFormSubmit}
 			/>
 		);
