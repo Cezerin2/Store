@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 
 const LoginIcon = () => {
@@ -9,17 +8,32 @@ const LoginIcon = () => {
 			className="login-icon"
 			alt={text.login}
 			title={text.login}
-			style={{ marginTop: 12+'px', minWidth: 32+'px', minHeight: 29+'px', maxWidth: 44+'px', maxHeight: 28+'px' }}
+			style={{
+				marginTop: 12 + 'px',
+				minWidth: 32 + 'px',
+				minHeight: 29 + 'px',
+				maxWidth: 44 + 'px',
+				maxHeight: 28 + 'px'
+			}}
 		/>
 	);
 };
 
 export default class Login extends React.PureComponent {
 	render() {
-		const { login, onClick } = this.props;
+		const { customerProperties, onClick } = this.props;
+
 		return (
 			<span className="login-button" onClick={onClick}>
-				<LoginIcon />
+				{!customerProperties ? (
+					<LoginIcon />
+				) : (
+					<span>
+						<p className="login-name">
+							{customerProperties.customer_settings.full_name}
+						</p>
+					</span>
+				)}
 			</span>
 		);
 	}
