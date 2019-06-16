@@ -10,7 +10,7 @@ export default class AccountForm extends React.Component {
 	}
 
 	handlecustomerProperties = () => {
-    	this.props.customerData({
+		this.props.customerData({
 			token: Lscache.get('auth_data')
 		});
 	};
@@ -29,17 +29,16 @@ export default class AccountForm extends React.Component {
 		});
 
 		this.props.updateCart({
-			shipping_address: shipping_address,
-			billing_address: billing_address,
+			shipping_address,
+			billing_address,
 			payment_method_id: null,
 			shipping_method_id: null
 		});
-	}
+	};
 
 	render() {
-
 		const {
-      		settings,
+			settings,
 			customerProperties,
 			initialValues,
 			cartlayerBtnInitialized
@@ -50,39 +49,46 @@ export default class AccountForm extends React.Component {
 		if (Lscache.get('auth_data') === null && customerProperties === undefined) {
 			Lscache.flush();
 			return (
-			  <Redirect to={{
+				<Redirect
+					to={{
 						pathname: '/login'
-				}}/>
-			);
-		} else {
-			const cacheTimeStamp = localStorage.getItem('lscache-auth_data-cacheexpiration');
-			if (Number (cacheTimeStamp) <= Math.floor((new Date().getTime()) / 1000)) {
-				Lscache.flush();
-				return (
-					<Redirect to={{
-						pathname: '/login'
-					}}/>
-				)
-			}
-				
-			const {
-				checkoutInputClass = 'checkout-field',
-				checkoutButtonClass = 'checkout-button',
-				checkoutEditButtonClass = 'checkout-button-edit'
-			} = themeSettings;
-	
-			return (
-				<Account
-					inputClassName={checkoutInputClass}
-					buttonClassName={checkoutButtonClass}
-					editButtonClassName={checkoutEditButtonClass}				
-					settings={settings}
-					customerProperties={customerProperties || this.handlecustomerProperties()}
-					initialValues={initialValues}
-					cartlayerBtnInitialized={cartlayerBtnInitialized}
-					onSubmit={this.handleFormSubmit}
+					}}
 				/>
 			);
 		}
+		const cacheTimeStamp = localStorage.getItem(
+			'lscache-auth_data-cacheexpiration'
+		);
+		if (Number(cacheTimeStamp) <= Math.floor(new Date().getTime() / 1000)) {
+			Lscache.flush();
+			return (
+				<Redirect
+					to={{
+						pathname: '/login'
+					}}
+				/>
+			);
+		}
+
+		const {
+			checkoutInputClass = 'checkout-field',
+			checkoutButtonClass = 'checkout-button',
+			checkoutEditButtonClass = 'checkout-button-edit'
+		} = themeSettings;
+
+		return (
+			<Account
+				inputClassName={checkoutInputClass}
+				buttonClassName={checkoutButtonClass}
+				editButtonClassName={checkoutEditButtonClass}
+				settings={settings}
+				customerProperties={
+					customerProperties || this.handlecustomerProperties()
+				}
+				initialValues={initialValues}
+				cartlayerBtnInitialized={cartlayerBtnInitialized}
+				onSubmit={this.handleFormSubmit}
+			/>
+		);
 	}
 }

@@ -45,7 +45,7 @@ export default class PayPalButton extends React.Component {
 					production: formSettings.client
 				},
 				// Wait for the PayPal button to be clicked
-				payment: function(data, actions) {
+				payment(data, actions) {
 					return actions.payment.create({
 						payment: {
 							intent: 'sale',
@@ -67,10 +67,10 @@ export default class PayPalButton extends React.Component {
 				},
 				// Wait for the payment to be authorized by the customer
 
-				onAuthorize: function(data, actions) {
+				onAuthorize(data, actions) {
 					// Get the payment details
 
-					return actions.payment.get().then(function(data) {
+					return actions.payment.get().then(data => {
 						if (
 							data.state.toLowerCase() === 'created' &&
 							data.payer.status.toLowerCase() === 'verified'
@@ -84,7 +84,7 @@ export default class PayPalButton extends React.Component {
 
 							document
 								.querySelector('#confirmButton')
-								.addEventListener('click', function() {
+								.addEventListener('click', () => {
 									// Disable the button and show a loading indicator
 
 									document.querySelector('#confirmButton').innerText = '';
@@ -94,7 +94,7 @@ export default class PayPalButton extends React.Component {
 
 									// Execute the payment
 
-									return actions.payment.execute().then(function(res) {
+									return actions.payment.execute().then(res => {
 										if (res.state.toLowerCase() === 'approved') {
 											onPayment();
 										}

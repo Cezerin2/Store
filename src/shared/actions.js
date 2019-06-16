@@ -1,7 +1,7 @@
-import * as t from './actionTypes';
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from './pageTypes';
 import queryString from 'query-string';
 import { animateScroll } from 'react-scroll';
+import * as t from './actionTypes';
+import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from './pageTypes';
 import api from '../client/api';
 import * as analytics from './analytics';
 
@@ -22,7 +22,7 @@ export const fetchProducts = () => async (dispatch, getState) => {
 export const getProductFilterForCategory = (locationSearch, sortBy) => {
 	const queryFilter = queryString.parse(locationSearch);
 
-	let attributes = {};
+	const attributes = {};
 	for (const querykey in queryFilter) {
 		if (querykey.startsWith('attributes.')) {
 			attributes[querykey] = queryFilter[querykey];
@@ -32,7 +32,7 @@ export const getProductFilterForCategory = (locationSearch, sortBy) => {
 	return {
 		priceFrom: parseInt(queryFilter.price_from || 0),
 		priceTo: parseInt(queryFilter.price_to || 0),
-		attributes: attributes,
+		attributes,
 		search: null,
 		sort: sortBy
 	};
@@ -59,9 +59,9 @@ export const getParsedProductFilter = productFilter => {
 			category_id: productFilter.categoryId,
 			price_from: productFilter.priceFrom,
 			price_to: productFilter.priceTo,
-			sort: productFilter['sort'],
-			fields: productFilter['fields'],
-			limit: productFilter['limit'],
+			sort: productFilter.sort,
+			fields: productFilter.fields,
+			limit: productFilter.limit,
 			offset: 0
 		},
 		productFilter.attributes
@@ -82,7 +82,6 @@ export const fetchMoreProducts = () => async (dispatch, getState) => {
 		app.products.length === 0 ||
 		!app.productsHasMore
 	) {
-		return;
 	} else {
 		dispatch(requestMoreProducts());
 
@@ -126,8 +125,8 @@ export const addCartItem = item => async (dispatch, getState) => {
 	const cart = response.json;
 	dispatch(receiveCart(cart));
 	analytics.addCartItem({
-		item: item,
-		cart: cart
+		item,
+		cart
 	});
 };
 
@@ -139,7 +138,7 @@ export const updateCartItemQuantiry = (item_id, quantity) => async (
 ) => {
 	dispatch(requestUpdateCartItemQuantiry());
 	const response = await api.ajax.cart.updateItem(item_id, {
-		quantity: quantity
+		quantity
 	});
 	dispatch(receiveCart(response.json));
 	dispatch(fetchShippingMethods());
@@ -221,19 +220,31 @@ export const checkout = (cart, history) => async (dispatch, getState) => {
 	const order = response.json;
 	dispatch(receiveCheckout(order));
 	history.push('/checkout-success');
-	analytics.checkoutSuccess({ order: order });
+	analytics.checkoutSuccess({ order });
 };
 
 const requestCheckout = () => ({ type: t.CHECKOUT_REQUEST });
 
 const receiveCheckout = order => ({ type: t.CHECKOUT_RECEIVE, order });
 
-const handleRegisterProperties = data => ({ type: t.REGISTER_PROPERTIES, data });
+const handleRegisterProperties = data => ({
+	type: t.REGISTER_PROPERTIES,
+	data
+});
 const handleAccountProperties = data => ({ type: t.ACCOUNT_RECEIVE, data });
-const handleCartLayerInitialized = data => ({ type: t.CART_LAYER_INITIALIZED, data });
-const handleForgotPassword = data => ({ type: t.FORGOT_PASSWORD_PROPERTIES, data });
-const handleResetPassword = data => ({ type: t.RESET_PASSWORD_PROPERTIES, data });
- 
+const handleCartLayerInitialized = data => ({
+	type: t.CART_LAYER_INITIALIZED,
+	data
+});
+const handleForgotPassword = data => ({
+	type: t.FORGOT_PASSWORD_PROPERTIES,
+	data
+});
+const handleResetPassword = data => ({
+	type: t.RESET_PASSWORD_PROPERTIES,
+	data
+});
+
 export const receiveSitemap = currentPage => ({
 	type: t.SITEMAP_RECEIVE,
 	currentPage
@@ -249,7 +260,7 @@ export const setCategory = categoryId => (dispatch, getState) => {
 	const category = app.categories.find(c => c.id === categoryId);
 	if (category) {
 		dispatch(setCurrentCategory(category));
-		dispatch(setProductsFilter({ categoryId: categoryId }));
+		dispatch(setProductsFilter({ categoryId }));
 		dispatch(receiveProduct(null));
 	}
 };
@@ -260,13 +271,13 @@ const setCurrentCategory = category => ({
 });
 
 export const setSort = sort => (dispatch, getState) => {
-	dispatch(setProductsFilter({ sort: sort }));
+	dispatch(setProductsFilter({ sort }));
 	dispatch(fetchProducts());
 };
 
 const setProductsFilter = filter => ({
 	type: t.SET_PRODUCTS_FILTER,
-	filter: filter
+	filter
 });
 
 export const analyticsSetShippingMethod = method_id => (dispatch, getState) => {
@@ -294,7 +305,7 @@ export const updateCart = (data, callback) => async (dispatch, getState) => {
 	}
 };
 
-export const customerData = (data, callback) => async (dispatch, getState) => {;
+export const customerData = (data, callback) => async (dispatch, getState) => {
 	const response = await api.ajax.account.retrieve(data);
 	let decodedJSON = Buffer.from(response.json, 'base64').toString('ascii');
 	decodedJSON = JSON.parse(decodedJSON);
@@ -311,7 +322,10 @@ export const loginUser = (data, callback) => async (dispatch, getState) => {
 	}
 };
 
-export const loggedinUserTimeUp = (data, callback) => async (dispatch, getState) => {
+export const loggedinUserTimeUp = (data, callback) => async (
+	dispatch,
+	getState
+) => {
 	const customerProps = {
 		token: '',
 		authenticated: false,
@@ -326,28 +340,37 @@ export const registerUser = (data, callback) => async (dispatch, getState) => {
 	dispatch(handleRegisterProperties(response.json));
 };
 
-export const changecustomerProperties = (data, callback) => async (dispatch, getState) => {
+export const changecustomerProperties = (data, callback) => async (
+	dispatch,
+	getState
+) => {
 	const response = await api.ajax.account.update(data);
 	let decodedJSON = Buffer.from(response.json, 'base64').toString('ascii');
 	decodedJSON = JSON.parse(decodedJSON);
 	dispatch(handleAccountProperties());
 };
 
-export const cartLayerInitialized = (data, callback) => async (dispatch, getState) => {
+export const cartLayerInitialized = (data, callback) => async (
+	dispatch,
+	getState
+) => {
 	dispatch(handleCartLayerInitialized(data.cartlayerBtnInitialized));
-}
+};
 
 export const resetPassword = (data, callback) => async (dispatch, getState) => {
 	const response = await api.ajax.resetPassword.retrieve(data);
 	console.log(response.json);
 	dispatch(handleResetPassword(response.json));
-}
+};
 
-export const forgotPassword = (data, callback) => async (dispatch, getState) => {
+export const forgotPassword = (data, callback) => async (
+	dispatch,
+	getState
+) => {
 	const response = await api.ajax.forgotPassword.retrieve(data);
 	console.log(response);
 	dispatch(handleForgotPassword(response.json));
-}
+};
 
 export const setCurrentPage = location => async (dispatch, getState) => {
 	let locationPathname = '/404';
