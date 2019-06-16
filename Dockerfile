@@ -21,15 +21,15 @@ RUN echo "deb http://nginx.org/packages/debian/ ${NGINX_CODENAME} nginx" >> /etc
 RUN npm install pm2 -g
 
 
-RUN mkdir -p /var/www/cezerin
+RUN mkdir -p /var/www/cezerin2-store 
 
-WORKDIR /var/www/cezerin
+WORKDIR /var/www/cezerin2-store 
 
-COPY . /var/www/cezerin
+COPY . /var/www/cezerin2-store 
 
 # Nginx config
-COPY nginx/nginx.conf.template /etc/nginx/
-COPY nginx/default.conf /etc/nginx/conf.d/
+COPY nginx/nginx.conf /etc/nginx/
+COPY nginx/default.conf.template /etc/nginx/conf.d/
 
 # script to run Nginx and PM2
 COPY docker-entrypoint.sh /usr/local/bin/
@@ -38,7 +38,6 @@ RUN chmod +x "/usr/local/bin/docker-entrypoint.sh"
 # build project
 RUN cd /var/www/cezerin2-store \
 	&& npm install \
-	&& npm cache clean --force \
 	&& npm run build
 
 
