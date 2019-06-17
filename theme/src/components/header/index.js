@@ -114,10 +114,16 @@ export default class Header extends React.Component {
 			this.props.loggedinUserTimeUp({
 				authenticated: false
 			});
+			this.setState({
+				customerProperties: null
+			});
 			this.props.setLocation('/login');
 		} else {
 			this.props.customerData({
 				token: Lscache.get('auth_data')
+			});
+			this.setState({
+				customerProperties: Lscache.get('customer_data')
 			});
 			this.props.setLocation('/customer-account');
 		}
@@ -154,6 +160,8 @@ export default class Header extends React.Component {
 			: 'navbar-burger is-hidden-tablet';
 		const showBackButton =
 			currentPage.type === 'product' && location.hasHistory;
+
+		const customerProperties = Lscache.get('customer_data');
 
 		return (
 			<Fragment>
@@ -196,7 +204,7 @@ export default class Header extends React.Component {
 									}
 								/>
 								<Login
-									customerProperties={this.props.state.customerProperties}
+									customerProperties={customerProperties}
 									onClick={this.handleLogin}
 								/>
 								<CartIndicator

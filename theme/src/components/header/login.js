@@ -19,21 +19,29 @@ const LoginIcon = () => {
 	);
 };
 
-export default class Login extends React.PureComponent {
+export default class Login extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { customerProperties: this.props.customerProperties || null };
+	}
+
+	componentWillReceiveProps(next, prev) {
+		if (next.customerProperties !== this.props.customerProperties) {
+			this.setState({ customerProperties: next.customerProperties });
+		}
+	}
+
 	render() {
-		const { customerProperties, onClick } = this.props;
+		const { onClick } = this.props;
 
 		return (
 			<span className="login-button" onClick={onClick}>
-				{!customerProperties ? (
-					<LoginIcon />
-				) : (
-					<span>
-						<p className="login-name">
-							{customerProperties.customer_settings.full_name}
-						</p>
-					</span>
-				)}
+				<LoginIcon />
+				<p className="login-name">
+					{this.state.customerProperties
+						? this.state.customerProperties.customer_settings.full_name
+						: 'Guest User'}
+				</p>
 			</span>
 		);
 	}

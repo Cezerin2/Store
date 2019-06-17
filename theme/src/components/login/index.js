@@ -46,6 +46,7 @@ export default class LoginForm extends React.Component {
 					this.props.state.customerProperties.token,
 					6000
 				);
+				Lscache.set('customer_data', this.props.state.customerProperties, 6000);
 			}
 		}
 
