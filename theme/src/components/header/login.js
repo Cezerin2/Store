@@ -36,11 +36,12 @@ export default class Login extends React.Component {
 
 		return (
 			<span className="login-button" onClick={onClick}>
-				<LoginIcon />
 				<p className="login-name">
-					{this.state.customerProperties
-						? this.state.customerProperties.customer_settings.full_name
-						: 'Guest User'}
+					{this.state.customerProperties ? (
+						this.state.customerProperties.customer_settings.full_name
+					) : (
+						<LoginIcon />
+					)}
 				</p>
 			</span>
 		);

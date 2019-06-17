@@ -133,6 +133,12 @@
 	max-width: 40px;
 	cursor: pointer;
 }
+.login-button:active.login-name:active {
+	color: lightblue;
+}
+.login-button:hover.login-name:hover {
+	color: lightblue;
+}
 
 @media screen and (max-width: 769px) {
 	.login-container {
