@@ -3,26 +3,26 @@ import serverConfigs from './settings';
 
 const cert = serverConfigs.jwtSecretKey;
 class AuthHeader {
-    constructor() {}
-    
-    encodeUserLoginAuth(userId) {
-        return jwt.sign({ userId: userId }, cert);
-    }
+	constructor() {}
 
-    decodeUserLoginAuth(token) {
-        try {
-            return jwt.verify(token, cert);
-        } catch(error) {
-            return error;
-        }
-    }
+	encodeUserLoginAuth(userId) {
+		return jwt.sign({ userId }, cert);
+	}
 
-    encodeUserPassword(token) {
-        return jwt.sign({ password: token }, cert);
-    }
+	decodeUserLoginAuth(token) {
+		try {
+			return jwt.verify(token, cert);
+		} catch (error) {
+			return error;
+		}
+	}
 
-    decodeUserPassword(token) {
-        return jwt.verify(token, cert);
-    }
+	encodeUserPassword(token) {
+		return jwt.sign({ password: token }, cert);
+	}
+
+	decodeUserPassword(token) {
+		return jwt.verify(token, cert);
+	}
 }
 export default new AuthHeader();

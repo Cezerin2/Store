@@ -1,9 +1,9 @@
 import React from 'react';
+import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
 import CheckoutStepContacts from './stepContacts';
 import CheckoutStepShipping from './stepShipping';
 import CheckoutStepPayment from './stepPayment';
-import Lscache from 'lscache';
 
 export default class CheckoutForm extends React.Component {
 	constructor(props) {
@@ -22,11 +22,11 @@ export default class CheckoutForm extends React.Component {
 
 		this.props.cartLayerInitialized({
 			cartlayerBtnInitialized: false
-		})
+		});
 	}
 
 	changeStep = step => {
-		this.setState({ step: step });
+		this.setState({ step });
 	};
 
 	handleContactsSave = () => {
@@ -47,7 +47,10 @@ export default class CheckoutForm extends React.Component {
 
 	handleContactsSubmit = values => {
 		let { shipping_address, billing_address } = values;
-		shipping_address = Object.assign({full_name: `${values.first_name} ${values.last_name}`}, shipping_address);
+		shipping_address = Object.assign(
+			{ full_name: `${values.first_name} ${values.last_name}` },
+			shipping_address
+		);
 		this.props.updateCart({
 			email: values.email,
 			mobile: values.mobile,
@@ -230,8 +233,7 @@ export default class CheckoutForm extends React.Component {
 					)}
 				</div>
 			);
-		} else {
-			return <p>{text.emptyCheckout}</p>;
 		}
+		return <p>{text.emptyCheckout}</p>;
 	}
 }

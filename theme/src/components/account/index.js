@@ -29,8 +29,8 @@ export default class AccountForm extends React.Component {
 		});
 
 		this.props.updateCart({
-			shipping_address: shipping_address,
-			billing_address: billing_address,
+			shipping_address,
+			billing_address,
 			payment_method_id: null,
 			shipping_method_id: null
 		});
@@ -55,41 +55,40 @@ export default class AccountForm extends React.Component {
 					}}
 				/>
 			);
-		} else {
-			const cacheTimeStamp = localStorage.getItem(
-				'lscache-auth_data-cacheexpiration'
-			);
-			if (Number(cacheTimeStamp) <= Math.floor(new Date().getTime() / 1000)) {
-				Lscache.flush();
-				return (
-					<Redirect
-						to={{
-							pathname: '/login'
-						}}
-					/>
-				);
-			}
-
-			const {
-				checkoutInputClass = 'checkout-field',
-				checkoutButtonClass = 'checkout-button',
-				checkoutEditButtonClass = 'checkout-button-edit'
-			} = themeSettings;
-
+		}
+		const cacheTimeStamp = localStorage.getItem(
+			'lscache-auth_data-cacheexpiration'
+		);
+		if (Number(cacheTimeStamp) <= Math.floor(new Date().getTime() / 1000)) {
+			Lscache.flush();
 			return (
-				<Account
-					inputClassName={checkoutInputClass}
-					buttonClassName={checkoutButtonClass}
-					editButtonClassName={checkoutEditButtonClass}
-					settings={settings}
-					customerProperties={
-						customerProperties || this.handlecustomerProperties()
-					}
-					initialValues={initialValues}
-					cartlayerBtnInitialized={cartlayerBtnInitialized}
-					onSubmit={this.handleFormSubmit}
+				<Redirect
+					to={{
+						pathname: '/login'
+					}}
 				/>
 			);
 		}
+
+		const {
+			checkoutInputClass = 'checkout-field',
+			checkoutButtonClass = 'checkout-button',
+			checkoutEditButtonClass = 'checkout-button-edit'
+		} = themeSettings;
+
+		return (
+			<Account
+				inputClassName={checkoutInputClass}
+				buttonClassName={checkoutButtonClass}
+				editButtonClassName={checkoutEditButtonClass}
+				settings={settings}
+				customerProperties={
+					customerProperties || this.handlecustomerProperties()
+				}
+				initialValues={initialValues}
+				cartlayerBtnInitialized={cartlayerBtnInitialized}
+				onSubmit={this.handleFormSubmit}
+			/>
+		);
 	}
 }
