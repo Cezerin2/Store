@@ -140,6 +140,15 @@
 	color: lightblue;
 }
 
+.fluid-fit {
+	height: 100%;
+	width: 100%;
+}
+
+.no-decor {
+	text-decoration: 'none';
+}
+
 @media screen and (max-width: 769px) {
 	.login-container {
 		align-items: baseline;
