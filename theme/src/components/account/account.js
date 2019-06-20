@@ -320,8 +320,8 @@ class Account extends React.Component {
 
 		if (customerProperties !== undefined) {
 			if (
-				customerProperties.customer_settings !== null &&
-				'addresses' in customerProperties.customer_settings
+				customerProperties.customer_settings &&
+				customerProperties.customer_settings.addresses
 			) {
 				[].slice
 					.call(customerProperties.customer_settings.addresses)
