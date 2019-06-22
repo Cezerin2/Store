@@ -23,7 +23,7 @@ const renderItem = item => (
 const HomeSlider = ({ images }) => {
 	if (images && images.length > 0) {
 		const items = images.map(item => ({
-			original: item.url,
+			original: item.image,
 			title: item.title,
 			description: item.description,
 			path: item.path || '',
