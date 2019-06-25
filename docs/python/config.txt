@@ -1,0 +1,3 @@
+[Systems]
+cezerin_webhooks_url = http://domain/api/v1/webhooks
+jwt_key = jwt_key
