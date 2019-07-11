@@ -125,7 +125,7 @@
   "forgot_password_submit": "发送",
   "continue_guest_headline": "继续以访客身份访问？",
   "continue_guest_text": "- 您可以以游客身份结账。",
-  "forgot_password_email_sent_success": "感谢您提交电子邮件地址。 我们已向您发送了一封电子邮件，其中包含重置密码所需的信息。 电子邮件可能需要几分钟才能到达您的帐户。 请检查您的垃圾邮件，它。",
+  "forgot_password_email_sent_success": "感谢您提交电子邮件地址。 我们已向您发送了一封电子邮件，其中包含重置密码所需的信息。 电子邮件可能需要几分钟才能到达您的帐户。如果没有收到，请检查您的垃圾邮件",
   "forgot_password_email_sent_failed": "您的电子邮件地址尚未注册，请使用您注册时使用的电子邮件找回密码。",
   "reset_password": "密码重置",
   "reset_password_subtitle": "现在您可以重置密码。",
