@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../lib/settings';
-import storeSettings from '../../../config/store';
+import storeSettings from '../../../../config/store';
 
 class FooterMenu extends React.Component {
 	constructor(props) {

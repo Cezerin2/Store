@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import ImageGallery from 'react-image-gallery';
 import { themeSettings } from '../lib/settings';
-import storeSettings from '../../../config/store';
+import storeSettings from '../../../../config/store';
 
 const renderItem = item => (
 	<div className="image-gallery-image">
