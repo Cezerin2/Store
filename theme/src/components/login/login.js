@@ -149,6 +149,24 @@ class Login extends React.Component {
 
 		return (
 			<div className="login-container">
+				{this.props.cartlayerBtnInitialized !== undefined &&
+					this.props.cartlayerBtnInitialized && (
+						<div className="login-guest-checkout">
+							<div className={loginSectionGuest}>
+								<h2>{text.continue_guest_headline}</h2>
+								<p>{text.continue_guest_text}</p>
+						      <div className="login-button-wrap">
+								<NavLink
+									className="button loginButtonClass"
+									style={{ textTransform: 'uppercase' }}
+									to="/checkout"
+								>
+									{text.proceedToCheckout}
+								</NavLink>
+						      </div>
+							</div>
+						</div>
+					)}			
 				<form onSubmit={handleSubmit} className={loginForm}>
 					<div className="login-section">
 						<h2 className={titleClassName}>{text.login_title}</h2>
@@ -205,22 +223,6 @@ class Login extends React.Component {
 						</NavLink>
 					</div>
 				</form>
-				{this.props.cartlayerBtnInitialized !== undefined &&
-					this.props.cartlayerBtnInitialized && (
-						<div className="login-button-wrap">
-							<div className={loginSectionGuest}>
-								<h2>{text.continue_guest_headline}</h2>
-								<p>{text.continue_guest_text}</p>
-								<NavLink
-									className="button loginButtonClass"
-									style={{ textTransform: 'uppercase' }}
-									to="/checkout"
-								>
-									{text.proceedToCheckout}
-								</NavLink>
-							</div>
-						</div>
-					)}
 			</div>
 		);
 	}

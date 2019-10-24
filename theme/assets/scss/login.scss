@@ -49,19 +49,20 @@
 	margin: auto;
 }
 
+.login-guest-checkout,
 .login-form {
-	margin: auto;
-	width: 300px;
+	margin: 0 auto;
+	width: auto;
 }
 
 .login-form-with-guest {
-	margin: auto;
+	margin: 0 auto;
 }
 
 .login-section-guest {
-	width: 300px;
-	padding-top: 100px;
-	margin-right: 100px;
+	width: auto;
+	padding-top: 0;
+	margin-right: 0;
 }
 
 .login-button-wrap {
@@ -97,8 +98,8 @@
 }
 
 .login-title {
-	padding-top: 20px;
-	margin: 20px 0;
+	padding-top: 0;
+	margin: 0;
 }
 
 .send-password-success-title {
@@ -115,12 +116,14 @@
 	color: $green;
 }
 
-.login-section h2 {
+.login-section h2,
+.login-section-guest h2 {
+	padding-top: 15px;
 	text-align: center;
 }
 
 .login-button {
-	margin: 0 10px;
+	margin: 0 0 0 10px;
 }
 
 .login-icon {
@@ -158,7 +161,7 @@
 	}
 
 	.login-section-guest {
-		padding-top: 15px;
-		margin-right: 0px;
+		padding-top: 0;
+		margin-right: 0;
 	}
 }
