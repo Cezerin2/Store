@@ -64,7 +64,7 @@ export default class LoginForm extends React.Component {
 				settings={settings}
 				customerProperties={customerProperties}
 				cartlayerBtnInitialized={cartlayerBtnInitialized}
-				readOnly
+				readOnly={true}
 				onSubmit={this.handleFormSubmit}
 			/>
 		);
