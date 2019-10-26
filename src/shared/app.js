@@ -58,6 +58,7 @@ class SwitchContainers extends React.Component {
 				return <CategoryContainer />;
 			case SEARCH:
 				return <SearchContainer />;
+			case RESERVED:
 			case PAGE:
 				if (locationPathname === '/login') {
 					return <LoginContainer />;
