@@ -17,7 +17,7 @@ Built with:
 - [GitHub](https://github.com/cezerin2/cezerin2)
 - [Community Site](https://cezerin.org)
 - [Demo Store](https://store.cezerin.com)
-- [Gitter.im Chat Cezerin2](https://gitter.im/cezerin2)
+- [Telegram Chat: Cezerin](https://t.me/cezerin)
 - [Forum](https://groups.google.com/forum/#!forum/cezerin)
 - [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs/getting-started.md)
 - [Facebook](https://facebook.com/cezerin)
