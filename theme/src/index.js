@@ -9,16 +9,12 @@ export { default as CheckoutContainer } from './containers/checkout';
 export { default as LoginContainer } from './containers/login';
 export { default as RegisterContainer } from './containers/register';
 export { default as AccountContainer } from './containers/account';
-export {
-	default as ForgotPasswordContainer
-} from './containers/forgotPassword';
+export { default as ForgotPasswordContainer } from './containers/forgotPassword';
 export { default as ResetPasswordContainer } from './containers/resetPassword';
-export {
-	default as CheckoutSuccessContainer
-} from './containers/checkoutSuccess';
+export { default as CheckoutSuccessContainer } from './containers/checkoutSuccess';
 export { default as SearchContainer } from './containers/search';
 
 // combine all css files into one with webpack. Hack to deal with server side rendering.
 if (typeof window !== 'undefined') {
-	require('../assets/scss/theme.scss');
+	require('../assets/sass/theme.sass');
 }
