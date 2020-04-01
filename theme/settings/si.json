@@ -1,0 +1,421 @@
+[
+	{
+		"section": "භාණ්ඩ ලයිස්තුව",
+		"key": "list_image_max_height",
+		"type": "number",
+		"label": "පින්තුරයේ උපරිම උස"
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තරය",
+		"key": "button_addtocart_bg",
+		"type": "color",
+		"label": "Button Add to Cart. පසුබිම පාට."
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තරය",
+		"key": "button_addtocart_color",
+		"type": "color",
+		"label": "Button Add to Cart. වචන පෙළහි පාට."
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තරය",
+		"key": "button_addtocart_text",
+		"type": "string",
+		"label": "Button Add to Cart. Text."
+	},
+	{
+		"section": "භාණ්ඩ ලයිස්තුව",
+		"key": "button_loadmore_bg",
+		"type": "color",
+		"label": "Button Load more. පසුබිම පාට."
+	},
+	{
+		"section": "භාණ්ඩ ලයිස්තුව",
+		"key": "button_loadmore_color",
+		"type": "color",
+		"label": "Button Load more. වචන පෙළහි පාට."
+	},
+	{
+		"section": "භාණ්ඩ ලයිස්තුව",
+		"key": "button_loadmore_text",
+		"type": "string",
+		"label": "Button Load more. Text."
+	},
+	{
+		"section": "භාණ්ඩ ලයිස්තුව",
+		"key": "list_price_color",
+		"type": "color",
+		"label": "මිළෙහි පාට"
+	},
+	{
+		"section": "භාණ්ඩ ලයිස්තුව",
+		"key": "list_price_size",
+		"type": "number",
+		"label": "මිළෙහි අක්ෂර ප්‍රමාණය (px)"
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තර",
+		"key": "details_price_color",
+		"type": "color",
+		"label": "මිළෙහි පාට"
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තරය",
+		"key": "details_price_size",
+		"type": "number",
+		"label": "මිළෙහි අක්ෂර ප්‍රමාණය (px)"
+	},
+	{
+		"section": "ශීර්ෂකය",
+		"key": "search_placeholder",
+		"type": "string",
+		"label": "සෙවුම් ස්ථාන දරනය"
+	},
+	{
+		"section": "භාණ්ඩ ලයිස්තුව",
+		"key": "show_product_filter",
+		"type": "boolean",
+		"label": "භාණ්ඩ Filter පෙන්වන්න"
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තරය",
+		"key": "show_product_breadcrumbs",
+		"type": "boolean",
+		"label": "breadcrumbs පෙන්වන්න"
+	},
+	{
+		"section": "භාණ්ඩ ලයිස්තුව",
+		"key": "show_category_breadcrumbs",
+		"type": "boolean",
+		"label": "breadcrumbs පෙන්වන්න"
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තරය",
+		"key": "show_discount_countdown",
+		"type": "boolean",
+		"label": "discount countdown පෙන්වන්න"
+	},
+	{
+		"section": "Home",
+		"key": "home_products_title",
+		"type": "string",
+		"label": "Featured Products Title"
+	},
+	{
+		"section": "Home",
+		"key": "home_products_sort",
+		"type": "string",
+		"label": "Featured නිෂ්පාදන Sort By"
+	},
+	{
+		"section": "Home",
+		"key": "home_products_sku",
+		"type": "string",
+		"label": "Featured නිෂ්පාදන SKUs"
+	},
+	{
+		"section": "Home",
+		"key": "home_products_limit",
+		"type": "number",
+		"label": "Featured නිෂ්පාදන Items Count"
+	},
+	{
+		"section": "කූඩය සහ Checkout",
+		"key": "hide_footer_on_checkout",
+		"type": "boolean",
+		"label": "Hide footer on checkout"
+	},
+	{
+		"section": "කූඩය සහ Checkout",
+		"key": "checkoutInputClass",
+		"type": "string",
+		"label": "Text input class"
+	},
+	{
+		"section": "කූඩය සහ Checkout",
+		"key": "checkoutButtonClass",
+		"type": "string",
+		"label": "Button පන්තිය"
+	},
+	{
+		"section": "Cart සහ Checkout",
+		"key": "checkoutEditButtonClass",
+		"type": "string",
+		"label": "Edit button පන්තිය"
+	},
+	{
+		"section": "භාණ්ඩ ලැයිස්තුව",
+		"key": "sortNewest",
+		"type": "string",
+		"label": "Sort by newest (comma separated fields)"
+	},
+	{
+		"section": "භාණ්ඩ ලැයිස්තුව",
+		"key": "අඩුවටිනාකමඅනුව",
+		"type": "string",
+		"label": "අඩු වටිනාකම අනුව (comma separated fields)"
+	},
+	{
+		"section": "භාණ්ඩ ලැයිස්තුව",
+		"key": "sortPriceHigh",
+		"type": "string",
+		"label": "Sort by high price (comma separated fields)"
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තරය",
+		"key": "product_thumbnail_position",
+		"type": "string",
+		"label": "Gallery thumbnail position",
+		"options": [
+			{
+				"label": "Top",
+				"value": "top"
+			},
+			{
+				"label": "Right",
+				"value": "right"
+			},
+			{
+				"label": "Bottom",
+				"value": "bottom"
+			},
+			{
+				"label": "Left",
+				"value": "left"
+			}
+		]
+	},
+	{
+		"section": "භාණ්ඩයේ විස්තරය",
+		"key": "disqus_shortname",
+		"type": "string",
+		"label": "DISQUS කෙටි නම"
+	},
+	{
+		"section": "පාදකය",
+		"key": "footer_about",
+		"type": "string",
+		"label": "කෙටි විස්තරය"
+	},
+	{
+		"section": "පාදකය",
+		"key": "footer_menu_1_title",
+		"type": "string",
+		"label": "Menu 1 title"
+	},
+	{
+		"section": "පාදකය",
+		"key": "footer_menu_2_title",
+		"type": "string",
+		"label": "Menu 2 title"
+	},
+	{
+		"section": "Cart and Checkout",
+		"key": "maxCartItemQty",
+		"type": "number",
+		"label": "Max Quantity"
+	},
+	{
+		"section": "Cart and Checkout",
+		"key": "cartThumbnailWidth",
+		"type": "number",
+		"label": "Image width (px)"
+	},
+	{
+		"section": "Product List",
+		"key": "listThumbnailWidth",
+		"type": "number",
+		"label": "Image width (px)"
+	},
+	{
+		"section": "Product Details",
+		"key": "previewThumbnailWidth",
+		"type": "number",
+		"label": "Thumbnail image width (px)"
+	},
+	{
+		"section": "Product Details",
+		"key": "bigThumbnailWidth",
+		"type": "number",
+		"label": "Image width (px)"
+	},
+	{
+		"section": "Home",
+		"key": "category_list_thumbnail_width",
+		"type": "number",
+		"label": "Category list. Image width (px)"
+	},
+	{
+		"section": "පාදකය",
+		"key": "footer_menu_1_items",
+		"type": "array",
+		"label": "Menu 1 (links)",
+		"properties": [
+			{
+				"key": "text",
+				"type": "string",
+				"label": "Link text"
+			},
+			{
+				"key": "url",
+				"type": "string",
+				"label": "Link url"
+			}
+		]
+	},
+	{
+		"section": "පාදකය",
+		"key": "footer_menu_2_items",
+		"type": "array",
+		"label": "Menu 2 (links)",
+		"properties": [
+			{
+				"key": "text",
+				"type": "string",
+				"label": "Link text"
+			},
+			{
+				"key": "url",
+				"type": "string",
+				"label": "Link url"
+			}
+		]
+	},
+	{
+		"section": "පාදකය",
+		"key": "footer_social",
+		"type": "array",
+		"label": "සමාජ icons",
+		"properties": [
+			{
+				"key": "type",
+				"type": "string",
+				"label": "Type",
+				"options": [
+					{
+						"label": "Facebook",
+						"value": "facebook"
+					},
+					{
+						"label": "Twitter",
+						"value": "twitter"
+					},
+					{
+						"label": "Instagram",
+						"value": "instagram"
+					},
+					{
+						"label": "VK",
+						"value": "vk"
+					}
+				]
+			},
+			{
+				"key": "url",
+				"type": "string",
+				"label": "Url"
+			}
+		]
+	},
+	{
+		"section": "Home",
+		"key": "home_slider",
+		"type": "array",
+		"label": "Slider",
+		"properties": [
+			{
+				"key": "image",
+				"type": "image",
+				"label": "Image"
+			},
+			{
+				"key": "title",
+				"type": "string",
+				"label": "Title"
+			},
+			{
+				"key": "description",
+				"type": "string",
+				"label": "Description"
+			},
+			{
+				"key": "path",
+				"type": "string",
+				"label": "Page path"
+			}
+		]
+	},
+	{
+		"section": "Home",
+		"key": "home_slider_color",
+		"type": "color",
+		"label": "Slider text color"
+	},
+	{
+		"section": "පාදකය",
+		"key": "footer_contacts",
+		"type": "array",
+		"label": "සම්බන්ධතා",
+		"properties": [
+			{
+				"key": "text",
+				"type": "string",
+				"label": "Text line"
+			}
+		]
+	},
+	{
+		"section": "Header",
+		"key": "header_menu",
+		"type": "array",
+		"label": "Menu",
+		"properties": [
+			{
+				"key": "text",
+				"type": "string",
+				"label": "Link text"
+			},
+			{
+				"key": "url",
+				"type": "string",
+				"label": "Link url"
+			}
+		]
+	},
+	{
+		"section": "Product Details",
+		"key": "related_products_title",
+		"type": "string",
+		"label": "Related Products Title"
+	},
+	{
+		"section": "Product Details",
+		"key": "product_gallery_shownav",
+		"type": "boolean",
+		"label": "Show Navigation Arrows in Gallery"
+	},
+	{
+		"section": "Home",
+		"key": "home_gallery_shownav",
+		"type": "boolean",
+		"label": "Show Navigation Arrows in Gallery"
+	},
+	{
+		"section": "Product Details",
+		"key": "show_viewed_products",
+		"type": "boolean",
+		"label": "Show recently viewed products"
+	},
+	{
+		"section": "Product Details",
+		"key": "limit_viewed_products",
+		"type": "number",
+		"label": "Count of recently viewed products"
+	},
+	{
+		"section": "Pages",
+		"key": "page_list_tag",
+		"type": "string",
+		"label": "Tag to create page list (blog, news, articles or docs)"
+	}
+]
