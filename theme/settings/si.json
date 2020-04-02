@@ -21,13 +21,13 @@
 		"section": "භාණ්ඩයේ විස්තරය",
 		"key": "button_addtocart_text",
 		"type": "string",
-		"label": "Button Add to Cart. Text."
+		"label": "Button Add to Cart. පෙළ."
 	},
 	{
 		"section": "භාණ්ඩ ලයිස්තුව",
 		"key": "button_loadmore_bg",
 		"type": "color",
-		"label": "Button Load more. පසුබිම පාට."
+		"label": "තව ගන්න බොත්තම. පසුබිම පාට."
 	},
 	{
 		"section": "භාණ්ඩ ලයිස්තුව",
@@ -39,7 +39,7 @@
 		"section": "භාණ්ඩ ලයිස්තුව",
 		"key": "button_loadmore_text",
 		"type": "string",
-		"label": "Button Load more. Text."
+		"label": "තව ගන්න බොත්තම. Text."
 	},
 	{
 		"section": "භාණ්ඩ ලයිස්තුව",
@@ -75,7 +75,7 @@
 		"section": "භාණ්ඩ ලයිස්තුව",
 		"key": "show_product_filter",
 		"type": "boolean",
-		"label": "භාණ්ඩ Filter පෙන්වන්න"
+		"label": "භාණ්ඩ පෙරනය පෙන්වන්න"
 	},
 	{
 		"section": "භාණ්ඩයේ විස්තරය",
@@ -93,31 +93,31 @@
 		"section": "භාණ්ඩයේ විස්තරය",
 		"key": "show_discount_countdown",
 		"type": "boolean",
-		"label": "discount countdown පෙන්වන්න"
+		"label": "වට්ටම් කාලය පෙන්වන්න"
 	},
 	{
-		"section": "Home",
+		"section": "නිවස",
 		"key": "home_products_title",
 		"type": "string",
-		"label": "Featured Products Title"
+		"label": "විශේෂාංග භාණ්ඩයේ මාතෘකාව"
 	},
 	{
 		"section": "Home",
 		"key": "home_products_sort",
 		"type": "string",
-		"label": "Featured නිෂ්පාදන Sort By"
+		"label": "විශේෂාංග නිෂ්පාදන Sort By"
 	},
 	{
 		"section": "Home",
 		"key": "home_products_sku",
 		"type": "string",
-		"label": "Featured නිෂ්පාදන SKUs"
+		"label": "විශේෂාංග නිෂ්පාදන SKUs"
 	},
 	{
 		"section": "Home",
 		"key": "home_products_limit",
 		"type": "number",
-		"label": "Featured නිෂ්පාදන Items Count"
+		"label": "විශේෂාංග නිෂ්පාදන Items Count"
 	},
 	{
 		"section": "කූඩය සහ Checkout",
@@ -147,19 +147,19 @@
 		"section": "භාණ්ඩ ලැයිස්තුව",
 		"key": "sortNewest",
 		"type": "string",
-		"label": "Sort by newest (comma separated fields)"
+		"label": "Sort by newest (කොමාව separated fields)"
 	},
 	{
 		"section": "භාණ්ඩ ලැයිස්තුව",
 		"key": "අඩුවටිනාකමඅනුව",
 		"type": "string",
-		"label": "අඩු වටිනාකම අනුව (comma separated fields)"
+		"label": "අඩු වටිනාකම අනුව (කොමාව separated fields)"
 	},
 	{
 		"section": "භාණ්ඩ ලැයිස්තුව",
 		"key": "sortPriceHigh",
 		"type": "string",
-		"label": "Sort by high price (comma separated fields)"
+		"label": "Sort by ඉහළ මිල (කොමාව separated fields)"
 	},
 	{
 		"section": "භාණ්ඩයේ විස්තරය",
@@ -168,19 +168,19 @@
 		"label": "Gallery thumbnail position",
 		"options": [
 			{
-				"label": "Top",
+				"label": "උඩ",
 				"value": "top"
 			},
 			{
-				"label": "Right",
+				"label": "දකුණ",
 				"value": "right"
 			},
 			{
-				"label": "Bottom",
+				"label": "යට",
 				"value": "bottom"
 			},
 			{
-				"label": "Left",
+				"label": "වම",
 				"value": "left"
 			}
 		]
@@ -201,13 +201,13 @@
 		"section": "පාදකය",
 		"key": "footer_menu_1_title",
 		"type": "string",
-		"label": "Menu 1 title"
+		"label": "Menu 1 මාතෘකාව"
 	},
 	{
 		"section": "පාදකය",
 		"key": "footer_menu_2_title",
 		"type": "string",
-		"label": "Menu 2 title"
+		"label": "Menu 2 මාතෘකාව"
 	},
 	{
 		"section": "Cart and Checkout",
