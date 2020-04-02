@@ -1,4 +1,4 @@
-FROM node:8
+FROM node
 LABEL maintainer="Nitin Goyal <nitingoyal.dev@gmail.com>"
 
 ENV NGINX_CODENAME stretch
@@ -20,9 +20,6 @@ RUN echo "deb http://nginx.org/packages/debian/ ${NGINX_CODENAME} nginx" >> /etc
 # install PM2
 RUN npm i -g pm2
 
-
-RUN mkdir -p /var/www/cezerin2-store 
-
 WORKDIR /var/www/cezerin2-store 
 
 COPY . /var/www/cezerin2-store 
@@ -40,7 +37,6 @@ RUN cd /var/www/cezerin2-store \
 	&& npm i \
 	&& npm rebuild node-sass \
 	&& npm run build
-
 
 EXPOSE 80
 

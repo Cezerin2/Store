@@ -113,11 +113,7 @@ class ResetPassword extends React.Component {
 	};
 
 	render() {
-		const {
-			handleSubmit,
-			forgotPasswordProperties,
-			resetPasswordProperties
-		} = this.props;
+		const { handleSubmit, resetPasswordProperties } = this.props;
 
 		const inputClassName = 'login-input-field';
 		const loginTitleClassName = 'login-title';
