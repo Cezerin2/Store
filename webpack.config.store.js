@@ -1,38 +1,37 @@
-const path = require('path');
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
-
+const path = require("path");
+const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { GenerateSW } = require("workbox-webpack-plugin");
 module.exports = {
 	entry: {
-		app: ['@babel/polyfill', './src/client/index.js'],
-		theme: ['theme']
+		app: ["@babel/polyfill", "./src/client/index.js"],
+		theme: ["theme"],
 	},
 
 	performance: {
-		hints: false
+		hints: false,
 	},
 
 	output: {
-		publicPath: '/',
-		path: path.resolve(__dirname, 'theme'),
-		filename: 'assets/js/[name]-[chunkhash].js',
-		chunkFilename: 'assets/js/[name]-[chunkhash].js'
+		publicPath: "/",
+		path: path.resolve(__dirname, "theme"),
+		filename: "assets/js/[name]-[chunkhash].js",
+		chunkFilename: "assets/js/[name]-[chunkhash].js",
 	},
 
 	optimization: {
 		splitChunks: {
 			cacheGroups: {
 				vendor: {
-					chunks: 'initial',
-					name: 'theme',
-					test: 'theme',
-					enforce: true
-				}
-			}
-		}
+					chunks: "initial",
+					name: "theme",
+					test: "theme",
+					enforce: true,
+				},
+			},
+		},
 	},
 
 	module: {
@@ -41,88 +40,66 @@ module.exports = {
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				use: {
-					loader: 'babel-loader',
+					loader: "babel-loader",
 					options: {
-						presets: ['@babel/env', '@babel/react'],
-						plugins: ['transform-class-properties']
-					}
-				}
+						presets: ["@babel/env", "@babel/react"],
+						plugins: ["transform-class-properties"],
+					},
+				},
 			},
 			{
 				test: /\.css$/,
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
-						loader: 'css-loader',
+						loader: "css-loader",
 						options: {
 							modules: false,
-							importLoaders: true
-						}
+							importLoaders: true,
+						},
 					},
-					'postcss-loader'
-				]
+					"postcss-loader",
+				],
 			},
 			{
 				test: /\.s(c|a)ss$/,
 				use: [
 					MiniCssExtractPlugin.loader,
-					'css-loader',
-					'postcss-loader',
-					'sass-loader'
-				]
-			}
-		]
+					"css-loader",
+					"postcss-loader",
+					"sass-loader",
+				],
+			},
+		],
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(),
+		new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["!theme*"] }),
 		new MiniCssExtractPlugin({
-			filename: 'assets/css/bundle-[contenthash].css',
-			chunkFilename: 'assets/css/bundle-[contenthash].css'
+			filename: "assets/css/bundle-[contenthash].css",
+			chunkFilename: "assets/css/bundle-[contenthash].css",
 		}),
 		new HtmlWebpackPlugin({
-			template: 'theme/index.html',
-			inject: 'body',
-			filename: 'assets/index.html'
+			template: "theme/index.html",
+			inject: "body",
+			filename: "assets/index.html",
 		}),
-		new WorkboxPlugin.GenerateSW({
-			swDest: 'assets/sw.js',
-			precacheManifestFilename: 'assets/precache-manifest.[manifestHash].js',
+		new GenerateSW({
+			swDest: "assets/sw.js",
 			clientsClaim: true,
 			skipWaiting: true,
 			exclude: [/\.html$/],
-			runtimeCaching: [
-				{
-					urlPattern: new RegExp('/(images|assets|admin-assets)/'),
-					handler: 'cacheFirst'
-				},
-				{
-					urlPattern: new RegExp('/api/'),
-					handler: 'networkOnly'
-				},
-				{
-					urlPattern: new RegExp('/ajax/payment_form_settings'),
-					handler: 'networkOnly'
-				},
-				{
-					urlPattern: new RegExp('/'),
-					handler: 'networkFirst',
-					options: {
-						networkTimeoutSeconds: 10
-					}
-				}
-			]
 		}),
 		new webpack.BannerPlugin({
 			banner: `Created: ${new Date().toUTCString()}`,
 			raw: false,
-			entryOnly: false
-		})
+			entryOnly: false,
+		}),
 	],
 
 	stats: {
 		children: false,
 		entrypoints: false,
-		modules: false
-	}
+		modules: false,
+	},
 };
