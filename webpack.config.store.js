@@ -74,7 +74,15 @@ module.exports = {
 	},
 
 	plugins: [
-		new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["!theme*"] }),
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns: [
+				"!theme/assets/js/app-*.js",
+				"!theme/assets/js/theme-*.js",
+				"!theme/assets/css/bundle-*.css",
+				"!theme/assets/sw.js",
+				"!theme/assets/precache-manifest.*.js",
+			],
+		}),
 		new MiniCssExtractPlugin({
 			filename: "assets/css/bundle-[contenthash].css",
 			chunkFilename: "assets/css/bundle-[contenthash].css",
