@@ -1,17 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import ImageGallery from 'react-image-gallery';
-import { themeSettings } from '../lib/settings';
-import storeSettings from '../../../config/store';
+import React from "react";
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
+import ImageGallery from "react-image-gallery";
+import { themeSettings } from "../lib/settings";
 
-const renderItem = item => (
+const renderItem = (item) => (
 	<div className="image-gallery-image">
-		<NavLink to={item.path || ''}>
+		<NavLink to={item.path || ""}>
 			<img src={item.original} alt={item.title} />
 			<div
 				className="caption"
-				style={{ color: themeSettings.home_slider_color || '#fff' }}
+				style={{ color: themeSettings.home_slider_color || "#fff" }}
 			>
 				<div className="caption-title">{item.title}</div>
 				<div className="caption-description">{item.description}</div>
@@ -22,12 +21,12 @@ const renderItem = item => (
 
 const HomeSlider = ({ images }) => {
 	if (images && images.length > 0) {
-		const items = images.map(item => ({
+		const items = images.map((item) => ({
 			original: item.image,
 			title: item.title,
 			description: item.description,
-			path: item.path || '',
-			button: item.button
+			path: item.path || "",
+			button: item.button,
 		}));
 
 		return (
@@ -55,11 +54,11 @@ const HomeSlider = ({ images }) => {
 };
 
 HomeSlider.propTypes = {
-	images: PropTypes.arrayOf(PropTypes.shape({}))
+	images: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 HomeSlider.defaultProps = {
-	images: null
+	images: null,
 };
 
 export default HomeSlider;

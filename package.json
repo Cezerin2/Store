@@ -84,13 +84,13 @@
     "sass-loader": "^8.0.2",
     "sitemap": "^6.1.0",
     "slug": "^2.1.1",
-    "stripe": "^8.38.0",
+    "stripe": "^8.39.0",
     "theme": "./theme",
     "typescript": "^3.8.3",
     "ua-parser-js": "^0.7.21",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "winston": "^3.2.1",
-    "workbox-webpack-plugin": "^4.3.1"
+    "workbox-webpack-plugin": "^5.1.2"
   }
 }

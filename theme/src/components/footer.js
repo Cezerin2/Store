@@ -1,20 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { themeSettings, text } from '../lib/settings';
-import storeSettings from '../../../config/store';
+import React from "react";
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
+import { themeSettings } from "../lib/settings";
 
 class FooterMenu extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isActive: false
+			isActive: false,
 		};
 	}
 
 	isActiveToggle = () => {
 		this.setState({
-			isActive: !this.state.isActive
+			isActive: !this.state.isActive,
 		});
 	};
 
@@ -25,7 +24,7 @@ class FooterMenu extends React.Component {
 		if (items && items.length > 0) {
 			ulItems = items.map((item, index) => (
 				<li key={index}>
-					<NavLink to={item.url || ''}>{item.text}</NavLink>
+					<NavLink to={item.url || ""}>{item.text}</NavLink>
 				</li>
 			));
 		}
@@ -34,7 +33,7 @@ class FooterMenu extends React.Component {
 			<div className="column is-3">
 				<div
 					className={`footer-title mobile-padding${
-						this.state.isActive ? ' footer-menu-open' : ''
+						this.state.isActive ? " footer-menu-open" : ""
 					}`}
 					onClick={this.isActiveToggle}
 				>
@@ -52,7 +51,7 @@ const SocialIcons = ({ icons }) => {
 		const items = icons.map((icon, index) => (
 			<a
 				key={index}
-				href={icon.url || ''}
+				href={icon.url || ""}
 				target="_blank"
 				rel="noopener"
 				title={icon.type}
@@ -68,7 +67,7 @@ const Contacts = ({ contacts }) => {
 	if (contacts && contacts.length > 0) {
 		const items = contacts.map((item, index) => {
 			const contact = item ? item.text : null;
-			if (contact && contact.indexOf('@') > 0) {
+			if (contact && contact.indexOf("@") > 0) {
 				return (
 					<li key={index}>
 						<a href={`mailto:${contact}`}>{contact}</a>
@@ -84,7 +83,7 @@ const Contacts = ({ contacts }) => {
 
 export default class Footer extends React.PureComponent {
 	static propTypes = {
-		settings: PropTypes.shape({}).isRequired
+		settings: PropTypes.shape({}).isRequired,
 	};
 
 	render() {

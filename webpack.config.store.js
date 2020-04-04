@@ -86,7 +86,6 @@ module.exports = {
 		}),
 		new GenerateSW({
 			swDest: "assets/sw.js",
-			precacheManifestFilename: "assets/precache-manifest.[manifestHash].js",
 			clientsClaim: true,
 			skipWaiting: true,
 			exclude: [/\.html$/],
