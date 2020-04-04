@@ -22,7 +22,7 @@ RUN npm i -g pm2
 
 WORKDIR /var/www/cezerin2-store 
 
-COPY . /var/www/cezerin2-store 
+COPY . /var/www/cezerin2-store
 
 # Nginx config
 COPY nginx/nginx.conf /etc/nginx/
