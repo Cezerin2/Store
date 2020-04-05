@@ -2,22 +2,21 @@
 
 [![CircleCI](https://circleci.com/gh/Cezerin2/cezerin2/tree/master.svg?style=svg)](https://circleci.com/gh/Cezerin2/cezerin2/tree/master)
 
+
 Cezerin2 is React and Node.js based eCommerce platform. Allows creating a Progressive Web Apps. This is based from cezerin after project went dead. (https://github.com/cezerin/cezerin)
 
 Built with:
-
-- Node.js
-- React v16
-- Redux
-- Express
-- Babel
-- WebPack 4
+* Node.js v8.9
+* React v16
+* Redux
+* Express
+* Babel
+* WebPack 4
 
 ## Links
-
 - [GitHub](https://github.com/cezerin2/cezerin2)
 - [Community Site](https://cezerin.org)
-- [Demo Store](https://demo.cezerin.net/)
+- [Demo Store](https://store.cezerin.com)
 - [Telegram Chat: Cezerin](https://t.me/cezerin)
 - [Forum](https://groups.google.com/forum/#!forum/cezerin)
 - [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs/getting-started.md)
@@ -25,12 +24,11 @@ Built with:
 - [Twitter](https://twitter.com/cezerin2)
 
 ## Store
+Single-Page Application with React server-side rendering. [Demo store](https://store.cezerin.com)
 
-Single-Page Application with React server-side rendering. [Demo store](https://demo.cezerin.net/)
+[![Cezerin Store](https://cezerin.com/assets/images/cezerin-mobile-product.png)](https://store.cezerin.com)
 
-[![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-product.png)](https://store.cezerin.com)
-
-[![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://store.cezerin.com)
+[![Cezerin Store](https://cezerin.com/assets/images/cezerin-mobile-order-summary.png)](https://store.cezerin.com)
 
 ## Installation
 
@@ -40,12 +38,12 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 - [How to deploy a Cezerin2 on Ubuntu 18.04.1 (from GitHub)](https://github.com/cezerin2/cezerin2/blob/master/docs/how-to-deploy-a-cezerin2-on-ubuntu-18-04-1-github.md)
 
 ### Requirements
-
-- Node.js
+* Node.js >= 8
 
 ## Documentation
 
 [Documentation](https://github.com/cezerin2/cezerin2/tree/master/docs)
+
 
 ## Application Structure
 
@@ -70,9 +68,11 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 └── process.json             # pm2 process file
 ```
 
+
 ## Contributing
 
 If you can, please contribute by reporting issues, discussing ideas, or submitting pull requests with patches and new features. We do our best to respond to all issues and pull requests within a day or two, and make patch releases to npm regularly.
+
 
 ## Licence
 

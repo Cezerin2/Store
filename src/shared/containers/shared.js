@@ -5,5 +5,8 @@ import { SharedContainer } from 'theme';
 import { mapStateToProps, mapDispatchToProps } from '../containerProps';
 
 export default withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(SharedContainer)
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(SharedContainer)
 );

@@ -1,23 +1,23 @@
-import { SitemapStream } from "sitemap";
-import winston from "winston";
-import api from "./api";
+import {SitemapStream} from 'sitemap';
+import winston from 'winston';
+import api from './api';
 
 const SITEMAP_EXCLUDE_PATH = [
-	"/",
-	"/checkout",
-	"/checkout-success",
-	"/account",
-	"/cart",
-	"/login",
-	"/logout",
-	"/register",
-	"/customer-account",
+	'/',
+	'/checkout',
+	'/checkout-success',
+	'/account',
+	'/cart',
+	'/login',
+	'/logout',
+	'/register',
+	'/customer-account'
 ];
 
 const sitemapRendering = (req, res) => {
 	Promise.all([
 		api.sitemap.list({ enabled: true }),
-		api.settings.retrieve(),
+		api.settings.retrieve()
 	]).then(([sitemapResponse, settingsResponse]) => {
 		const sitemapArray = sitemapResponse.json;
 		const settings = settingsResponse.json;
@@ -28,19 +28,19 @@ const sitemapRendering = (req, res) => {
 
 		const urls = sitemapArray
 			.filter(
-				(item) =>
-					item.type !== "reserved" &&
-					item.type !== "search" &&
+				item =>
+					item.type !== 'reserved' &&
+					item.type !== 'search' &&
 					!SITEMAP_EXCLUDE_PATH.includes(item.path)
 			)
-			.map((item) => item.path);
+			.map(item => item.path);
 		const sitemap = SitemapStream({ hostname, urls });
 		sitemap.toXML((err, xml) => {
 			if (err) {
 				winston.error(err.message ? err.message : err);
 				res.status(500).end();
 			} else {
-				res.header("Content-Type", "application/xml");
+				res.header('Content-Type', 'application/xml');
 				res.send(xml);
 			}
 		});

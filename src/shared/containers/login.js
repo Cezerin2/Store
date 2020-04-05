@@ -5,5 +5,8 @@ import { LoginContainer } from 'theme';
 import { mapStateToProps, mapDispatchToProps } from '../containerProps';
 
 export default withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(LoginContainer)
 );

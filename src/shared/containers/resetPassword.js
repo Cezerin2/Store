@@ -5,5 +5,8 @@ import { ResetPasswordContainer } from 'theme';
 import { mapStateToProps, mapDispatchToProps } from '../containerProps';
 
 export default withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(ResetPasswordContainer)
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(ResetPasswordContainer)
 );
