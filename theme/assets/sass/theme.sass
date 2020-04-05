@@ -1,4 +1,15 @@
 @use "~bulma/sass/utilities/initial-variables"
+@use "homeSlider"
+@use "checkout"
+@use "cart"
+@use "header"
+@use "footer"
+@use "category"
+@use "product"
+@use "page"
+@use "custom"
+@use "login"
+@use "account"
 
 $green: #00b366
 $login: #116363
@@ -16,9 +27,9 @@ $breadcrumb-item-separator-color: #7a7a7a
 $error-alert-text: #e5443e
 
 @use "~bulma"
-@use "~rc-slider/assets/index.css"
+@use "~rc-slider/assets/index"
 $ig-blue: #636363 !default
-@use "~react-image-gallery/styles/scss/image-gallery-no-icon.scss"
+@use "~react-image-gallery/styles/scss/image-gallery-no-icon"
 
 .image-gallery-bullets .image-gallery-bullets-container
 	background-color: rgba(0, 0, 0, 0.2)
@@ -104,14 +115,3 @@ input[type="number"]
 		position: fixed
 		overflow: hidden
 
-@use "homeSlider.sass"
-@use "checkout.sass"
-@use "cart.sass"
-@use "header.sass"
-@use "footer.sass"
-@use "category.sass"
-@use "product.sass"
-@use "page.sass"
-@use "custom.sass"
-@use "login.sass"
-@use "account.sass"
