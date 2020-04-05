@@ -18,7 +18,7 @@ $error-alert-text: #e5443e;
 @import "~bulma";
 @import "~rc-slider/assets/index.css";
 $ig-blue: #636363 !default;
-@import "~react-image-gallery/styles/scss/image-gallery-no-icon.scss";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
 
 .image-gallery-bullets .image-gallery-bullets-container {
   background-color: rgba(0,0,0,0.2);

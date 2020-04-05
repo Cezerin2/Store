@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
@@ -43,7 +43,7 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['env', 'react'],
+						presets: ["@babel/env", "@babel/react"],
 						plugins: ['transform-class-properties']
 					}
 				}
@@ -68,14 +68,23 @@ module.exports = {
 					MiniCssExtractPlugin.loader,
 					'css-loader',
 					'postcss-loader',
-					'sass-loader'
+					{
+						loader: 'sass-loader',
+						options: {
+							sassOptions: {
+								indentWidth: 4,
+								includePaths: [ path.resolve('node_modules')],
+							  },
+						},
+					}
 				]
 			}
 		]
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns:
 			[
 				'theme/assets/js/app-*.js',
 				'theme/assets/js/theme-*.js',
@@ -83,8 +92,8 @@ module.exports = {
 				'theme/assets/sw.js',
 				'theme/assets/precache-manifest.*.js'
 			],
-			{ verbose: false }
-		),
+			 verbose: false 
+		}),
 		new MiniCssExtractPlugin({
 			filename: 'assets/css/bundle-[contenthash].css',
 			chunkFilename: 'assets/css/bundle-[contenthash].css'
@@ -96,26 +105,25 @@ module.exports = {
 		}),
 		new WorkboxPlugin.GenerateSW({
 			swDest: 'assets/sw.js',
-			precacheManifestFilename: 'assets/precache-manifest.[manifestHash].js',
 			clientsClaim: true,
 			skipWaiting: true,
 			exclude: [/\.html$/],
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp('/(images|assets|admin-assets)/'),
-					handler: 'cacheFirst'
+					handler: 'CacheFirst'
 				},
 				{
 					urlPattern: new RegExp('/api/'),
-					handler: 'networkOnly'
+					handler: 'NetworkOnly'
 				},
 				{
 					urlPattern: new RegExp('/ajax/payment_form_settings'),
-					handler: 'networkOnly'
+					handler: 'NetworkOnly'
 				},
 				{
 					urlPattern: new RegExp('/'),
-					handler: 'networkFirst',
+					handler: 'NetworkFirst',
 					options: {
 						networkTimeoutSeconds: 10
 					}
