@@ -16,7 +16,7 @@ Built with:
 ## Links
 - [GitHub](https://github.com/cezerin2/cezerin2)
 - [Community Site](https://cezerin.org)
-- [Demo Store](https://store.cezerin.com)
+- [Demo Store](https://demo.cezerin.net/)
 - [Telegram Chat: Cezerin](https://t.me/cezerin)
 - [Forum](https://groups.google.com/forum/#!forum/cezerin)
 - [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs/getting-started.md)
@@ -24,11 +24,11 @@ Built with:
 - [Twitter](https://twitter.com/cezerin2)
 
 ## Store
-Single-Page Application with React server-side rendering. [Demo store](https://store.cezerin.com)
+Single-Page Application with React server-side rendering. [Demo store](https://demo.cezerin.net/)
 
-[![Cezerin Store](https://cezerin.com/assets/images/cezerin-mobile-product.png)](https://store.cezerin.com)
+[![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-product.png)](https://demo.cezerin.net/)
 
-[![Cezerin Store](https://cezerin.com/assets/images/cezerin-mobile-order-summary.png)](https://store.cezerin.com)
+[![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://demo.cezerin.net/)
 
 ## Installation
 
