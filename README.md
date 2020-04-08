@@ -2,7 +2,16 @@
 
 [![CircleCI](https://circleci.com/gh/Cezerin2/cezerin2/tree/master.svg?style=svg)](https://circleci.com/gh/Cezerin2/cezerin2/tree/master)
 
-Cezerin2 is React and Node.js based eCommerce platform. Allows creating a Progressive Web Apps. This is based from original cezerin after project abandoned by author.
+Cezerin is React and Node.js based eCommerce platform. Allows creating a Progressive Web Apps. This is based from original cezerin after project abandoned by author.
+
+Apps:
+
+- [Cezerin API](https://github.com/cezerin2/cezerin2)
+- [Cezerin Store](https://github.com/cezerin2/cezerin2-store)
+- [Cezerin Admin](https://github.com/cezerin2/cezerin2-admin)
+- [Cezerin API Client](https://github.com/cezerin2/cezerin2-client)
+- [Cezerin Docker](https://github.com/cezerin2/docker-cezerin2)
+- [Cezerin Community Site](https://github.com/cezerin2/cezerin2.github.io)
 
 Built with:
 
