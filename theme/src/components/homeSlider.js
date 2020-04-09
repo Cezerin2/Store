@@ -28,7 +28,6 @@ const HomeSlider = ({ images }) => {
 			path: item.path || '',
 			button: item.button
 		}));
-
 		return (
 			<section className="section" style={{ padding: 0 }}>
 				<div className="container">
