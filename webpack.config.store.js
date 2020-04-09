@@ -1,25 +1,28 @@
-const path = require('path');
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
 	entry: {
 		app: ['babel-polyfill', './src/client/index.js'],
-		theme: ['theme']
+		theme: ['theme'],
 	},
 
 	performance: {
-		hints: false
+		hints: true,
 	},
+
+	// Enable sourcemaps for debugging webpack's output.
+	devtool: 'source-map',
 
 	output: {
 		publicPath: '/',
 		path: path.resolve(__dirname, 'theme'),
 		filename: 'assets/js/[name]-[chunkhash].js',
-		chunkFilename: 'assets/js/[name]-[chunkhash].js'
+		chunkFilename: 'assets/js/[name]-[chunkhash].js',
 	},
 
 	optimization: {
@@ -29,13 +32,22 @@ module.exports = {
 					chunks: 'initial',
 					name: 'theme',
 					test: 'theme',
-					enforce: true
-				}
-			}
-		}
+					enforce: true,
+				},
+			},
+		},
 	},
 
 	module: {
+		loaders: [
+			// All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+			{ test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+		],
+
+		preLoaders: [
+			// All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+			{ test: /\.js$/, loader: 'source-map-loader' },
+		],
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
@@ -43,10 +55,10 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ["@babel/env", "@babel/react"],
-						plugins: ['transform-class-properties']
-					}
-				}
+						presets: ['@babel/env', '@babel/react'],
+						plugins: ['transform-class-properties'],
+					},
+				},
 			},
 			{
 				test: /\.css$/,
@@ -56,14 +68,14 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							modules: false,
-							importLoaders: true
-						}
+							importLoaders: true,
+						},
 					},
-					'postcss-loader'
-				]
+					'postcss-loader',
+				],
 			},
 			{
-				test: /\.scss$/,
+				test: /\.sass$/,
 				use: [
 					MiniCssExtractPlugin.loader,
 					'css-loader',
@@ -73,35 +85,34 @@ module.exports = {
 						options: {
 							sassOptions: {
 								indentWidth: 4,
-								includePaths: [ path.resolve('node_modules')],
-							  },
+								includePaths: [path.resolve('node_modules')],
+							},
 						},
-					}
-				]
-			}
-		]
+					},
+				],
+			},
+		],
 	},
 
 	plugins: [
 		new CleanWebpackPlugin({
-			cleanOnceBeforeBuildPatterns:
-			[
+			cleanOnceBeforeBuildPatterns: [
 				'theme/assets/js/app-*.js',
 				'theme/assets/js/theme-*.js',
 				'theme/assets/css/bundle-*.css',
 				'theme/assets/sw.js',
-				'theme/assets/precache-manifest.*.js'
+				'theme/assets/precache-manifest.*.js',
 			],
-			 verbose: false 
+			verbose: false,
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'assets/css/bundle-[contenthash].css',
-			chunkFilename: 'assets/css/bundle-[contenthash].css'
+			chunkFilename: 'assets/css/bundle-[contenthash].css',
 		}),
 		new HtmlWebpackPlugin({
 			template: 'theme/index.html',
 			inject: 'body',
-			filename: 'assets/index.html'
+			filename: 'assets/index.html',
 		}),
 		new WorkboxPlugin.GenerateSW({
 			swDest: 'assets/sw.js',
@@ -111,35 +122,35 @@ module.exports = {
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp('/(images|assets|admin-assets)/'),
-					handler: 'CacheFirst'
+					handler: 'CacheFirst',
 				},
 				{
 					urlPattern: new RegExp('/api/'),
-					handler: 'NetworkOnly'
+					handler: 'NetworkOnly',
 				},
 				{
 					urlPattern: new RegExp('/ajax/payment_form_settings'),
-					handler: 'NetworkOnly'
+					handler: 'NetworkOnly',
 				},
 				{
 					urlPattern: new RegExp('/'),
 					handler: 'NetworkFirst',
 					options: {
-						networkTimeoutSeconds: 10
-					}
-				}
-			]
+						networkTimeoutSeconds: 10,
+					},
+				},
+			],
 		}),
 		new webpack.BannerPlugin({
 			banner: `Created: ${new Date().toUTCString()}`,
 			raw: false,
-			entryOnly: false
-		})
+			entryOnly: false,
+		}),
 	],
 
 	stats: {
 		children: false,
 		entrypoints: false,
-		modules: false
-	}
-};
+		modules: false,
+	},
+}

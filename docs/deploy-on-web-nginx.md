@@ -6,10 +6,9 @@ We need to proxy all requests from web to our cezerin apps.
 
 All requests from admin.domain.com proxy to localhost:3002 (running cezerin2-admin dashboard app)
 
-All requests from domain.com proxy to localhost:3000 (running cezerin2-store frontend app) 
+All requests from domain.com proxy to localhost:3000 (running cezerin2-store frontend app)
 
-All requests from domain.com/api, domain/ajax, domain/images proxy to localhost:3001 (running cezerin2 backend app) 
-
+All requests from domain.com/api, domain/ajax, domain/images proxy to localhost:3001 (running cezerin2 backend app)
 
 We have cezerin nginx config, you can use this config for web deploy.
 
@@ -18,6 +17,7 @@ We have cezerin nginx config, you can use this config for web deploy.
 We need to add a new website to Nginx.
 
 1. Change Nginx config file
+
     ```
     cd /etc/nginx/sites-available
     ```
@@ -30,4 +30,3 @@ P.S. Change admin.cezerin.org at this config to your domain name: admin.your-nam
     ```
     nginx -t && service nginx reload
     ```
-    

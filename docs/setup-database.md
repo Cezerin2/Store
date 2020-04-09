@@ -1,39 +1,42 @@
 # Database
 
-* [Local Mongo](#1-local-mongo)
-* [Docker Mongo](#2-docker-mongo)
-* [Mongo Altas](#3-mongo-altas)
+-   [Local Mongo](#1-local-mongo)
+-   [Docker Mongo](#2-docker-mongo)
+-   [Mongo Altas](#3-mongo-altas)
 
 ## 1. Local Mongo
 
 ### Setup
- * follow mongo [instructions](https://docs.mongodb.com/manual/installation/) to install locally.
- * run ```mongod```
+
+-   follow mongo [instructions](https://docs.mongodb.com/manual/installation/) to install locally.
+-   run `mongod`
 
 ### Implementation
-- **Docker**
-docker implementation will require access to host ports, to do this you will be required to add host network
 
-   ```shell
-   --network host
-   ```
+-   **Docker**
+    docker implementation will require access to host ports, to do this you will be required to add host network
 
-    **Full Example**
-     ```shell
-    docker run -d \
-    --name cezerin2 \
-    -p 3001:80 \
-    -v /content-on-host:/var/www/cezerin2/public/content \
-    --network host \
-    cezerin2/cezerin2:latest
+    ```shell
+    --network host
     ```
 
--  **pm2**
+        **Full Example**
+         ```shell
+        docker run -d \
+        --name cezerin2 \
+        -p 3001:80 \
+        -v /content-on-host:/var/www/cezerin2/public/content \
+        --network host \
+        cezerin2/cezerin2:latest
+        ```
+
+-   **pm2**
     Deloy normally with pm2. [here](https://cezerin.org/docs/#/using-source-code)
 
     ```shell
     pm2 start app.js
     ```
+
 ## 2. Docker Mongo
 
 ### Setup
@@ -47,16 +50,17 @@ docker implementation will require access to host ports, to do this you will be 
 
 ### Implementation
 
-- **Docker**
+-   **Docker**
     You are required to link to the database image and set it to the DB_HOST.
 
-     ```shell
+    ```shell
     --link store-db:db \
     -e DB_HOST=db \
     ```
 
     **Full Example**
-     ```shell
+
+    ```shell
     docker run -d \
     --name cezerin2 \
     --link store-db:db \
@@ -66,65 +70,71 @@ docker implementation will require access to host ports, to do this you will be 
     cezerin2/cezerin2:latest
     ```
 
-- **pm2**
+-   **pm2**
     You will be required to expose the port in the docker command.
+
     ```shell
     -p 27017:27017
     ```
 
     Then you can Deloy normally with pm2. [here](https://cezerin.org/docs/#/using-source-code)
-    
-     ```shell
-     pm2 start app.js
-     ```
+
+    ```shell
+    pm2 start app.js
+    ```
 
 ## 3. Mongo Atlas
 
 ### Setup
 
-- I'll use [Mongo Altas](https://cloud.mongodb.com/) to deploy database.
+-   I'll use [Mongo Altas](https://cloud.mongodb.com/) to deploy database.
 
-    - Click **Build Cluster**
-        - Choose an provider: `AWS`
-        - Choose a region: `N. Virginia (us-east-1)`
-        - Choose a tier region: `M0` (Sandbox Free)
-        - Choose a cluster name: `Cezerin-db`
+    -   Click **Build Cluster**
 
-    - Create **User**
-        - Click Customer Security
-        - Click **Add New User Role**
-        - Choose Username: `cezerin`
-        - Choose Password: `cezerin`
-        - Choose User Privileges: `Atlas Admin`
-    
-    - Add **WhiteList IP**
-        - Click **IP Whitelist**
-        - Click **Add IP ADDRESS**
-        - Click **Add current IP Address**
+        -   Choose an provider: `AWS`
+        -   Choose a region: `N. Virginia (us-east-1)`
+        -   Choose a tier region: `M0` (Sandbox Free)
+        -   Choose a cluster name: `Cezerin-db`
 
-    - Click **Connect**
-        - Select: `Connect Your Application`
-        - Select Driver: `nodejs`
-        - Select Version: `3.0 or later`
-        - Copy connection string: ```mongodb+srv://cezerin:<password>@cezerin-db-0ga32.mongodb.net/test?retryWrites=true```
-    
-    - Update string url
-        - change ```<password>``` to provided password
-        - remove ```?retryWrites=true``` (doesn't support ?)
-        - change `test` to database name `shop`
-        - should be like ```mongodb+srv://cezerin:cezerin@cezerin-db-0ga32.mongodb.net/shop```
+    -   Create **User**
+
+        -   Click Customer Security
+        -   Click **Add New User Role**
+        -   Choose Username: `cezerin`
+        -   Choose Password: `cezerin`
+        -   Choose User Privileges: `Atlas Admin`
+
+    -   Add **WhiteList IP**
+
+        -   Click **IP Whitelist**
+        -   Click **Add IP ADDRESS**
+        -   Click **Add current IP Address**
+
+    -   Click **Connect**
+
+        -   Select: `Connect Your Application`
+        -   Select Driver: `nodejs`
+        -   Select Version: `3.0 or later`
+        -   Copy connection string: `mongodb+srv://cezerin:<password>@cezerin-db-0ga32.mongodb.net/test?retryWrites=true`
+
+    -   Update string url
+        -   change `<password>` to provided password
+        -   remove `?retryWrites=true` (doesn't support ?)
+        -   change `test` to database name `shop`
+        -   should be like `mongodb+srv://cezerin:cezerin@cezerin-db-0ga32.mongodb.net/shop`
 
 ### Implementation
 
-- **Docker**
+-   **Docker**
     You are required to referernce the database url in the docker configuration
 
-     ```shell
+    ```shell
     -e DB_URL=mongodb+srv://cezerin:cezerin@cezerin-db-0ga32.mongodb.net/shop
     ```
 
     **Full Example**
-     ```shell
+
+    ```shell
     docker run -d \
     --name cezerin2 \
     --link store-db:db \
@@ -134,10 +144,9 @@ docker implementation will require access to host ports, to do this you will be 
     cezerin2/cezerin2:latest
     ```
 
-- **pm2**
+-   **pm2**
 
-     ```shell
-     DB_URL=mongodb+srv://cezerin:cezerin@cezerin-db-0ga32.mongodb.net/shop \
-     pm2 start process.json
-     ```
-
+    ```shell
+    DB_URL=mongodb+srv://cezerin:cezerin@cezerin-db-0ga32.mongodb.net/shop \
+    pm2 start process.json
+    ```

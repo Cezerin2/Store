@@ -896,12 +896,12 @@ height: 10px,
 
 	@each $css-rule,
 	$value in $icons-definition
-		@if $css-rule==before or $css-rule==after
-			&::#{$css-rule}
+	@if $css-rule==before or $css-rule==after
+		&::#{$css-rule}
 
-				@each $sub-rule,
+			@each $sub-rule,
 				$sub-value in $value
-					#{$sub-rule}: #{$sub-value}
+				#{$sub-rule}: #{$sub-value}
 
 		@else
 			#{$css-rule}: #{$value}
