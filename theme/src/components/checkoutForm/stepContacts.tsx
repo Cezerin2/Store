@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
@@ -20,10 +20,7 @@ const ReadOnlyField = ({ name, value }) => (
 	</div>
 );
 
-class CheckoutStepContacts extends React.Component {
-	constructor(props) {
-		super(props);
-
+const CheckoutStepContacts = () => {
 		this.state = {
 			loggedin: false,
 			reinitialized: false,
@@ -34,11 +31,11 @@ class CheckoutStepContacts extends React.Component {
 		this.setInitialValues = this.setInitialValues.bind(this);
 	}
 
-	componentDidMount() {
+	useEffect(() => {
 		if (Lscache.get('auth_data') !== null) {
 			this.setState({ loggedin: true });
 		}
-	}
+	})
 
 	setInitialValues() {
 		Lscache.flushExpired();
@@ -224,7 +221,6 @@ class CheckoutStepContacts extends React.Component {
 			: labelText;
 	};
 
-	render() {
 		const {
 			handleSubmit,
 			customerProperties,
@@ -361,12 +357,12 @@ class CheckoutStepContacts extends React.Component {
 										saveShippingMethod(method.id);
 									}}
 								/>
-								<div>
+								<>
 									<div className="shipping-method-name">{method.name}</div>
 									<div className="shipping-method-description">
 										{method.description}
 									</div>
-								</div>
+								</>
 								<span className="shipping-method-rate">
 									{formatCurrency(method.price, settings)}
 								</span>
@@ -396,12 +392,12 @@ class CheckoutStepContacts extends React.Component {
 										savePaymentMethod(method.id);
 									}}
 								/>
-								<div>
+								<>
 									<div className="payment-method-name">{method.name}</div>
 									<div className="payment-method-description">
 										{method.description}
 									</div>
-								</div>
+								</>
 								<span className="payment-method-logo" />
 							</label>
 						))}
@@ -625,10 +621,5 @@ class CheckoutStepContacts extends React.Component {
 			</div>
 		);
 	}
-}
 
-export default reduxForm({
-	form: 'CheckoutStepContacts',
-	enableReinitialize: true,
-	keepDirtyOnReinitialize: true
-})(CheckoutStepContacts);
+export default reduxForm({	form: 'CheckoutStepContacts',	enableReinitialize: true,	keepDirtyOnReinitialize: true})(CheckoutStepContacts);

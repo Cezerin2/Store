@@ -38,10 +38,7 @@ const InputField = field => (
 	</div>
 );
 
-class Account extends React.Component {
-	constructor(props) {
-		super(props);
-
+const Account = () => {
 		this.state = {
 			profileSection: 1,
 			profileEdit: false,
@@ -261,7 +258,6 @@ class Account extends React.Component {
 		this.setState({ profileEdit: true });
 	};
 
-	render() {
 		const {
 			handleSubmit,
 			customerProperties,
@@ -875,9 +871,5 @@ class Account extends React.Component {
 			);
 		}
 	}
-}
-export default reduxForm({
-	form: 'Account',
-	enableReinitialize: true,
-	keepDirtyOnReinitialize: true
-})(Account);
+
+export default reduxForm({	form: 'Account',	enableReinitialize: true,	keepDirtyOnReinitialize: true})(Account);

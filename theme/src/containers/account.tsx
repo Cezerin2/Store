@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react';
-import { themeSettings, text } from '../lib/settings';
-import MetaTags from '../components/metaTags';
-import Account from '../components/account/index';
+import React from 'react'
+import { themeSettings, text } from '../lib/settings'
+import MetaTags from '../components/metaTags'
+import Account from '../components/account/index'
 
-const AccountContainer = props => {
+const AccountContainer = (props) => {
 	const {
-		state: { pageDetails, loginUser }
-	} = props;
+		state: { pageDetails, loginUser },
+	} = props
 
 	return (
-		<Fragment>
+		<>
 			<MetaTags
 				title={pageDetails.meta_title}
 				description={pageDetails.meta_description}
@@ -24,8 +24,8 @@ const AccountContainer = props => {
 					</div>
 				</div>
 			</section>
-		</Fragment>
-	);
-};
+		</>
+	)
+}
 
-export default AccountContainer;
+export default AccountContainer

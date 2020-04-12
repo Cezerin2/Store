@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
@@ -35,15 +35,12 @@ const BackButton = ({ onClick }) => (
 	</span>
 );
 
-export default class Header extends React.Component {
-	constructor(props) {
-		super(props);
+ const Header = () => {
 		this.state = {
 			mobileMenuIsActive: false,
 			mobileSearchIsActive: false,
 			cartIsActive: false
 		};
-	}
 
 	componentWillReceiveProps(nextProps) {
 		if (
@@ -136,7 +133,6 @@ export default class Header extends React.Component {
 		this.props.goBack();
 	};
 
-	render() {
 		const {
 			categories,
 			cart,
@@ -154,7 +150,7 @@ export default class Header extends React.Component {
 			currentPage.type === 'product' && location.hasHistory;
 
 		return (
-			<Fragment>
+			<>
 				<header
 					className={this.state.mobileSearchIsActive ? 'search-active' : ''}
 				>
@@ -246,7 +242,8 @@ export default class Header extends React.Component {
 						onClick={this.menuClose}
 					/>
 				</div>
-			</Fragment>
+			</>
 		);
 	}
-}
+
+export default Header

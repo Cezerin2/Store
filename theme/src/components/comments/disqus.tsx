@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 const DISQUS_CONFIG = [
 	'shortname',
@@ -26,14 +26,8 @@ function copyProps(context, props, prefix = '') {
 	}
 }
 
-export default class Disqus extends React.PureComponent {
-	constructor(props) {
-		super(props);
-	}
-
-	componentDidMount() {
-		this.loadDisqus();
-	}
+const Disqus = () => {
+	useEffect(() => {loadDisqus())
 
 	componentDidUpdate() {
 		this.loadDisqus();
@@ -89,8 +83,7 @@ export default class Disqus extends React.PureComponent {
 			this.addDisqusScript();
 		}
 	}
-
-	render() {
 		return <div id="disqus_thread" />;
 	}
-}
+
+export default Disqus

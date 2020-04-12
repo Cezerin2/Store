@@ -60,7 +60,7 @@ const ShippingFields = ({ order, shippingMethod }) => {
 		});
 	}
 
-	return <div>{shippingFields}</div>;
+	return <>{shippingFields}</>;
 };
 
 const ShippingFieldDiv = ({ label, value }) => (
@@ -92,7 +92,7 @@ const OrderItems = ({ items, settings }) => {
 		const rows = items.map(item => (
 			<OrderItem key={item.id} item={item} settings={settings} />
 		));
-		return <div>{rows}</div>;
+		return <>{rows}</>;
 	}
 	return null;
 };
@@ -160,17 +160,17 @@ const CheckoutSuccess = ({
 				<div className="columns">
 					<div className="column is-offset-7 checkout-success-totals">
 						{order.tax_total > 0 && order.item_tax_included && (
-							<div>
+							<>
 								<span>{text.included_tax}:</span>
 								<span>{helper.formatCurrency(order.tax_total, settings)}</span>
-							</div>
+							</>
 						)}
 
-						<div>
+						<>
 							<span>{text.subtotal}:</span>
 							<span>{helper.formatCurrency(order.subtotal, settings)}</span>
 						</div>
-						<div>
+						<>
 							<span>{text.shipping}:</span>
 							<span>
 								{helper.formatCurrency(order.shipping_total, settings)}
@@ -178,16 +178,16 @@ const CheckoutSuccess = ({
 						</div>
 
 						{order.tax_total > 0 && !order.item_tax_included && (
-							<div>
+							<>
 								<span>{text.tax}:</span>
 								<span>{helper.formatCurrency(order.tax_total, settings)}</span>
-							</div>
+							</>
 						)}
 
-						<div>
+						<>
 							<b>{text.grandTotal}:</b>
 							<b>{helper.formatCurrency(order.grand_total, settings)}</b>
-						</div>
+						</>
 					</div>
 				</div>
 			</div>

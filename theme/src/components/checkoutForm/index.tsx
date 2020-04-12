@@ -1,56 +1,53 @@
-import React from 'react';
-import Lscache from 'lscache';
-import { themeSettings, text } from '../../lib/settings';
-import CheckoutStepContacts from './stepContacts';
-import CheckoutStepShipping from './stepShipping';
-import CheckoutStepPayment from './stepPayment';
+import React, { useState, useEffect } from 'react'
+import Lscache from 'lscache'
+import { themeSettings, text } from '../../lib/settings'
+import CheckoutStepContacts from './stepContacts'
+import CheckoutStepShipping from './stepShipping'
+import CheckoutStepPayment from './stepPayment'
 
-export default class CheckoutForm extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			step: 1
-		};
+const CheckoutForm = () => {
+	this.state = {
+		step: 1,
 	}
 
-	componentDidMount() {
-		this.props.loadShippingMethods();
-		this.props.loadPaymentMethods();
+	useEffect(() => {
+		this.props.loadShippingMethods()
+		this.props.loadPaymentMethods()
 		this.props.customerData({
-			token: Lscache.get('auth_data')
-		});
+			token: Lscache.get('auth_data'),
+		})
 
 		this.props.cartLayerInitialized({
-			cartlayerBtnInitialized: false
-		});
+			cartlayerBtnInitialized: false,
+		})
+	})
+
+	changeStep = (step) => {
+		this.setState({ step })
 	}
 
-	changeStep = step => {
-		this.setState({ step });
-	};
-
 	handleContactsSave = () => {
-		this.changeStep(2);
-	};
+		this.changeStep(2)
+	}
 
 	handleContactsEdit = () => {
-		this.changeStep(1);
-	};
+		this.changeStep(1)
+	}
 
 	handleShippingSave = () => {
-		this.changeStep(3);
-	};
+		this.changeStep(3)
+	}
 
 	handleShippingEdit = () => {
-		this.changeStep(2);
-	};
+		this.changeStep(2)
+	}
 
-	handleContactsSubmit = values => {
-		let { shipping_address, billing_address } = values;
+	handleContactsSubmit = (values) => {
+		let { shipping_address, billing_address } = values
 		shipping_address = Object.assign(
 			{ full_name: `${values.first_name} ${values.last_name}` },
 			shipping_address
-		);
+		)
 		this.props.updateCart({
 			email: values.email,
 			mobile: values.mobile,
@@ -58,182 +55,185 @@ export default class CheckoutForm extends React.Component {
 			last_name: values.last_name,
 			password: values.password,
 			shipping_address,
-			billing_address
-		});
+			billing_address,
+		})
 
-		this.handleContactsSave();
-	};
+		this.handleContactsSave()
+	}
 
-	handleLocationSave = shippingLocation => {
+	handleLocationSave = (shippingLocation) => {
 		this.props.updateCart(
 			{
 				shipping_address: shippingLocation,
 				billing_address: shippingLocation,
 				payment_method_id: null,
-				shipping_method_id: null
+				shipping_method_id: null,
 			},
-			cart => {
-				this.props.loadShippingMethods();
-				this.props.loadPaymentMethods();
+			(cart) => {
+				this.props.loadShippingMethods()
+				this.props.loadPaymentMethods()
 			}
-		);
-	};
+		)
+	}
 
-	handleShippingMethodSave = shippingMethodId => {
+	handleShippingMethodSave = (shippingMethodId) => {
 		this.props.updateCart(
 			{
 				payment_method_id: null,
-				shipping_method_id: shippingMethodId
+				shipping_method_id: shippingMethodId,
 			},
-			cart => {
-				this.props.loadPaymentMethods();
+			(cart) => {
+				this.props.loadPaymentMethods()
 			}
-		);
-	};
+		)
+	}
 
-	handlePaymentMethodSave = paymentMethodId => {
+	handlePaymentMethodSave = (paymentMethodId) => {
 		this.props.updateCart({
-			payment_method_id: paymentMethodId
-		});
-	};
+			payment_method_id: paymentMethodId,
+		})
+	}
 
 	isShowPaymentForm = () => {
-		const { payment_method_gateway } = this.props.state.cart;
+		const { payment_method_gateway } = this.props.state.cart
 		const paymentGatewayExists =
-			payment_method_gateway && payment_method_gateway !== '';
-		return paymentGatewayExists;
-	};
+			payment_method_gateway && payment_method_gateway !== ''
+		return paymentGatewayExists
+	}
 
-	handleShippingSubmit = values => {
+	handleShippingSubmit = (values) => {
 		if (this.isShowPaymentForm()) {
-			const { shipping_address, billing_address, comments } = values;
+			const { shipping_address, billing_address, comments } = values
 
 			this.props.updateCart({
 				shipping_address,
 				billing_address,
-				comments
-			});
-			this.handleShippingSave();
+				comments,
+			})
+			this.handleShippingSave()
 		} else {
-			this.props.checkout(values);
+			this.props.checkout(values)
 		}
-	};
+	}
 
 	handleSuccessPayment = () => {
-		this.props.checkout(null);
-	};
+		this.props.checkout(null)
+	}
 
-	handleCheckoutWithToken = tokenId => {
+	handleCheckoutWithToken = (tokenId) => {
 		this.props.updateCart(
 			{
-				payment_token: tokenId
+				payment_token: tokenId,
 			},
-			cart => {
-				this.props.checkout(null);
+			(cart) => {
+				this.props.checkout(null)
 			}
-		);
-	};
+		)
+	}
 
-	render() {
-		const { step } = this.state;
+	const { step } = this.state
+	const {
+		settings,
+		cart,
+		customerProperties,
+		paymentMethods,
+		shippingMethods,
+		shippingMethod,
+		loadingShippingMethods,
+		loadingPaymentMethods,
+		checkoutFields,
+		processingCheckout,
+		cartlayerBtnInitialized,
+	} = this.props.state
 
-		const {
-			settings,
-			cart,
-			customerProperties,
-			paymentMethods,
-			shippingMethods,
-			shippingMethod,
-			loadingShippingMethods,
-			loadingPaymentMethods,
-			checkoutFields,
-			processingCheckout,
-			cartlayerBtnInitialized
-		} = this.props.state;
+	const {
+		checkoutInputClass = 'checkout-field',
+		checkoutButtonClass = 'checkout-button',
+		checkoutEditButtonClass = 'checkout-button-edit',
+	} = themeSettings
 
-		const {
-			checkoutInputClass = 'checkout-field',
-			checkoutButtonClass = 'checkout-button',
-			checkoutEditButtonClass = 'checkout-button-edit'
-		} = themeSettings;
+	if (cart && cart.items.length > 0) {
+		const showPaymentForm = this.isShowPaymentForm()
 
-		if (cart && cart.items.length > 0) {
-			const showPaymentForm = this.isShowPaymentForm();
+		let shippingMethod = null
+		let paymentMethod = null
+		const { shipping_method_id, payment_method_id } = cart
+		if (
+			shipping_method_id &&
+			shippingMethods &&
+			shippingMethods.length > 0
+		) {
+			shippingMethod = shippingMethods.find(
+				(method) => method.id === shipping_method_id
+			)
+		}
+		if (payment_method_id && paymentMethods && paymentMethods.length > 0) {
+			paymentMethod = paymentMethods.find(
+				(method) => method.id === payment_method_id
+			)
+		}
 
-			let shippingMethod = null;
-			let paymentMethod = null;
-			const { shipping_method_id, payment_method_id } = cart;
-			if (shipping_method_id && shippingMethods && shippingMethods.length > 0) {
-				shippingMethod = shippingMethods.find(
-					method => method.id === shipping_method_id
-				);
-			}
-			if (payment_method_id && paymentMethods && paymentMethods.length > 0) {
-				paymentMethod = paymentMethods.find(
-					method => method.id === payment_method_id
-				);
-			}
+		return (
+			<div className="checkout-form">
+				<CheckoutStepContacts
+					isReadOnly={step > 1}
+					title={text.customerDetails}
+					inputClassName={checkoutInputClass}
+					buttonClassName={checkoutButtonClass}
+					editButtonClassName={checkoutEditButtonClass}
+					initialValues={cart}
+					settings={settings}
+					customerProperties={customerProperties}
+					paymentMethods={paymentMethods}
+					shippingMethod={shippingMethod}
+					shippingMethods={shippingMethods}
+					loadingShippingMethods={loadingShippingMethods}
+					loadingPaymentMethods={loadingPaymentMethods}
+					checkoutFields={checkoutFields}
+					onEdit={this.handleContactsEdit}
+					onSubmit={this.handleContactsSubmit}
+					saveShippingLocation={this.handleLocationSave}
+					saveShippingMethod={this.handleShippingMethodSave}
+					savePaymentMethod={this.handlePaymentMethodSave}
+					cartlayerBtnInitialized={cartlayerBtnInitialized}
+				/>
 
-			return (
-				<div className="checkout-form">
-					<CheckoutStepContacts
-						isReadOnly={step > 1}
-						title={text.customerDetails}
+				<CheckoutStepShipping
+					show={step >= 2}
+					isReadOnly={step > 2}
+					title={text.shipping}
+					inputClassName={checkoutInputClass}
+					buttonClassName={checkoutButtonClass}
+					editButtonClassName={checkoutEditButtonClass}
+					initialValues={cart}
+					settings={settings}
+					processingCheckout={processingCheckout}
+					shippingMethod={shippingMethod}
+					paymentMethod={paymentMethod}
+					checkoutFields={checkoutFields}
+					showPaymentForm={showPaymentForm}
+					onSave={this.handleShippingSave}
+					onEdit={this.handleShippingEdit}
+					onSubmit={this.handleShippingSubmit}
+				/>
+
+				{showPaymentForm && (
+					<CheckoutStepPayment
+						show={step === 3}
+						title={text.payment}
 						inputClassName={checkoutInputClass}
 						buttonClassName={checkoutButtonClass}
-						editButtonClassName={checkoutEditButtonClass}
-						initialValues={cart}
-						settings={settings}
-						customerProperties={customerProperties}
-						paymentMethods={paymentMethods}
-						shippingMethod={shippingMethod}
-						shippingMethods={shippingMethods}
-						loadingShippingMethods={loadingShippingMethods}
-						loadingPaymentMethods={loadingPaymentMethods}
-						checkoutFields={checkoutFields}
-						onEdit={this.handleContactsEdit}
-						onSubmit={this.handleContactsSubmit}
-						saveShippingLocation={this.handleLocationSave}
-						saveShippingMethod={this.handleShippingMethodSave}
-						savePaymentMethod={this.handlePaymentMethodSave}
-						cartlayerBtnInitialized={cartlayerBtnInitialized}
-					/>
-
-					<CheckoutStepShipping
-						show={step >= 2}
-						isReadOnly={step > 2}
-						title={text.shipping}
-						inputClassName={checkoutInputClass}
-						buttonClassName={checkoutButtonClass}
-						editButtonClassName={checkoutEditButtonClass}
-						initialValues={cart}
+						cart={cart}
 						settings={settings}
 						processingCheckout={processingCheckout}
-						shippingMethod={shippingMethod}
-						paymentMethod={paymentMethod}
-						checkoutFields={checkoutFields}
-						showPaymentForm={showPaymentForm}
-						onSave={this.handleShippingSave}
-						onEdit={this.handleShippingEdit}
-						onSubmit={this.handleShippingSubmit}
+						handleSuccessPayment={this.handleSuccessPayment}
+						onCreateToken={this.handleCheckoutWithToken}
 					/>
-
-					{showPaymentForm && (
-						<CheckoutStepPayment
-							show={step === 3}
-							title={text.payment}
-							inputClassName={checkoutInputClass}
-							buttonClassName={checkoutButtonClass}
-							cart={cart}
-							settings={settings}
-							processingCheckout={processingCheckout}
-							handleSuccessPayment={this.handleSuccessPayment}
-							onCreateToken={this.handleCheckoutWithToken}
-						/>
-					)}
-				</div>
-			);
-		}
-		return <p>{text.emptyCheckout}</p>;
+				)}
+			</div>
+		)
 	}
+	return <p>{text.emptyCheckout}</p>
 }
+
+export default CheckoutForm

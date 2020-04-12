@@ -1,18 +1,12 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import api from '../../lib/api';
 import PageList from './list';
 
-export default class CustomPageList extends React.Component {
-	constructor(props) {
-		super(props);
+ const CustomPageList = () => {
 		this.state = {
 			pages: []
 		};
-	}
-
-	componentDidMount() {
-		this.fetchData(this.props);
-	}
+	useEffect(() => fetchData(this.props))
 
 	componentWillReceiveProps(nextProps) {
 		this.fetchData(nextProps);
@@ -31,8 +25,8 @@ export default class CustomPageList extends React.Component {
 		});
 	};
 
-	render() {
 		const { pages } = this.state;
 		return <PageList pages={pages} />;
 	}
 }
+export default CustomPageList

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import * as helper from '../../lib/helper';
 import { themeSettings, text } from '../../lib/settings';
@@ -22,9 +22,7 @@ const Description = ({ description }) => (
 	/>
 );
 
-export default class ProductDetails extends React.Component {
-	constructor(props) {
-		super(props);
+const ProductDetails = () => {
 		this.state = {
 			selectedOptions: {},
 			selectedVariant: null,
@@ -100,7 +98,6 @@ export default class ProductDetails extends React.Component {
 		this.setState({ isAllOptionsSelected: allOptionsSelected });
 	}
 
-	render() {
 		const { product, settings, categories } = this.props;
 		const { selectedVariant, isAllOptionsSelected } = this.state;
 		const maxQuantity =
@@ -114,7 +111,7 @@ export default class ProductDetails extends React.Component {
 
 		if (product) {
 			return (
-				<Fragment>
+				<>
 					<section className="section section-product">
 						<div className="container">
 							<div className="columns">
@@ -206,9 +203,10 @@ export default class ProductDetails extends React.Component {
 								</div>
 							</section>
 						)}
-				</Fragment>
+				</>
 			);
 		}
 		return null;
 	}
-}
+
+export default ProductDetails

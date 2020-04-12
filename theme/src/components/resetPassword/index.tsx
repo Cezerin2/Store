@@ -3,14 +3,10 @@ import { Redirect } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 import ResetPassword from './resetPassword';
 
-export default class ResetPasswordForm extends React.Component {
-	constructor(props) {
-		super(props);
-
+const ResetPasswordForm = () =>{
 		this.state = {
 			verifiedToken: false
 		};
-	}
 
 	verifyToken() {
 		this.setState({ verifiedToken: true });
@@ -27,8 +23,6 @@ export default class ResetPasswordForm extends React.Component {
 			history: this.props.history
 		});
 	};
-
-	render() {
 		!this.state.verifiedToken ? this.verifyToken() : '';
 
 		const {
@@ -57,7 +51,7 @@ export default class ResetPasswordForm extends React.Component {
 		} = themeSettings;
 
 		return (
-			<div>
+			<>
 				{resetPasswordProperties && (
 					<ResetPassword
 						inputClassName={checkoutInputClass}
@@ -68,7 +62,8 @@ export default class ResetPasswordForm extends React.Component {
 						onSubmit={this.handleFormSubmit}
 					/>
 				)}
-			</div>
+			</>
 		);
 	}
-}
+
+export default ResetPasswordForm

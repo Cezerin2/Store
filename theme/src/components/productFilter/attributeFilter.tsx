@@ -1,14 +1,11 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 
-class AttributeValue extends React.Component {
-	constructor(props) {
-		super(props);
+const AttributeValue = () => {
 		this.state = {
 			checked: props.checked
 		};
-	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.checked !== this.props.checked) {
@@ -34,7 +31,6 @@ class AttributeValue extends React.Component {
 		}
 	};
 
-	render() {
 		const { valueName, count } = this.props;
 		const isDisabled = count === 0;
 		const classChecked = this.state.checked ? 'attribute-checked' : '';
@@ -52,7 +48,6 @@ class AttributeValue extends React.Component {
 			</label>
 		);
 	}
-}
 
 const AttributeSet = ({
 	attribute,

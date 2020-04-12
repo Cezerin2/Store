@@ -37,13 +37,10 @@ const InputField = field => (
 	</div>
 );
 
-class Login extends React.Component {
-	constructor(props) {
-		super(props);
+const Login = () => {
 		this.state = {
 			unauthorized: false
 		};
-	}
 
 	verifyAuth() {
 		this.setState({ unauthorized: true });
@@ -108,7 +105,6 @@ class Login extends React.Component {
 			: labelText;
 	};
 
-	render() {
 		const {
 			handleSubmit,
 			customerProperties,
@@ -226,7 +222,7 @@ class Login extends React.Component {
 			</div>
 		);
 	}
-}
+
 export default reduxForm({
 	form: 'Login'
 })(Login);

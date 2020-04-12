@@ -1,13 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { themeSettings, text } from '../../lib/settings';
 
-export default class Quantity extends React.PureComponent {
-	constructor(props) {
-		super(props);
+const Quantity = () => {
 		this.state = {
 			quantity: 1
 		};
-	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.state.quantity > nextProps.maxQuantity) {
@@ -37,15 +34,14 @@ export default class Quantity extends React.PureComponent {
 		this.setQuantity(newQuantity);
 	};
 
-	render() {
 		const { maxQuantity } = this.props;
 		const { quantity } = this.state;
 		const disabled = maxQuantity === 0;
 		const value = disabled ? 0 : quantity;
 
 		return (
-			<Fragment>
-				<div>{text.qty}</div>
+			<>
+				<p>{text.qty}</p>
 				<div className="product-quantity">
 					<a className="decrement" onClick={this.decrement} />
 					<input
@@ -58,7 +54,8 @@ export default class Quantity extends React.PureComponent {
 					/>
 					<a className="increment" onClick={this.increment} />
 				</div>
-			</Fragment>
+			</>
 		);
 	}
-}
+
+export default Quantity

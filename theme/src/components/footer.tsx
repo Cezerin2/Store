@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../lib/settings';
 
-class FooterMenu extends React.Component {
-	constructor(props) {
-		super(props);
+const FooterMenu = () => {
 		this.state = {
 			isActive: false
 		};
-	}
 
 	isActiveToggle = () => {
 		this.setState({
@@ -17,7 +14,6 @@ class FooterMenu extends React.Component {
 		});
 	};
 
-	render() {
 		const { title, items } = this.props;
 		let ulItems = null;
 
@@ -81,12 +77,11 @@ const Contacts = ({ contacts }) => {
 	return null;
 };
 
-export default class Footer extends React.PureComponent {
+const Footer = () => {
 	static propTypes = {
 		settings: PropTypes.shape({}).isRequired
 	};
 
-	render() {
 		const { settings } = this.props;
 		const footerLogoUrl =
 			settings.logo && settings.logo.length > 0 ? settings.logo : null;
@@ -126,4 +121,5 @@ export default class Footer extends React.PureComponent {
 			</section>
 		);
 	}
-}
+
+export default Footer

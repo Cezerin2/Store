@@ -1,17 +1,14 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import api from '../../../lib/api';
 import PayPalCheckout from './PayPalCheckout';
 import LiqPay from './LiqPay';
 import StripeElements from './StripeElements';
 
-export default class PaymentForm extends React.Component {
-	constructor(props) {
-		super(props);
+ const PaymentForm = () => {
 		this.state = {
 			formSettings: null,
 			loading: false
 		};
-	}
 
 	fetchFormSettings = () => {
 		this.setState({
@@ -35,9 +32,7 @@ export default class PaymentForm extends React.Component {
 			});
 	};
 
-	componentDidMount() {
-		this.fetchFormSettings();
-	}
+	useEffect(() => {fetchFormSettings())
 
 	componentWillReceiveProps(nextProps) {
 		if (
@@ -56,7 +51,6 @@ export default class PaymentForm extends React.Component {
 		);
 	}
 
-	render() {
 		const { gateway, shopSettings, onPayment, onCreateToken } = this.props;
 		const { formSettings, loading } = this.state;
 
@@ -98,13 +92,14 @@ export default class PaymentForm extends React.Component {
 					);
 				default:
 					return (
-						<div>
+						<>
 							Payment Gateway <b>{gateway}</b> not found!
-						</div>
+						</>
 					);
 			}
 		} else {
 			return null;
 		}
 	}
-}
+
+export default PaymentForm

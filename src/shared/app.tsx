@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -22,10 +22,7 @@ import ResetPasswordContainer from './containers/resetPassword';
 import { setCurrentPage } from './actions';
 import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from './pageTypes';
 
-class SwitchContainers extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+const SwitchContainers = () => {
 
 	componentWillReceiveProps(nextProps) {
 		this.props.setCurrentPage(nextProps.location);
@@ -47,7 +44,6 @@ class SwitchContainers extends React.Component {
 		}
 	}
 
-	render() {
 		const { history, location, currentPage } = this.props;
 		const locationPathname =
 			location && location.pathname ? location.pathname : '/';
@@ -90,7 +86,6 @@ class SwitchContainers extends React.Component {
 				return <NotFoundContainer />;
 		}
 	}
-}
 
 const mapStateToProps = (state, ownProps) => ({
 	currentPage: state.app.currentPage
