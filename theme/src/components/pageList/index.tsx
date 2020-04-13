@@ -6,7 +6,7 @@ import PageList from './list';
 		this.state = {
 			pages: []
 		};
-	useEffect(() => fetchData(this.props))
+	useEffect(() => fetchData(this.props),[])
 
 	componentWillReceiveProps(nextProps) {
 		this.fetchData(nextProps);

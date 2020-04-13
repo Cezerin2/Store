@@ -32,7 +32,7 @@ import StripeElements from './StripeElements';
 			});
 	};
 
-	useEffect(() => {fetchFormSettings())
+	useEffect(() => {fetchFormSettings(),[])
 
 	componentWillReceiveProps(nextProps) {
 		if (

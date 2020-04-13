@@ -35,7 +35,7 @@ const CheckoutStepContacts = () => {
 		if (Lscache.get('auth_data') !== null) {
 			this.setState({ loggedin: true });
 		}
-	})
+	},[])
 
 	setInitialValues() {
 		Lscache.flushExpired();

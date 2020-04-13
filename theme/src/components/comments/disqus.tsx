@@ -27,7 +27,7 @@ function copyProps(context, props, prefix = '') {
 }
 
 const Disqus = () => {
-	useEffect(() => {loadDisqus())
+	useEffect(() => {loadDisqus(),[])
 
 	componentDidUpdate() {
 		this.loadDisqus();
