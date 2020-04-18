@@ -2,14 +2,12 @@ import React,{useState,useEffect} from 'react';
 import api from '../../lib/api';
 import PageList from './list';
 
- const CustomPageList = () => {
-		this.state = {
-			pages: []
-		};
-	useEffect(() => fetchData(this.props),[])
+ const CustomPageList = (props) => {
+	const [pages, setPages] = ([])
+	useEffect(() => fetchData(props),[])
 
 	componentWillReceiveProps(nextProps) {
-		this.fetchData(nextProps);
+		fetchData(nextProps);
 	}
 
 	fetchData = ({ tags, sort }) => {

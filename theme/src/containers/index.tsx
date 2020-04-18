@@ -6,63 +6,63 @@ import CustomProducts from '../components/products/custom'
 import HomeSlider from '../components/homeSlider'
 
 const IndexContainer = (props) => {
-	const {
-		addCartItem,
-		state: { pageDetails, settings },
-	} = props
+    const {
+        addCartItem,
+        state: { pageDetails, settings },
+    } = props
 
-	return (
-		<>
-			<MetaTags
-				title={pageDetails.meta_title}
-				description={pageDetails.meta_description}
-				canonicalUrl={pageDetails.url}
-				ogTitle={pageDetails.meta_title}
-				ogDescription={pageDetails.meta_description}
-			/>
+    return (
+        <>
+            <MetaTags
+                title={pageDetails.meta_title}
+                description={pageDetails.meta_description}
+                canonicalUrl={pageDetails.url}
+                ogTitle={pageDetails.meta_title}
+                ogDescription={pageDetails.meta_description}
+            />
 
-			{themeSettings.home_slider_show ? (
-				<HomeSlider images={themeSettings.home_slider} />
-			) : null}
+            {themeSettings.home_slider_show ? (
+                <HomeSlider images={themeSettings.home_slider} />
+            ) : null}
 
-			{pageDetails.content && pageDetails.content.length > 10 && (
-				<section className="section">
-					<div className="container">
-						<div className="content">
-							<div
-								dangerouslySetInnerHTML={{
-									__html: pageDetails.content,
-								}}
-							/>
-						</div>
-					</div>
-				</section>
-			)}
+            {pageDetails.content && pageDetails.content.length > 10 && (
+                <section className="section">
+                    <div className="container">
+                        <div className="content">
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: pageDetails.content,
+                                }}
+                            />
+                        </div>
+                    </div>
+                </section>
+            )}
 
-			<section className="section">
-				<div className="container">
-					<div className="title is-4 has-text-centered">
-						{themeSettings.home_products_title}
-					</div>
-					<CustomProducts
-						sku={themeSettings.home_products_sku}
-						sort={themeSettings.home_products_sort}
-						limit={themeSettings.home_products_limit}
-						settings={settings}
-						addCartItem={addCartItem}
-					/>
-				</div>
-			</section>
-		</>
-	)
+            <section className="section">
+                <div className="container">
+                    <div className="title is-4 has-text-centered">
+                        {themeSettings.home_products_title}
+                    </div>
+                    <CustomProducts
+                        sku={themeSettings.home_products_sku}
+                        sort={themeSettings.home_products_sort}
+                        limit={themeSettings.home_products_limit}
+                        settings={settings}
+                        addCartItem={addCartItem}
+                    />
+                </div>
+            </section>
+        </>
+    )
 }
 
 IndexContainer.propTypes = {
-	addCartItem: PropTypes.func.isRequired,
-	state: PropTypes.shape({
-		settings: PropTypes.shape({}),
-		pageDetails: PropTypes.shape({}),
-	}).isRequired,
+    addCartItem: PropTypes.func.isRequired,
+    state: PropTypes.shape({
+        settings: PropTypes.shape({}),
+        pageDetails: PropTypes.shape({}),
+    }).isRequired,
 }
 
 export default IndexContainer

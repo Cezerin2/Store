@@ -3,29 +3,29 @@ import { themeSettings, text } from '../../lib/settings'
 import ForgotPassword from './forgotPassword'
 
 const ForgotPasswordForm = () => {
-	handleFormSubmit = (values) => {
-		this.props.forgotPassword({
-			email: values.email,
-			history: this.props.history,
-		})
-	}
+    handleFormSubmit = (values) => {
+        this.props.forgotPassword({
+            email: values.email,
+            history: this.props.history,
+        })
+    }
 
-	const { settings, forgotPasswordProperties } = this.props.state
+    const { settings, forgotPasswordProperties } = this.props.state
 
-	const {
-		checkoutInputClass = 'checkout-field',
-		checkoutButtonClass = 'checkout-button',
-	} = themeSettings
+    const {
+        checkoutInputClass = 'checkout-field',
+        checkoutButtonClass = 'checkout-button',
+    } = themeSettings
 
-	return (
-		<ForgotPassword
-			inputClassName={checkoutInputClass}
-			buttonClassName={checkoutButtonClass}
-			settings={settings}
-			forgotPasswordProperties={forgotPasswordProperties}
-			onSubmit={this.handleFormSubmit}
-		/>
-	)
+    return (
+        <ForgotPassword
+            inputClassName={checkoutInputClass}
+            buttonClassName={checkoutButtonClass}
+            settings={settings}
+            forgotPasswordProperties={forgotPasswordProperties}
+            onSubmit={this.handleFormSubmit}
+        />
+    )
 }
 
 export default ForgotPasswordForm

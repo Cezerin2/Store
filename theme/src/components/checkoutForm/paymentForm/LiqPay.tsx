@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 
 let scriptAdded = false;
-const PayPalButton = () => {
+const PayPalButton = (props) => {
 	addScript = () => {
 		if (scriptAdded) {
 			this.executeScript();
@@ -48,7 +48,7 @@ const PayPalButton = () => {
 		this.executeScript();
 	}
 
-		const { formSettings, shopSettings, onPayment } = this.props;
+		const { formSettings, shopSettings, onPayment } = props;
 
 		return (		<div id="liqpay_checkout" />	);
 	}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { themeSettings, text } from '../../lib/settings'
 
@@ -7,95 +7,92 @@ import PriceSlider from './priceSlider'
 import AttributeFilter from './attributeFilter'
 
 const ProductFilter = () => {
-	this.state = {
-		sidebarIsActive: false,
-	}
+    const [sidebarIsActive, setSidebarIsActive] = useState(false)
 
-	sidebarToggle = () => {
-		this.setState({
-			sidebarIsActive: !this.state.sidebarIsActive,
-		})
-		document.body.classList.toggle('noscroll')
-	}
+    const sidebarToggle = () => {
+        setSidebarIsActive(!this.state.sidebarIsActive)
 
-	sidebarClose = () => {
-		this.setState({ sidebarIsActive: false })
-		document.body.classList.remove('noscroll')
-	}
+        document.body.classList.toggle('noscroll')
+    }
 
-	const { sidebarIsActive } = this.state
-	const {
-		categoryDetails,
-		categories,
-		settings,
-		productFilter,
-		productsMinPrice,
-		productsMaxPrice,
-		productsAttributes,
-	} = this.props.state
+    const sidebarClose = () => {
+        setSidebarIsActive(false)
+        document.body.classList.remove('noscroll')
+    }
 
-	return (
-		<>
-			<div className="is-hidden-tablet">
-				<button
-					className="button is-fullwidth"
-					onClick={this.sidebarToggle}
-				>
-					{text.filterProducts}
-				</button>
-			</div>
+    const { sidebarIsActive } = state
+    const {
+        categoryDetails,
+        categories,
+        settings,
+        productFilter,
+        productsMinPrice,
+        productsMaxPrice,
+        productsAttributes,
+    } = this.props.state
 
-			<div
-				className={
-					sidebarIsActive ? 'modal is-active' : 'is-hidden-mobile'
-				}
-				style={{ zIndex: 101 }}
-			>
-				<div
-					className={sidebarIsActive ? 'dark-overflow' : ''}
-					onClick={this.sidebarClose}
-				/>
-				<div className={sidebarIsActive ? 'modal-content' : ''}>
-					<div className={sidebarIsActive ? 'box sidebar' : ''}>
-						<div
-							className="is-hidden-tablet"
-							style={{ marginBottom: 30 }}
-						>
-							<Sort
-								defaultSort={settings.default_product_sorting}
-								currentSort={productFilter.sort}
-								setSort={this.props.setSort}
-							/>
-						</div>
+    return (
+        <>
+            <div className="is-hidden-tablet">
+                <button
+                    className="button is-fullwidth"
+                    onClick={this.sidebarToggle}
+                >
+                    {text.filterProducts}
+                </button>
+            </div>
 
-						<AttributeFilter
-							attributes={productsAttributes}
-							setFilterAttribute={this.props.setFilterAttribute}
-							unsetFilterAttribute={
-								this.props.unsetFilterAttribute
-							}
-						/>
+            <div
+                className={
+                    sidebarIsActive ? 'modal is-active' : 'is-hidden-mobile'
+                }
+                style={{ zIndex: 101 }}
+            >
+                <div
+                    className={sidebarIsActive ? 'dark-overflow' : ''}
+                    onClick={this.sidebarClose}
+                />
+                <div className={sidebarIsActive ? 'modal-content' : ''}>
+                    <div className={sidebarIsActive ? 'box sidebar' : ''}>
+                        <div
+                            className="is-hidden-tablet"
+                            style={{ marginBottom: 30 }}
+                        >
+                            <Sort
+                                defaultSort={settings.default_product_sorting}
+                                currentSort={productFilter.sort}
+                                setSort={this.props.setSort}
+                            />
+                        </div>
 
-						<PriceSlider
-							minPrice={productsMinPrice}
-							maxPrice={productsMaxPrice}
-							minValue={productFilter.priceFrom}
-							maxValue={productFilter.priceTo}
-							setPriceFromAndTo={this.props.setPriceFromAndTo}
-							settings={settings}
-						/>
+                        <AttributeFilter
+                            attributes={productsAttributes}
+                            setFilterAttribute={this.props.setFilterAttribute}
+                            unsetFilterAttribute={
+                                this.props.unsetFilterAttribute
+                            }
+                        />
 
-						<button
-							className="button is-fullwidth is-dark is-hidden-tablet"
-							onClick={this.sidebarClose}
-						>
-							{text.close}
-						</button>
-					</div>
-				</div>
-			</div>
-		</>
-	)
+                        <PriceSlider
+                            minPrice={productsMinPrice}
+                            maxPrice={productsMaxPrice}
+                            minValue={productFilter.priceFrom}
+                            maxValue={productFilter.priceTo}
+                            setPriceFromAndTo={this.props.setPriceFromAndTo}
+                            settings={settings}
+                        />
+
+                        <button
+                            className="button is-fullwidth is-dark is-hidden-tablet"
+                            onClick={this.sidebarClose}
+                        >
+                            {text.close}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default ProductFilter

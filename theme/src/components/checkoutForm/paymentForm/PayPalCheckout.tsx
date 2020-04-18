@@ -107,7 +107,7 @@ const PayPalButton = () => {
 	useEffect(() => {addScript(),[])
 
 	componentDidUpdate() {
-		this.executeScript();
+		executeScript();
 	}
 
 		const { formSettings, shopSettings, onPayment } = this.props;

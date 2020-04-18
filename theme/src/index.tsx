@@ -16,5 +16,5 @@ export { default as SearchContainer } from './containers/search'
 
 // combine all css files into one with webpack. Hack to deal with server side rendering.
 if (typeof window !== 'undefined') {
-	require('../assets/sass/theme.sass')
+    require('../assets/sass/theme.sass')
 }
