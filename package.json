@@ -12,11 +12,8 @@
     ],
     "homepage": "https://cezerin.org",
     "bugs": "https://github.com/cezerin2/cezerin2-store/issues",
-    "license": "MIT",
-    "author": {
-        "name": "Restmount <jsonmount@gmail.com>",
-        "url": "https://github.com/restmount"
-    },
+    "author": "Himadu Sirimanna <himadusirimanna.1@gmail.com>",
+    "license": "Unlicense",
     "main": "dist/server/index.js",
     "repository": {
         "type": "git",
@@ -88,10 +85,6 @@
         "ua-parser-js": "^0.7.21",
         "winston": "^3.2.1"
     },
-    "engines": {
-        "node": ">= 8.0.0",
-        "npm": ">= 5.0.0"
-    },
     "devDependencies": {
         "@babel/cli": "^7.8.4",
         "@babel/core": "^7.9.0",
@@ -123,5 +116,9 @@
         "webpack": "^4.42.1",
         "webpack-cli": "^3.3.11",
         "workbox-webpack-plugin": "^5.1.2"
+    },
+    "engines": {
+        "node": ">= 8.0.0",
+        "npm": ">= 5.0.0"
     }
 }
