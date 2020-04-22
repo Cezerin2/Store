@@ -12,8 +12,8 @@
     ],
     "homepage": "https://cezerin.org",
     "bugs": "https://github.com/cezerin2/cezerin2-store/issues",
-    "author": "Himadu Sirimanna <himadusirimanna.1@gmail.com>",
-    "license": "Unlicense",
+    "author": "Restmount",
+    "license": "MIT",
     "main": "dist/server/index.js",
     "repository": {
         "type": "git",
