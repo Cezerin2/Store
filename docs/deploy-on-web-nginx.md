@@ -18,15 +18,15 @@ We need to add a new website to Nginx.
 
 1. Change Nginx config file
 
-    ```
-    cd /etc/nginx/sites-available
-    ```
+   ```
+   cd /etc/nginx/sites-available
+   ```
 
-    open `default` file and paste [this config](https://raw.githubusercontent.com/Cezerin2/cezerin2/master/docs/nginx.md)
+   open `default` file and paste [this config](https://raw.githubusercontent.com/Cezerin2/cezerin2/master/docs/nginx.md)
 
 P.S. Change admin.cezerin.org at this config to your domain name: admin.your-name.com
 
 2. Reload Nginx configuration
-    ```
-    nginx -t && service nginx reload
-    ```
+   ```
+   nginx -t && service nginx reload
+   ```

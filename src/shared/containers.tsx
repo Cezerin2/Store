@@ -1,62 +1,62 @@
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { mapStateToProps, mapDispatchToProps } from './containerProps'
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
+import { mapStateToProps, mapDispatchToProps } from "./containerProps"
 import {
-    AccountContainer,
-    CategoryContainer,
-    CheckoutContainer,
-    CheckoutSuccessContainer,
-    ForgotPasswordContainer,
-    IndexContainer,
-    LoginContainer,
-    NotFoundContainer,
-    PageContainer,
-    ProductContainer,
-    RegisterContainer,
-    ResetPasswordContainer,
-    SearchContainer,
-    SharedContainer,
-} from 'theme'
+  AccountContainer,
+  CategoryContainer,
+  CheckoutContainer,
+  CheckoutSuccessContainer,
+  ForgotPasswordContainer,
+  IndexContainer,
+  LoginContainer,
+  NotFoundContainer,
+  PageContainer,
+  ProductContainer,
+  RegisterContainer,
+  ResetPasswordContainer,
+  SearchContainer,
+  SharedContainer,
+} from "theme"
 
 export const account = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(AccountContainer)
+  connect(mapStateToProps, mapDispatchToProps)(AccountContainer)
 )
 export const category = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(CategoryContainer)
+  connect(mapStateToProps, mapDispatchToProps)(CategoryContainer)
 )
 export const checkout = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(CheckoutContainer)
+  connect(mapStateToProps, mapDispatchToProps)(CheckoutContainer)
 )
 export const heckoutSuccess = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(CheckoutSuccessContainer)
+  connect(mapStateToProps, mapDispatchToProps)(CheckoutSuccessContainer)
 )
 export const forgotPassword = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordContainer)
+  connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordContainer)
 )
 export const index = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(IndexContainer)
+  connect(mapStateToProps, mapDispatchToProps)(IndexContainer)
 )
 export const login = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
+  connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
 )
 export const notFound = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(NotFoundContainer)
+  connect(mapStateToProps, mapDispatchToProps)(NotFoundContainer)
 )
 export const page = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(PageContainer)
+  connect(mapStateToProps, mapDispatchToProps)(PageContainer)
 )
 export const product = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ProductContainer)
+  connect(mapStateToProps, mapDispatchToProps)(ProductContainer)
 )
 export const register = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)
+  connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)
 )
 export const resetPassword = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ResetPasswordContainer)
+  connect(mapStateToProps, mapDispatchToProps)(ResetPasswordContainer)
 )
 export const serach = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
+  connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
 )
 export const shared = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(SharedContainer)
+  connect(mapStateToProps, mapDispatchToProps)(SharedContainer)
 )

@@ -2,38 +2,38 @@
 
 ### A) Cezerin Backend (API) Installation
 
--   **Clone Git repository**
+- **Clone Git repository**
 
 ```shell
 git clone https://github.com/cezerin2/cezerin2
 cd cezerin2
 ```
 
--   **Change settings**
+- **Change settings**
 
 ```shell
 cd config
 ```
 
--   **Open `server.js` and change**
+- **Open `server.js` and change**
 
-    -   MongoDB Creditionals
-    -   SMTP Settings
-    -   JWT and Cookie Secret Key
+  - MongoDB Creditionals
+  - SMTP Settings
+  - JWT and Cookie Secret Key
 
-    Save file and go back to root app direcotry
+  Save file and go back to root app direcotry
 
-    ```shell
-    cd ../
-    ```
+  ```shell
+  cd ../
+  ```
 
--   **Install dependencies**
+- **Install dependencies**
 
 ```shell
 npm i
 ```
 
--   **Setup database**
+- **Setup database**
 
 Prepare database at this setup our database is empty. To add default data, indexes and access token we need to run:
 
@@ -41,29 +41,29 @@ Prepare database at this setup our database is empty. To add default data, index
 npm run setup <email> <domain>
 ```
 
--   We don't have real domain, so we'll use our local domain:
+- We don't have real domain, so we'll use our local domain:
 
-    ```shell
-    npm run setup admin@example.com http://localhost:3000
-    ```
+  ```shell
+  npm run setup admin@example.com http://localhost:3000
+  ```
 
--   This script will add token with email admin@example.com and my domain to http://localhost
+- This script will add token with email admin@example.com and my domain to http://localhost
 
--   **Start application in the background**
+- **Start application in the background**
 
 ```shell
 pm2 start process.json
 ```
 
--   or you can start app in your terminal (you will see debug information, that is useful for debug):
+- or you can start app in your terminal (you will see debug information, that is useful for debug):
 
 ```shell
 npm start
 ```
 
--   At this setup, we have api running on port 3001 and available at **http://localhost:3001**
+- At this setup, we have api running on port 3001 and available at **http://localhost:3001**
 
--   For example, here is the default store settings: **http://localhost:3001/api/v1/settings**
+- For example, here is the default store settings: **http://localhost:3001/api/v1/settings**
 
 ```shell
 info: API running at http://localhost:3001
@@ -77,54 +77,54 @@ Youtube video: **Cezerin Installation Manual. Part 1 - Backend (API) Installatio
 
 ### B) Cezerin Frontend (Store) Installation
 
--   **Clone Git repository**
+- **Clone Git repository**
 
 ```shell
 git clone https://github.com/cezerin2/cezerin2-store
 ```
 
--   **Change settings**
+- **Change settings**
 
 ```shell
 cd cezerin2-store/config
 ```
 
--   **Open `store.js` and change**
+- **Open `store.js` and change**
 
-    -   JWT and Cookie Secret Key
+  - JWT and Cookie Secret Key
 
-    Save file and go back to root app direcotry
+  Save file and go back to root app direcotry
 
-    ```shell
-    cd ../
-    ```
+  ```shell
+  cd ../
+  ```
 
--   **Install dependencies**
+- **Install dependencies**
 
 ```shell
 npm i
 ```
 
--   **Build project**
+- **Build project**
 
 ```shell
 npm run build
 ```
 
--   **Start cezerin store frontend application in the background**
+- **Start cezerin store frontend application in the background**
 
 ```shell
 pm2 start process.json
 ```
 
--   or you can start app in your terminal (you will see debug information, that is useful for debug):
+- or you can start app in your terminal (you will see debug information, that is useful for debug):
 
 ```shell
 npm start
 ```
 
--   At this setup your cezerin store is now connected to api and available in browser at **http://localhost:3000**
--   **P.S. Your backend (api) must be online. Don't forget to start backend before you starting storefront app.**
+- At this setup your cezerin store is now connected to api and available in browser at **http://localhost:3000**
+- **P.S. Your backend (api) must be online. Don't forget to start backend before you starting storefront app.**
 
 ```shell
 info: Store running at http://localhost:3000
@@ -137,44 +137,44 @@ Youtube video: **Cezerin Installation Manual. Part 2 - Frontend (Store) Installa
 
 ### C) Cezerin Admin Dashboard Installation
 
--   **Clone Git repository**
+- **Clone Git repository**
 
 ```shell
 git clone https://github.com/cezerin2/cezerin2-admin
 ```
 
--   **Go to cezerin2-admin app folder**
+- **Go to cezerin2-admin app folder**
 
 ```shell
 cd cezerin2-admin
 ```
 
--   **Install dependencies**
+- **Install dependencies**
 
 ```shell
 npm i
 ```
 
--   **Build project**
+- **Build project**
 
 ```shell
 npm run build
 ```
 
--   **Start cezerin store frontend application in the background**
+- **Start cezerin store frontend application in the background**
 
 ```shell
 pm2 start process.json
 ```
 
--   or:
+- or:
 
 ```shell
 pm2 serve ./dist 3002
 ```
 
--   At this setup your cezerin admin dashboard app is now connected to api and available in browser at **http://localhost:3002**
--   **P.S. Your backend (api) must be online. Don't forget to start backend before you starting admin dashboard app.**
+- At this setup your cezerin admin dashboard app is now connected to api and available in browser at **http://localhost:3002**
+- **P.S. Your backend (api) must be online. Don't forget to start backend before you starting admin dashboard app.**
 
 ```shell
 [PM2] Starting /usr/local/lib/node_modules/pm2/lib/API/Serve.js in fork_mode (1 instance)

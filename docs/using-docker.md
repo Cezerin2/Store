@@ -1,12 +1,12 @@
 ### Using Docker
 
--   [Docker Compose](#docker-compose)
--   [Docker](#docker)
+- [Docker Compose](#docker-compose)
+- [Docker](#docker)
 
 ### Docker Compose
 
--   **docker-compose.yml** [About image](https://github.com/Cezerin2/docker-cezerin2/blob/master/README.md).
--   [Download docker-compose.yml](https://raw.githubusercontent.com/Cezerin2/docker-cezerin2/master/docker-compose.yml)
+- **docker-compose.yml** [About image](https://github.com/Cezerin2/docker-cezerin2/blob/master/README.md).
+- [Download docker-compose.yml](https://raw.githubusercontent.com/Cezerin2/docker-cezerin2/master/docker-compose.yml)
 
 ```shell
 version: '3'
@@ -56,19 +56,19 @@ services:
    restart: always
 ```
 
--   **Start containers with docker-compose command**
+- **Start containers with docker-compose command**
 
 ```shell
 docker-compose up -d
 ```
 
--   **Upload default store data (sample products, categories, email templates, settings etc...) to the database**
+- **Upload default store data (sample products, categories, email templates, settings etc...) to the database**
 
 ```shell
 docker exec cezerin_cezerin2_1 bash -c "npm run setup admin@example.com http://localhost:3000"
 ```
 
--   **Open Cezerin2**
+- **Open Cezerin2**
 
 | Application | Repo           | URL                                            |
 | ----------- | -------------- | ---------------------------------------------- |
@@ -83,7 +83,7 @@ Youtube video: **Cezerin Installation Manual. Docker Compose.**
 
 ### Docker
 
--   **Run MongoDB**
+- **Run MongoDB**
 
 ```shell
 docker run -d \
@@ -92,7 +92,7 @@ docker run -d \
 mongo:3.6
 ```
 
--   **Run Cezerin2** [About image](https://github.com/Cezerin2/docker-cezerin2/blob/master/cezerin2/README.md).
+- **Run Cezerin2** [About image](https://github.com/Cezerin2/docker-cezerin2/blob/master/cezerin2/README.md).
 
 ```shell
 docker run -d \
@@ -108,7 +108,7 @@ docker run -d \
 cezerin2/cezerin2:latest
 ```
 
--   **Run Cezerin2 Admin** [About image](https://github.com/Cezerin2/docker-cezerin2/blob/master/cezerin2-admin/README.md).
+- **Run Cezerin2 Admin** [About image](https://github.com/Cezerin2/docker-cezerin2/blob/master/cezerin2-admin/README.md).
 
 ```shell
 docker run -d \
@@ -118,7 +118,7 @@ docker run -d \
 cezerin2/cezerin2-admin:latest
 ```
 
--   **Run Cezerin2 Store** [About image](https://github.com/Cezerin2/docker-cezerin2/blob/master/cezerin2-store/README.md).
+- **Run Cezerin2 Store** [About image](https://github.com/Cezerin2/docker-cezerin2/blob/master/cezerin2-store/README.md).
 
 ```shell
 docker run -d \
@@ -130,13 +130,13 @@ docker run -d \
 cezerin2/cezerin2-store:latest
 ```
 
--   **Upload default store data (sample products, categories, email templates, settings etc...) to the database**
+- **Upload default store data (sample products, categories, email templates, settings etc...) to the database**
 
 ```shell
 docker exec cezerin2 bash -c "npm run setup admin@example.com http://localhost:3000"
 ```
 
--   **Open Cezerin2**
+- **Open Cezerin2**
 
 | Application | Repo           | URL                                            |
 | ----------- | -------------- | ---------------------------------------------- |

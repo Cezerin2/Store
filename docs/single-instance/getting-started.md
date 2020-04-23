@@ -1,11 +1,11 @@
 # Getting Started with Single Instance
 
--   [Setup](#setup)
--   [Run Cezerin2](#run-cezerin2)
--   [Run Cezerin2 Admin](#run-cezerin2-admin)
--   [Run Cezerin2 Store](#run-cezerin2-store)
--   [Run Cezerin2 Proxy](#run-cezerin2-proxy)
--   [Docker Compose](#docker-compose)
+- [Setup](#setup)
+- [Run Cezerin2](#run-cezerin2)
+- [Run Cezerin2 Admin](#run-cezerin2-admin)
+- [Run Cezerin2 Store](#run-cezerin2-store)
+- [Run Cezerin2 Proxy](#run-cezerin2-proxy)
+- [Docker Compose](#docker-compose)
 
 ## Setup
 
@@ -58,9 +58,9 @@ cezerin2
 
 For local use change
 
--   www.exampe.com to localhost:3000
--   api.example.com to localhost:3001
--   admin.example.com to localhost:3002
+- www.exampe.com to localhost:3000
+- api.example.com to localhost:3001
+- admin.example.com to localhost:3002
 
 ## Run cezerin2 Admin
 
@@ -120,17 +120,17 @@ cezerin2-store
 
 For local use change
 
--   api.example.com to cezerin2
+- api.example.com to cezerin2
 
 ## Build Run Cezerin2 Proxy
 
 1. Create follow folder structure
 
-    cezerin2-admin # clone cezerin2-admin repo
-    ├── nginx # nginx cezerin2-admin config
-    | ├── nginx.conf # nginx cezerin2-admin config
-    │ └── default.conf # cezerin2-admin dockerfile
-    └── dockerfile # cezerin2-admin dockerfile
+   cezerin2-admin # clone cezerin2-admin repo
+   ├── nginx # nginx cezerin2-admin config
+   | ├── nginx.conf # nginx cezerin2-admin config
+   │ └── default.conf # cezerin2-admin dockerfile
+   └── dockerfile # cezerin2-admin dockerfile
 
 [cezerin2-proxy dockerfile & docker-entrypoint](./cezerin2-proxy-dockerfile.md)
 

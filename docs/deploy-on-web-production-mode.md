@@ -7,12 +7,12 @@ At dev mode api's and dashboard available for all without any restrictions.
 
 To turn off developer mode, you need to do:
 
--   Add access token while install (npm run setup ...) or add email at Admin - Settings - Web tokens
--   Set SMTP server in `cezerin2/config/server.js`
--   Set false for option `developerMode` from `cezerin2/config/server.js`
--   Set false for option `developerMode` from `cezerin2-store/config/store.js`
--   Set false for option `developerMode` from `cezerin2-admin/config/admin.js`
--   Rebuild & restart apps with new configs:
+- Add access token while install (npm run setup ...) or add email at Admin - Settings - Web tokens
+- Set SMTP server in `cezerin2/config/server.js`
+- Set false for option `developerMode` from `cezerin2/config/server.js`
+- Set false for option `developerMode` from `cezerin2-store/config/store.js`
+- Set false for option `developerMode` from `cezerin2-admin/config/admin.js`
+- Rebuild & restart apps with new configs:
 
 cezerin (backend app does not need to be build, just reload):
 
@@ -34,7 +34,7 @@ npm run build
 pm2 reload admin
 ```
 
--   Production mode is active now.
+- Production mode is active now.
 
 What is production mode?!
 

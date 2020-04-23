@@ -1,12 +1,12 @@
 ### Prerequisites
 
--   **Nginx `>= 1.14.0`**
+- **Nginx `>= 1.14.0`**
 
 ```shell
 apt update && apt install nginx-full
 ```
 
--   **Mongodb `>= 3.2`**
+- **Mongodb `>= 3.2`**
 
 [MongoDB 4.x Installation Guide.](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
@@ -21,7 +21,7 @@ systemctl start mongod
 systemctl enable mongod
 ```
 
--   **Node.js `v11.x`**
+- **Node.js `v11.x`**
 
 NodeJS 11.x installation:
 
@@ -34,13 +34,13 @@ curl -sL https://deb.nodesource.com/setup_11.x | bash -
 apt-get install -y nodejs (edited)
 ```
 
--   **NPM `>= 6.3.0`**
+- **NPM `>= 6.3.0`**
 
 ```shell
 npm i -g npm
 ```
 
--   **PM2 `>= 3.0.3`**
+- **PM2 `>= 3.0.3`**
 
 ```shell
 npm i -g pm2

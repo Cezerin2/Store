@@ -1,13 +1,13 @@
 # How to deploy Cezerin on Web
 
--   [Hosting](#1-hosting)
--   [Create droplet](#1-create-droplet)
--   [Install NGinx Web Server + MERN Stack](#2-install-mern)
--   [Run MongoDB](#3-run-mongodb)
--   [Run Cezerin](#4-run-cezerin)
--   [Preparing Database](#5-preparing-database)
--   [Setup domain with Cloudflare](#6-setup-domain-with-cloudflare)
--   [Turn off Developer Mode](#7-turn-off-developer-mode)
+- [Hosting](#1-hosting)
+- [Create droplet](#1-create-droplet)
+- [Install NGinx Web Server + MERN Stack](#2-install-mern)
+- [Run MongoDB](#3-run-mongodb)
+- [Run Cezerin](#4-run-cezerin)
+- [Preparing Database](#5-preparing-database)
+- [Setup domain with Cloudflare](#6-setup-domain-with-cloudflare)
+- [Turn off Developer Mode](#7-turn-off-developer-mode)
 
 ## 1. Hosting
 
@@ -26,9 +26,9 @@ coupon code is ACTIVATE10, activate it in your profile - billing tab.
 
 1. Click **Create droplet**
 
--   Choose an image: `Ubuntu 19.04.4 x64`
--   Choose a size: `2 GB (RAM), 1 vCPU, 50 GB (SSD)`
--   Choose a datacenter region: `San Francisco`
+- Choose an image: `Ubuntu 19.04.4 x64`
+- Choose a size: `2 GB (RAM), 1 vCPU, 50 GB (SSD)`
+- Choose a datacenter region: `San Francisco`
 
 2. Then SSH to droplet.
 
@@ -118,36 +118,36 @@ We need to add a new website to Nginx.
 
 1. Change Nginx config file
 
-    ```
-    cd /etc/nginx/sites-available
-    ```
+   ```
+   cd /etc/nginx/sites-available
+   ```
 
-    open `default` file and paste [this config](https://raw.githubusercontent.com/Cezerin2/cezerin2/master/docs/nginx.md)
+   open `default` file and paste [this config](https://raw.githubusercontent.com/Cezerin2/cezerin2/master/docs/nginx.md)
 
 P.S. Change admin.cezerin.org at this config to your domain name: admin.your-name.com
 
 2. Reload Nginx configuration
 
-    ```
-    nginx -t && service nginx reload
-    ```
+   ```
+   nginx -t && service nginx reload
+   ```
 
 ## 6. Setup domain with CloudFlare
 
 [Cloudflare.](https://www.cloudflare.com)
 
--   Get droplet IP on DigitalOcean
-    ![DigitalOcean IP Address](./images/do-ip.webp)
+- Get droplet IP on DigitalOcean
+  ![DigitalOcean IP Address](./images/do-ip.webp)
 
--   Add `A` and `CNAME` to DNS on CloudFlare
-    ![CloudFlare DNS](./images/cf-dns.webp)
--   Set SSL to `Flexible` on CloudFlare
-    ![CloudFlare SSL](./images/cf-ssl.webp)
+- Add `A` and `CNAME` to DNS on CloudFlare
+  ![CloudFlare DNS](./images/cf-dns.webp)
+- Set SSL to `Flexible` on CloudFlare
+  ![CloudFlare SSL](./images/cf-ssl.webp)
 
--   Turn on `Always use HTTPS` on CloudFlare
-    ![CloudFlare Always HTTPS](./images/cf-alway-https.webp)
+- Turn on `Always use HTTPS` on CloudFlare
+  ![CloudFlare Always HTTPS](./images/cf-alway-https.webp)
 
--   Add `A` record for admin dashboard:
+- Add `A` record for admin dashboard:
 
 Type: A
 Name: admin
@@ -236,12 +236,12 @@ At dev mode api's and dashboard available for all without any restrictions.
 
 To turn off developer mode, you need to do:
 
--   Add access token while install (npm run setup ...) or add email at Admin - Settings - Web tokens
--   Set SMTP server in `cezerin2/config/server.js`
--   Set false for option `developerMode` from `cezerin2/config/server.js`
--   Set false for option `developerMode` from `cezerin2-store/config/store.js`
--   Set false for option `developerMode` from `cezerin2-admin/config/admin.js`
--   Rebuild & restart apps with new configs:
+- Add access token while install (npm run setup ...) or add email at Admin - Settings - Web tokens
+- Set SMTP server in `cezerin2/config/server.js`
+- Set false for option `developerMode` from `cezerin2/config/server.js`
+- Set false for option `developerMode` from `cezerin2-store/config/store.js`
+- Set false for option `developerMode` from `cezerin2-admin/config/admin.js`
+- Rebuild & restart apps with new configs:
 
 cezerin (backend app does not need to be build, just reload):
 
@@ -263,7 +263,7 @@ npm run build
 pm2 reload admin
 ```
 
--   Production mode is active now.
+- Production mode is active now.
 
 What is production mode?!
 

@@ -1,7 +1,7 @@
 # Single Instance cezerin2-proxy nginx config
 
--   [nginx.conf](#nginx.conf)
--   [default.conf.template](#default.conf.template)
+- [nginx.conf](#nginx.conf)
+- [default.conf.template](#default.conf.template)
 
 ## nginx.conf
 

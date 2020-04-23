@@ -1,7 +1,7 @@
 # Single Instance cezerin2-proxy dockerfile and docker-entrypoint.sh
 
--   [dockerfile](#dockerfile)
--   [docker-entrypoint.sh](#docker-entrypoint.sh)
+- [dockerfile](#dockerfile)
+- [docker-entrypoint.sh](#docker-entrypoint.sh)
 
 ## dockerfile
 

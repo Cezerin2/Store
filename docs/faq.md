@@ -16,12 +16,12 @@ This code:
 // CORS headers
 var allowedOrigins = security.getAccessControlAllowOrigin()
 var origin = req.headers.origin
-if (allowedOrigins === '*') {
-	res.setHeader('Access-Control-Allow-Origin', allowedOrigins)
+if (allowedOrigins === "*") {
+  res.setHeader("Access-Control-Allow-Origin", allowedOrigins)
 } else {
-	if (allowedOrigins.indexOf(origin) > -1) {
-		res.setHeader('Access-Control-Allow-Origin', origin)
-	}
+  if (allowedOrigins.indexOf(origin) > -1) {
+    res.setHeader("Access-Control-Allow-Origin", origin)
+  }
 }
 ```
 
@@ -29,7 +29,7 @@ And this file: /cezerin2/src/lib/security.js
 
 ```javascript
 const getAccessControlAllowOrigin = () => {
-	return [settings.storeBaseUrl, settings.adminBaseURL] || '*'
+  return [settings.storeBaseUrl, settings.adminBaseURL] || "*"
 }
 ```
 

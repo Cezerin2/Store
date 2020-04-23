@@ -6,34 +6,34 @@ Cezerin is React and Node.js based eCommerce platform. Allows creating a Progres
 
 Apps:
 
--   [Cezerin API](https://github.com/cezerin2/cezerin2)
--   [Cezerin Store](https://github.com/cezerin2/cezerin2-store)
--   [Cezerin Admin](https://github.com/cezerin2/cezerin2-admin)
--   [Cezerin API Client](https://github.com/cezerin2/cezerin2-client)
--   [Cezerin Docker](https://github.com/cezerin2/docker-cezerin2)
--   [Cezerin Community Site](https://github.com/cezerin2/cezerin2.github.io)
+- [Cezerin API](https://github.com/cezerin2/cezerin2)
+- [Cezerin Store](https://github.com/cezerin2/cezerin2-store)
+- [Cezerin Admin](https://github.com/cezerin2/cezerin2-admin)
+- [Cezerin API Client](https://github.com/cezerin2/cezerin2-client)
+- [Cezerin Docker](https://github.com/cezerin2/docker-cezerin2)
+- [Cezerin Community Site](https://github.com/cezerin2/cezerin2.github.io)
 
 Built with:
 
--   Node.js
--   React v16
--   Redux
--   Express
--   Babel
--   WebPack 4
--   MongoDB
+- Node.js
+- React v16
+- Redux
+- Express
+- Babel
+- WebPack 4
+- MongoDB
 
 ## Links
 
--   [GitHub](https://github.com/cezerin2)
--   [Community Site](https://cezerin.org)
--   [Demo Store](https://demo.cezerin.net)
--   [Demo Dashboard](https://admin.cezerin.net)
--   [Telegram Chat: Cezerin](https://t.me/cezerin)
--   [Forum](https://groups.google.com/forum/#!forum/cezerin)
--   [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs)
--   [Facebook](https://facebook.com/cezerin)
--   [Twitter](https://twitter.com/cezerin2)
+- [GitHub](https://github.com/cezerin2)
+- [Community Site](https://cezerin.org)
+- [Demo Store](https://demo.cezerin.net)
+- [Demo Dashboard](https://admin.cezerin.net)
+- [Telegram Chat: Cezerin](https://t.me/cezerin)
+- [Forum](https://groups.google.com/forum/#!forum/cezerin)
+- [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs)
+- [Facebook](https://facebook.com/cezerin)
+- [Twitter](https://twitter.com/cezerin2)
 
 ## Store
 
@@ -43,44 +43,44 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 
 [![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://demo.cezerin.net/)
 
--   Getting Started
+- Getting Started
 
-    -   [Overview](./docs/overview.md)
+  - [Overview](./docs/overview.md)
 
--   Installation Guides
+- Installation Guides
 
-    -   [Prerequisites](./docs/prerequisites.md)
-    -   [Setup Database](./docs/setup-database.md)
-    -   [Using source code](./docs/using-source-code.md)
-    -   [Using docker](./docs/using-docker.md)
+  - [Prerequisites](./docs/prerequisites.md)
+  - [Setup Database](./docs/setup-database.md)
+  - [Using source code](./docs/using-source-code.md)
+  - [Using docker](./docs/using-docker.md)
 
--   Deploy on Web
+- Deploy on Web
 
-    -   [Hosting](./docs/deploy-on-web-hosting.md)
-    -   [Create droplet](./docs/deploy-on-web-droplet.md)
-    -   [Install NGinx Web Server + MERN Stack](./docs/deploy-on-web-mern.md)
-    -   [Run MongoDB](./docs/deploy-on-web-mongodb.md)
-    -   [Run Cezerin](./docs/deploy-on-web-cezerin.md)
-    -   [Run NGinx](./docs/deploy-on-web-nginx.md)
-    -   [Setup domain with Cloudflare](./docs/deploy-on-web-cloudflare.md)
-    -   [Cezerin configs changes](./docs/deploy-on-web-cezerin-configs.md)
-    -   [Final checks](./docs/deploy-on-web-final-checks.md)
-    -   [Turn off Developer Mode](./docs/deploy-on-web-production-mode.md)
+  - [Hosting](./docs/deploy-on-web-hosting.md)
+  - [Create droplet](./docs/deploy-on-web-droplet.md)
+  - [Install NGinx Web Server + MERN Stack](./docs/deploy-on-web-mern.md)
+  - [Run MongoDB](./docs/deploy-on-web-mongodb.md)
+  - [Run Cezerin](./docs/deploy-on-web-cezerin.md)
+  - [Run NGinx](./docs/deploy-on-web-nginx.md)
+  - [Setup domain with Cloudflare](./docs/deploy-on-web-cloudflare.md)
+  - [Cezerin configs changes](./docs/deploy-on-web-cezerin-configs.md)
+  - [Final checks](./docs/deploy-on-web-final-checks.md)
+  - [Turn off Developer Mode](./docs/deploy-on-web-production-mode.md)
 
--   API
+- API
 
-    -   [API Reference](./docs/api)
-    -   [API Client](https://github.com/cezerin/client)
+  - [API Reference](./docs/api)
+  - [API Client](https://github.com/cezerin/client)
 
--   Help
-    -   [FAQ](./docs/faq.md)
-    -   [HowTos](./docs/howtos.md)
-    -   [Help and Support](./docs/help-and-support.md)
+- Help
+  - [FAQ](./docs/faq.md)
+  - [HowTos](./docs/howtos.md)
+  - [Help and Support](./docs/help-and-support.md)
 
 ### Requirements
 
--   Node.js
--   MongoDB
+- Node.js
+- MongoDB
 
 ## Documentation
 
