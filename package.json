@@ -44,7 +44,7 @@
     "compile": "babel src -d dist --presets react --plugins transform-class-properties --quiet",
     "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src -d dist --presets react --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets react --plugins transform-class-properties --watch\"",
     "webpack:store": "webpack --config webpack.config.store.js --mode production",
-    "webpack:store:watch": "webpack --config webpack.config.store.js --mode development --watch",
+    "webpack:store:watch": "webpack -d --config webpack.config.store.js --mode development --watch",
     "theme:install": "./scripts/theme-install.sh",
     "theme:export": "./scripts/theme-export.sh",
     "theme:build": "babel theme/src -d theme/dist --presets react --plugins transform-class-properties --quiet && npm run webpack:store",
@@ -130,14 +130,15 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "html-webpack-plugin": "^4.0.4",
-    "mini-css-extract-plugin": "^0.9.0",
     "lint-staged": "^10.1.2",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.4",
     "sass-loader": "^8.0.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
     "workbox-webpack-plugin": "^5.1.2"
   }
 }

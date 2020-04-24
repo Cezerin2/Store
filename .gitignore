@@ -22,3 +22,4 @@ npm-debug.log*
 *.lock
 *lock.json
 *.log
+*js.map

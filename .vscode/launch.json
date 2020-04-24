@@ -5,22 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "type": "firefox",
             "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/src/index.js"
+            "name": "Launch 🦊 against localhost",
+            "url": "http://localhost:3000", // or whatever port you use
+            "webRoot": "${workspaceFolder}"
         },
         {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach by Process ID",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "processId": "${command:PickProcess}"
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch chrome against localhost",
+            "url": "http://localhost:3000", // or whatever port you use
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "trace": true,
+            "sourceMapPathOverrides": {
+                "webpack:///*": "${workspaceRoot}/*"
+            }
         }
     ]
 }
