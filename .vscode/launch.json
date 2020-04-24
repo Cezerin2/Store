@@ -9,7 +9,12 @@
             "request": "launch",
             "name": "Launch 🦊 against localhost",
             "url": "http://localhost:3000", // or whatever port you use
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "trace": true,
+            "sourceMapPathOverrides": {
+                "webpack:///*": "${workspaceRoot}/*"
+            }
         },
         {
             "type": "chrome",
@@ -21,7 +26,10 @@
             "trace": true,
             "sourceMapPathOverrides": {
                 "webpack:///*": "${workspaceRoot}/*"
-            }
+            },
+            "skipFiles": [
+                "node_modules/**/*.js"
+            ]
         }
     ]
 }
