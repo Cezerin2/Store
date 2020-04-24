@@ -1,4 +1,5 @@
-.vscode
+.vscode/*
+!.vscode/launch.json
 node_modules
 public/admin-assets/js/app-*
 public/admin-assets/js/vendor-*
@@ -21,3 +22,4 @@ npm-debug.log*
 *.lock
 *lock.json
 *.log
+*js.map
