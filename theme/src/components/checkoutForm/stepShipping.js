@@ -10,17 +10,33 @@ const validateRequired = value =>
 const getFieldLabelByKey = key => {
 	switch (key) {
 		case 'full_name':
-			return text.fullName;
+			if (typeof text.fullName !== 'undefined' && text.fullName != null)
+				return text.fullName;
+			return '';
 		case 'address1':
-			return text.address1;
+			if (typeof text.address1 !== 'undefined' && text.address1 != null)
+				return text.address1;
+			return '';
 		case 'address2':
-			return text.address2;
+			if (typeof text.address2 !== 'undefined' && text.address2 != null)
+				return text.address2;
+			return '';
 		case 'postal_code':
-			return text.postal_code;
+			if (typeof text.postal_code !== 'undefined' && text.postal_code != null)
+				return text.postal_code;
+			return '';
 		case 'phone':
-			return text.phone;
+			if (typeof text.phone !== 'undefined' && text.phone != null)
+				return text.phone;
+			return '';
+		case 'mobile':
+			if (typeof text.mobile !== 'undefined' && text.mobile != null)
+				return text.mobile;
+			return '';
 		case 'company':
-			return text.company;
+			if (typeof text.company !== 'undefined' && text.company != null)
+				return text.company;
+			return '';
 		default:
 			return '';
 	}
