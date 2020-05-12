@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { text } from './settings';
+import { disableImageResize } from '../../../config/server';
 
 export const formatNumber = (number, settings) => {
 	const x = 3;
@@ -26,6 +26,10 @@ export const formatCurrency = (number = 0, settings) =>
 	);
 
 export const getThumbnailUrl = (originalUrl, width) => {
+	if (disableImageResize) {
+		return originalUrl
+	}
+
 	if (originalUrl && originalUrl.length > 0) {
 		const pos = originalUrl.lastIndexOf('/');
 		const thumbnailUrl = `${originalUrl.substring(
