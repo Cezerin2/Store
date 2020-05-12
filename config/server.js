@@ -13,5 +13,8 @@ module.exports = {
 	jwtSecretKey: process.env.JWT_SECRET_KEY || '-',
 
 	// key to sign store cookies
-	cookieSecretKey: process.env.COOKIE_SECRET_KEY || '-'
+	cookieSecretKey: process.env.COOKIE_SECRET_KEY || '-',
+
+	// disable thumbnail resizing suffix
+	disableImageResize: process.env.DISABLE_IMAGE_RESIZE || false
 };
