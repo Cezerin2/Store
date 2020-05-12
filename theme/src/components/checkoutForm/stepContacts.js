@@ -47,69 +47,159 @@ class CheckoutStepContacts extends React.Component {
 				first_name: this.props.customerProperties.customer_settings.first_name,
 				last_name: this.props.customerProperties.customer_settings.last_name,
 				email: this.props.customerProperties.customer_settings.email,
+				mobile:
+					typeof this.props.customerProperties.customer_settings.mobile !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.mobile !== null
+						? this.props.customerProperties.customer_settings.mobile
+						: '',
 				billing_address: {
 					address1:
-						this.props.customerProperties.customer_settings.addresses.length > 0
+						typeof this.props.customerProperties.customer_settings.addresses !==
+							'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.address1 !== 'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.address1 !== null
 							? this.props.customerProperties.customer_settings.addresses[0]
 									.address1
 							: '',
 					address2:
-						this.props.customerProperties.customer_settings.addresses.length > 0
+						typeof this.props.customerProperties.customer_settings.addresses !==
+							'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.address2 !== 'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.address2 !== null
 							? this.props.customerProperties.customer_settings.addresses[0]
 									.address2
 							: '',
 					city:
-						this.props.customerProperties.customer_settings.addresses.length > 0
+						typeof this.props.customerProperties.customer_settings.addresses !==
+							'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.city !== 'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.city !== null
 							? this.props.customerProperties.customer_settings.addresses[0]
 									.city
 							: '',
 					postal_code:
-						this.props.customerProperties.customer_settings.addresses.length > 0
+						typeof this.props.customerProperties.customer_settings.addresses !==
+							'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.postal_code !== 'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.postal_code !== null
 							? this.props.customerProperties.customer_settings.addresses[0]
 									.postal_code
 							: '',
 					state:
-						this.props.customerProperties.customer_settings.addresses.length > 0
+						typeof this.props.customerProperties.customer_settings.addresses !==
+							'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.state !== 'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.state !== null
 							? this.props.customerProperties.customer_settings.addresses[0]
 									.state
 							: '',
 					country:
-						this.props.customerProperties.customer_settings.addresses.length > 0
+						typeof this.props.customerProperties.customer_settings.addresses !==
+							'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.country !== 'undefined' &&
+						this.props.customerProperties.customer_settings.addresses.length > 0 &&
+						this.props.customerProperties.customer_settings.addresses[0]
+							.country !== null
 							? this.props.customerProperties.customer_settings.addresses[0]
 									.country
 							: ''
 				},
 				shipping_address: {
 					address1:
-						this.props.customerProperties.customer_settings.addresses.length > 0
-							? this.props.customerProperties.customer_settings.addresses[1]
-									.address1
-							: '',
-					address2:
-						this.props.customerProperties.customer_settings.addresses.length > 0
-							? this.props.customerProperties.customer_settings.addresses[1]
-									.address2
-							: '',
-					city:
-						this.props.customerProperties.customer_settings.addresses.length > 0
-							? this.props.customerProperties.customer_settings.addresses[1]
-									.city
-							: '',
-					postal_code:
-						this.props.customerProperties.customer_settings.addresses.length > 0
-							? this.props.customerProperties.customer_settings.addresses[1]
-									.postal_code
-							: '',
-					state:
-						this.props.customerProperties.customer_settings.addresses.length > 0
-							? this.props.customerProperties.customer_settings.addresses[1]
-									.state
-							: '',
-					country:
-						this.props.customerProperties.customer_settings.addresses.length > 0
-							? this.props.customerProperties.customer_settings.addresses[1]
-									.country
-							: ''
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address1 !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address1 !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.address1
+						: '',
+				address2:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address2 !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address2 !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.address2
+						: '',
+				city:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.city !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.city !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.city
+						: '',
+				postal_code:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.postal_code !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.postal_code !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.postal_code
+						: '',
+				state:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.state !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.state !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.state
+						: '',
+				country:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.country !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.country !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.country
+						: ''
 				}
 			});
 		}
@@ -177,41 +267,56 @@ class CheckoutStepContacts extends React.Component {
 		}
 		switch (fieldName) {
 			case 'first_name':
-				return text.first_name;
-				break;
+				if (typeof text.first_name !== 'undefined' && text.first_name != null)
+					return text.first_name;
+				return '';
 			case 'last_name':
-				return text.last_name;
-				break;
+				if (typeof text.last_name !== 'undefined' && text.last_name != null)
+					return text.last_name;
+				return '';
 			case 'email':
-				return text.email;
-				break;
+				if (typeof text.email !== 'undefined' && text.email != null)
+					return text.email;
+				return '';
 			case 'mobile':
-				return text.mobile;
-				break;
+				if (typeof text.mobile !== 'undefined' && text.mobile != null)
+					return text.mobile;
+				return '';
 			case 'password':
-				return text.password;
-				break;
+				if (typeof text.password !== 'undefined' && text.password != null)
+					return text.password;
+				return '';
 			case 'password_verify':
-				return text.password_verify;
-				break;
+				if (
+					typeof text.password_verify !== 'undefined' &&
+					text.password_verify != null
+				)
+					return text.password_verify;
+				return '';
 			case 'address1':
-				return text.address1;
-				break;
+				if (typeof text.address1 !== 'undefined' && text.address1 != null)
+					return text.address1;
+				return '';
 			case 'address2':
-				return text.address2;
-				break;
+				if (typeof text.address2 !== 'undefined' && text.address2 != null)
+					return text.address2;
+				return '';
 			case 'country':
-				return text.country;
-				break;
+				if (typeof text.country !== 'undefined' && text.country != null)
+					return text.country;
+				return '';
 			case 'state':
-				return text.state;
-				break;
+				if (typeof text.state !== 'undefined' && text.state != null)
+					return text.state;
+				return '';
 			case 'city':
-				return text.city;
-				break;
+				if (typeof text.city !== 'undefined' && text.city != null)
+					return text.city;
+				return '';
 			case 'postal_code':
-				return text.postal_code;
-				break;
+				if (typeof text.postal_code !== 'undefined' && text.postal_code != null)
+					return text.postal_code;
+				return '';
 			default:
 				return 'Unnamed field';
 		}
