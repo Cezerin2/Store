@@ -11,36 +11,17 @@
     "cms"
   ],
   "homepage": "https://cezerin.org",
-  "bugs": "https://github.com/cezerin2/cezerin2-store/issues",
-  "license": "MIT",
-  "author": {
-    "name": "Restmount <jsonmount@gmail.com>",
-    "url": "https://github.com/restmount"
-  },
-  "contributors": [
-    {
-      "name": "Nitin Goyal <nitingoyal.dev@gmail.com>",
-      "url": "https://github.com/ngoyal16"
-    },
-    {
-      "name": "Luke Busstra <luke.busstra@gmail.com>",
-      "url": "https://github.com/lubuss"
-    },
-    {
-      "name": "Restmount <jsonmount@gmail.com>",
-      "url": "https://github.com/restmount"
-    },
-    {
-      "name": "Sergey Onufrienko <sergey@onufrienko.com>",
-      "url": "https://github.com/sonufrienko"
-    }
-  ],
-  "main": "dist/server/index.js",
+  "bugs": "https://github.com/Cezerin2/cezerin2-store/issues",
+  "license": "Unlicense",
+  "author": "Restmount, Himadu, Community",
+  "main": "dist/server/index.tsx",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cezerin2/cezerin2-store"
+    "url": "https://github.com/Cezerin2/cezerin2-store"
   },
   "scripts": {
+    "test": "jest",
+    "tscompile": "tsc",
     "compile": "babel src -d dist --presets react --plugins transform-class-properties --quiet",
     "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src -d dist --presets react --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets react --plugins transform-class-properties --watch\"",
     "webpack:store": "webpack --config webpack.config.store.js --mode production",
@@ -102,13 +83,10 @@
     "sitemap": "^6.1.0",
     "slug": "^2.1.1",
     "stripe": "^8.39.1",
-    "theme": "file:theme",
+    "theme": "./theme",
+    "typescript": "^3.9.2",
     "ua-parser-js": "^0.7.21",
     "winston": "^3.2.1"
-  },
-  "engines": {
-    "node": ">= 8.0.0",
-    "npm": ">= 5.0.0"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.9.4",
@@ -142,5 +120,9 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "workbox-webpack-plugin": "^5.1.2"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 5.0.0"
   }
 }

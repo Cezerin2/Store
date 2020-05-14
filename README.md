@@ -46,7 +46,7 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 - Getting Started
 
   - [Overview](./docs/overview.md)
-  
+
 - Installation Guides
 
   - [Prerequisites](./docs/prerequisites.md)
@@ -116,4 +116,4 @@ If you can, please contribute by reporting issues, discussing ideas, or submitti
 
 ## Licence
 
-This software is provided free of charge and without restriction under the MIT License
+This software is provided free of charge and without restriction under the Unlicense
