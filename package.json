@@ -14,7 +14,7 @@
   "bugs": "https://github.com/Cezerin2/cezerin2-store/issues",
   "license": "Unlicense",
   "author": "Restmount, Himadu, Community",
-  "main": "dist/server/index.tsx",
+  "main": "dist/server/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Cezerin2/cezerin2-store"
@@ -36,12 +36,13 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --write \"src/**/*.js\" \"theme/**/*.js\"",
     "precommit": "lint-staged",
-    "start": "node -r esm dist/server/index.js"
+    "start": "node -r esm dist/server/index.js",
+    "pmstart": "pm2 start process.json"
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write",
-      "git add"
+      "prettier --write .",
+      "git add ."
     ]
   },
   "dependencies": {

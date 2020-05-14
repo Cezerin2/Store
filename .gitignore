@@ -24,3 +24,4 @@ npm-debug.log*
 *.log
 *js.map
 .idea
+build

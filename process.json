@@ -1,21 +1,21 @@
 {
-	"apps": [
-		{
-			"name": "store",
-			"script": "./dist/server/index.js",
-			"node_args": "-r esm",
-			"watch": [
-				"./config/store.js",
-				"./dist/store/",
-				"./theme/dist/",
-				"./theme/assets/index.html"
-			],
-			"instances": "1",
-			"exec_mode": "fork",
-			"watch_options": {
-				"persistent": true,
-				"ignoreInitial": false
-			}
-		}
-	]
+  "apps": [
+    {
+      "name": "store",
+      "script": "./dist/server/index.js",
+      "node_args": "-r esm",
+      "watch": [
+        "./theme/store.js",
+        "./dist/store/",
+        "./theme/dist/",
+        "./theme/assets/index.html"
+      ],
+      "instances": "1",
+      "exec_mode": "fork",
+      "watch_options": {
+        "persistent": true,
+        "ignoreInitial": false
+      }
+    }
+  ]
 }
