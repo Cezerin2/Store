@@ -19,7 +19,6 @@ dist/*
 logs/*.log
 npm-debug.log*
 *.zip
-*.lock
 *lock.json
 *.log
 *js.map
