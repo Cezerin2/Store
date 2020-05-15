@@ -1,5 +1,4 @@
-FROM node:8
-MAINTAINER Nitin Goyal <nitingoyal.dev@gmail.com>
+FROM node
 
 ENV NGINX_CODENAME stretch
 ENV STORE_PORT 3000
@@ -7,21 +6,18 @@ ENV STORE_PORT 3000
 # install requirements and NGINX
 RUN echo "deb http://nginx.org/packages/debian/ ${NGINX_CODENAME} nginx" >> /etc/apt/sources.list \
 	&& apt-get update && apt-get install --no-install-recommends --no-install-suggests -y --force-yes \
-		gettext-base\
-		bash \
-		zip \
-		unzip \
-		wget \
-		curl \
-		nano \
-		ca-certificates \
-		nginx
+	gettext-base\
+	bash \
+	zip \
+	unzip \
+	wget \
+	curl \
+	nano \
+	ca-certificates \
+	nginx
 
 # install PM2
-RUN npm install pm2 -g
-
-
-RUN mkdir -p /var/www/cezerin2-store 
+RUN npm i pm2 -g
 
 WORKDIR /var/www/cezerin2-store 
 
