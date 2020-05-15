@@ -1,7 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
-// TODO import { disableImageResize } from "../../server"
-const disableImageResize = false
+import { disableImageResize } from "../../../config/server"
 
 export const formatNumber = (number, settings) => {
   const x = 3
