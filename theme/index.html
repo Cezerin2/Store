@@ -50,26 +50,32 @@
   </head>
   <body>
     {placeholder_body_start}
-    <div id="app">{app}</div>
-  <script>
-    function resizeElements() {
-      if(window.innerWidth >= 769){
-        var allHeaders = document.getElementsByTagName('header');
-        var header = allHeaders && allHeaders.length > 0 ? allHeaders[0] : null;
 
-        if (header) {
-          document.getElementsByTagName("body")[0].style.marginTop = header.clientHeight + "px";
+    <div id="app">{app}</div>
+
+    <script>
+      function resizeElements() {
+        if (window.innerWidth >= 769) {
+          var allHeaders = document.getElementsByTagName("header")
+          var header =
+            allHeaders && allHeaders.length > 0 ? allHeaders[0] : null
+
+          if (header) {
+            document.getElementsByTagName("body")[0].style.marginTop =
+              header.clientHeight + "px"
+          }
         }
       }
-    }
-    resizeElements();
-    window.addEventListener('resize', resizeElements);
-    window.addEventListener('load', resizeElements);
-  </script>
-  <script charset="UTF-8">
-    window.__APP_TEXT__ = {app_text};
-    window.__APP_STATE__ = {app_state};
-  </script>
-  {placeholder_body_end}
+      resizeElements()
+      window.addEventListener("resize", resizeElements)
+      window.addEventListener("load", resizeElements)
+    </script>
+
+    <script charset="UTF-8">
+      window.__APP_TEXT__ = { app_text }
+      window.__APP_STATE__ = { app_state }
+    </script>
+
+    {placeholder_body_end}
   </body>
 </html>
