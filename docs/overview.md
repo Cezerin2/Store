@@ -37,4 +37,4 @@ Cezerin2 is React and Node.js based eCommerce platform. Allows creating a Progre
 
 ### License
 
-MIT
+Unlicense
