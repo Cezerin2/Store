@@ -307,9 +307,7 @@ export const updateCart = (data, callback) => async (dispatch, getState) => {
 
 export const customerData = (data, callback) => async (dispatch, getState) => {
   const response = await api.ajax.account.retrieve(data)
-  let decodedJSON = Buffer.from(response.json, "base64").toString("ascii")
-  decodedJSON = JSON.parse(decodedJSON)
-  dispatch(handleAccountProperties(decodedJSON))
+  dispatch(handleAccountProperties(response.json))
 }
 
 export const loginUser = (data, callback) => async (dispatch, getState) => {
@@ -345,9 +343,7 @@ export const changecustomerProperties = (data, callback) => async (
   getState
 ) => {
   const response = await api.ajax.account.update(data)
-  let decodedJSON = Buffer.from(response.json, "base64").toString("ascii")
-  decodedJSON = JSON.parse(decodedJSON)
-  dispatch(handleAccountProperties())
+  dispatch(handleAccountProperties(response.json))
 }
 
 export const cartLayerInitialized = (data, callback) => async (
