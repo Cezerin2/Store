@@ -51,7 +51,8 @@
   <body>
     {placeholder_body_start}
     <div id="app">{app}</div>
-  <script>
+    <!-- prettier-ignore -->
+    <script>
     function resizeElements() {
       if(window.innerWidth >= 769){
         var allHeaders = document.getElementsByTagName('header');
@@ -66,10 +67,11 @@
     window.addEventListener('resize', resizeElements);
     window.addEventListener('load', resizeElements);
   </script>
-  <script charset="UTF-8">
+    <!-- prettier-ignore -->
+    <script charset="UTF-8">
     window.__APP_TEXT__ = {app_text};
     window.__APP_STATE__ = {app_state};
   </script>
-  {placeholder_body_end}
+    {placeholder_body_end}
   </body>
 </html>
