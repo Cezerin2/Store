@@ -93,7 +93,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.10.2",
-    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-react": "^7.10.1",
     "@babel/preset-typescript": "^7.9.0",
     "@types/react-dom": "^16.9.8",
     "@types/react-helmet": "^6.0.0",
