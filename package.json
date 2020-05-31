@@ -77,7 +77,7 @@
     "react-stripe-elements": "^6.1.1",
     "react-tagsinput": "^3.19.0",
     "redux": "^4.0.5",
-    "redux-form": "^8.3.2",
+    "redux-form": "^8.3.6",
     "redux-form-material-ui": "^4.3.4",
     "redux-thunk": "^2.3.0",
     "response-time": "^2.3.2",
