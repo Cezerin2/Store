@@ -11,9 +11,9 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
 
-      - run:
-          name: Install Dependencies
-          command: npm i
+      #- run:
+      #    name: Install Dependencies
+      #    command: npm i
 
       - save_cache:
           paths:
