@@ -81,7 +81,7 @@
     "redux-form-material-ui": "^4.3.4",
     "redux-thunk": "^2.3.0",
     "response-time": "^2.3.2",
-    "sitemap": "^6.1.0",
+    "sitemap": "^6.1.5",
     "slug": "^2.1.1",
     "stripe": "^8.53.0",
     "theme": "./theme",
