@@ -22,7 +22,7 @@
   "scripts": {
     "test": "jest",
     "tscompile": "tsc",
-    "compile": "babel src -d dist --presets @babel/react --presets @babel/preset-typescript --plugins transform-class-properties --extensions \".ts,.tsx\" --quiet",
+    "compile": "babel src -d dist  --presets @babel/preset-typescript --presets @babel/react --plugins transform-class-properties --extensions \".ts,.tsx\" --quiet",
     "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src -d dist --presets @babel/react --presets @babel/preset-typescript --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets react --plugins transform-class-properties --watch\"",
     "webpack:store": "webpack --config webpack.config.store.js --mode production",
     "webpack:store:watch": "webpack -d --config webpack.config.store.js --mode development --watch",
