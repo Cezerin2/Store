@@ -1,9 +1,9 @@
 const path = require("path")
-const webpack = require("webpack")
+const webpack,{BannerPlugin,SourceMapDevToolPlugin} = require("webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const WorkboxPlugin = require("workbox-webpack-plugin")
+const { GenerateSW } = require("workbox-webpack-plugin")
 
 module.exports = {
   entry: {
@@ -102,7 +102,7 @@ module.exports = {
       inject: "body",
       filename: "assets/index.html",
     }),
-    new WorkboxPlugin.GenerateSW({
+    new GenerateSW({
       swDest: "assets/sw.js",
       clientsClaim: true,
       skipWaiting: true,
@@ -129,12 +129,12 @@ module.exports = {
         },
       ],
     }),
-    new webpack.BannerPlugin({
+    new BannerPlugin({
       banner: `Created: ${new Date().toUTCString()}`,
       raw: false,
       entryOnly: false,
     }),
-    new webpack.SourceMapDevToolPlugin({
+    new SourceMapDevToolPlugin({
       filename: "[name].js.map",
       exclude: ["vendor.js"],
     }),
