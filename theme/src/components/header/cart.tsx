@@ -1,14 +1,14 @@
-import React from "react"
-import { NavLink, Redirect } from "react-router-dom"
-import Lscache from "lscache"
-import { themeSettings, text } from "../../lib/settings"
-import * as helper from "../../lib/helper"
+import Lscache from "lscache";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import * as helper from "../../lib/helper";
+import { text, themeSettings } from "../../lib/settings";
 
 const CartItem = ({ item, deleteCartItem, settings }) => {
   const thumbnail = helper.getThumbnailUrl(
     item.image_url,
-    themeSettings.cartThumbnailWidth
-  )
+    themeSettings.cartThumbnailWidth,
+  );
 
   return (
     <div className="columns is-mobile">
@@ -20,9 +20,7 @@ const CartItem = ({ item, deleteCartItem, settings }) => {
         </div>
       </div>
       <div className="column">
-        <div>
-          <NavLink to={item.path}>{item.name}</NavLink>
-        </div>
+        <NavLink to={item.path}>{item.name}</NavLink>
         {item.variant_name.length > 0 && (
           <div className="cart-option-name">{item.variant_name}</div>
         )}
@@ -42,22 +40,22 @@ const CartItem = ({ item, deleteCartItem, settings }) => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
 class Cart extends React.PureComponent {
   render() {
-    const { cart, deleteCartItem, settings, cartToggle } = this.props
+    const { cart, deleteCartItem, settings, cartToggle } = this.props;
 
     if (cart && cart.items && cart.items.length > 0) {
-      const items = cart.items.map(item => (
+      const items = cart.items.map((item) => (
         <CartItem
           key={item.id}
           item={item}
           deleteCartItem={deleteCartItem}
           settings={settings}
         />
-      ))
+      ));
 
       return (
         <div className="mini-cart">
@@ -75,8 +73,9 @@ class Cart extends React.PureComponent {
             className="button is-primary is-fullwidth has-text-centered"
             style={{ textTransform: "uppercase" }}
             to={{
-              pathname:
-                Lscache.get("auth_data") !== null ? "/checkout" : "/login",
+              pathname: Lscache.get("auth_data") !== null
+                ? "/checkout"
+                : "/login",
               state: { cartLayer: true },
             }}
             onClick={cartToggle}
@@ -84,13 +83,13 @@ class Cart extends React.PureComponent {
             {text.proceedToCheckout}
           </NavLink>
         </div>
-      )
+      );
     }
     return (
       <div className="mini-cart">
         <p>{text.cartEmpty}</p>
       </div>
-    )
+    );
   }
 }
-export default Cart
+export default Cart;

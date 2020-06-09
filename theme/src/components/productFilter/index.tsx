@@ -1,45 +1,41 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
-
-import Sort from "../sort"
-import PriceSlider from "./priceSlider"
-import AttributeFilter from "./attributeFilter"
+import React from "react";
+import { text } from "../../lib/settings";
+import Sort from "../sort";
+import AttributeFilter from "./attributeFilter";
+import PriceSlider from "./priceSlider";
 
 class ProductFilter extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       sidebarIsActive: false,
-    }
+    };
   }
 
   sidebarToggle = () => {
     this.setState({
       sidebarIsActive: !this.state.sidebarIsActive,
-    })
-    document.body.classList.toggle("noscroll")
-  }
+    });
+    document.body.classList.toggle("noscroll");
+  };
 
   sidebarClose = () => {
-    this.setState({ sidebarIsActive: false })
-    document.body.classList.remove("noscroll")
-  }
+    this.setState({ sidebarIsActive: false });
+    document.body.classList.remove("noscroll");
+  };
 
   render() {
-    const { sidebarIsActive } = this.state
+    const { sidebarIsActive } = this.state;
     const {
-      categoryDetails,
-      categories,
       settings,
       productFilter,
       productsMinPrice,
       productsMaxPrice,
       productsAttributes,
-    } = this.props.state
+    } = this.props.state;
 
     return (
-      <div>
+      <>
         <div className="is-hidden-tablet">
           <button className="button is-fullwidth" onClick={this.sidebarToggle}>
             {text.filterProducts}
@@ -88,8 +84,8 @@ class ProductFilter extends React.Component {
             </div>
           </div>
         </div>
-      </div>
-    )
+      </>
+    );
   }
 }
-export default ProductFilter
+export default ProductFilter;

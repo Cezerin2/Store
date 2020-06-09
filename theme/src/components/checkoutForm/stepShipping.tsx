@@ -1,68 +1,74 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import { themeSettings, text } from "../../lib/settings"
-import InputField from "./inputField"
-import TextareaField from "./textareaField"
+import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { text } from "../../lib/settings";
+import InputField from "./inputField";
+import TextareaField from "./textareaField";
 
-const validateRequired = value =>
-  value && value.length > 0 ? undefined : text.required
+const validateRequired = (value) =>
+  value && value.length > 0 ? undefined : text.required;
 
-const getFieldLabelByKey = key => {
+const getFieldLabelByKey = (key) => {
   switch (key) {
     case "full_name":
-      if (typeof text.fullName !== "undefined" && text.fullName != null)
-        return text.fullName
-      return ""
+      if (typeof text.fullName !== "undefined" && text.fullName != null) {
+        return text.fullName;
+      }
+      return "";
     case "address1":
-      if (typeof text.address1 !== "undefined" && text.address1 != null)
-        return text.address1
-      return ""
+      if (typeof text.address1 !== "undefined" && text.address1 != null) {
+        return text.address1;
+      }
+      return "";
     case "address2":
-      if (typeof text.address2 !== "undefined" && text.address2 != null)
-        return text.address2
-      return ""
+      if (typeof text.address2 !== "undefined" && text.address2 != null) {
+        return text.address2;
+      }
+      return "";
     case "postal_code":
-      if (typeof text.postal_code !== "undefined" && text.postal_code != null)
-        return text.postal_code
-      return ""
+      if (typeof text.postal_code !== "undefined" && text.postal_code != null) {
+        return text.postal_code;
+      }
+      return "";
     case "phone":
-      if (typeof text.phone !== "undefined" && text.phone != null)
-        return text.phone
-      return ""
+      if (typeof text.phone !== "undefined" && text.phone != null) {
+        return text.phone;
+      }
+      return "";
     case "mobile":
-      if (typeof text.mobile !== "undefined" && text.mobile != null)
-        return text.mobile
-      return ""
+      if (typeof text.mobile !== "undefined" && text.mobile != null) {
+        return text.mobile;
+      }
+      return "";
     case "company":
-      if (typeof text.company !== "undefined" && text.company != null)
-        return text.company
-      return ""
+      if (typeof text.company !== "undefined" && text.company != null) {
+        return text.company;
+      }
+      return "";
     default:
-      return ""
+      return "";
   }
-}
+};
 
-const getFieldLabel = field => {
-  const label =
-    field.label && field.label.length > 0
-      ? field.label
-      : getFieldLabelByKey(field.key)
-  return field.required === true ? label : `${label} (${text.optional})`
-}
+const getFieldLabel = (field) => {
+  const label = field.label && field.label.length > 0
+    ? field.label
+    : getFieldLabelByKey(field.key);
+  return field.required === true ? label : `${label} (${text.optional})`;
+};
 
 class CheckoutStepShipping extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       billingAsShipping: true,
-    }
+    };
   }
 
-  onChangeBillingAsShipping = event => {
+  onChangeBillingAsShipping = (event) => {
     this.setState({
       billingAsShipping: event.target.checked,
-    })
-  }
+    });
+  };
 
   render() {
     const {
@@ -85,27 +91,26 @@ class CheckoutStepShipping extends React.Component {
       isReadOnly,
       showPaymentForm,
       onEdit,
-    } = this.props
+    } = this.props;
 
-    const hideBillingAddress = settings.hide_billing_address === true
-    const commentsField = checkoutFields.find(f => f.name === "comments")
-    const commentsFieldPlaceholder =
-      commentsField &&
+    const hideBillingAddress = settings.hide_billing_address === true;
+    const commentsField = checkoutFields.find((f) => f.name === "comments");
+    const commentsFieldPlaceholder = commentsField &&
       commentsField.placeholder &&
       commentsField.placeholder.length > 0
-        ? commentsField.placeholder
-        : ""
+      ? commentsField.placeholder
+      : "";
     const commentsFieldLabel =
       commentsField && commentsField.label && commentsField.label.length > 0
         ? commentsField.label
-        : text.comments
-    const commentsFieldStatus =
-      commentsField && commentsField.status.length > 0
-        ? commentsField.status
-        : null
-    const commentsValidate =
-      commentsFieldStatus === "required" ? validateRequired : null
-    const hideCommentsField = commentsFieldStatus === "hidden"
+        : text.comments;
+    const commentsFieldStatus = commentsField && commentsField.status.length > 0
+      ? commentsField.status
+      : null;
+    const commentsValidate = commentsFieldStatus === "required"
+      ? validateRequired
+      : null;
+    const hideCommentsField = commentsFieldStatus === "hidden";
 
     if (!show) {
       return (
@@ -115,26 +120,26 @@ class CheckoutStepShipping extends React.Component {
             {title}
           </h1>
         </div>
-      )
+      );
     }
     if (isReadOnly) {
-      let shippingFields = null
+      let shippingFields = null;
       if (
         shippingMethod &&
         shippingMethod.fields &&
         shippingMethod.fields.length > 0
       ) {
         shippingFields = shippingMethod.fields.map((field, index) => {
-          const fieldLabel = getFieldLabel(field)
-          const fieldValue = initialValues.shipping_address[field.key]
+          const fieldLabel = getFieldLabel(field);
+          const fieldValue = initialValues.shipping_address[field.key];
 
           return (
             <div key={index} className="checkout-field-preview">
               <div className="name">{fieldLabel}</div>
               <div className="value">{fieldValue}</div>
             </div>
-          )
-        })
+          );
+        });
       }
 
       return (
@@ -162,19 +167,19 @@ class CheckoutStepShipping extends React.Component {
             </button>
           </div>
         </div>
-      )
+      );
     }
-    let shippingFields = null
+    let shippingFields = null;
     if (
       shippingMethod &&
       shippingMethod.fields &&
       shippingMethod.fields.length > 0
     ) {
       shippingFields = shippingMethod.fields.map((field, index) => {
-        const fieldLabel = getFieldLabel(field)
-        const fieldId = `shipping_address.${field.key}`
-        const fieldClassName = `${inputClassName} shipping-${field.key}`
-        const validate = field.required === true ? validateRequired : null
+        const fieldLabel = getFieldLabel(field);
+        const fieldId = `shipping_address.${field.key}`;
+        const fieldClassName = `${inputClassName} shipping-${field.key}`;
+        const validate = field.required === true ? validateRequired : null;
 
         return (
           <Field
@@ -187,8 +192,8 @@ class CheckoutStepShipping extends React.Component {
             label={fieldLabel}
             validate={validate}
           />
-        )
-      })
+        );
+      });
     }
 
     return (
@@ -215,7 +220,7 @@ class CheckoutStepShipping extends React.Component {
           )}
 
           {!hideBillingAddress && (
-            <div>
+            <>
               <h2>{text.billingAddress}</h2>
               <div className="billing-as-shipping">
                 <input
@@ -228,7 +233,7 @@ class CheckoutStepShipping extends React.Component {
               </div>
 
               {!this.state.billingAsShipping && (
-                <div>
+                <>
                   <Field
                     className={`${inputClassName} billing-fullname`}
                     name="billing_address.full_name"
@@ -279,21 +284,19 @@ class CheckoutStepShipping extends React.Component {
                     type="text"
                     label={`${text.company} (${text.optional})`}
                   />
-                </div>
+                </>
               )}
-            </div>
+            </>
           )}
 
           <div className="checkout-button-wrap">
             <button
               type="submit"
-              disabled={
-                submitting ||
+              disabled={submitting ||
                 processingCheckout ||
                 invalid ||
                 initialValues.shipping_method_id === null ||
-                initialValues.payment_method_id === null
-              }
+                initialValues.payment_method_id === null}
               className={`${buttonClassName}${
                 processingCheckout ? " is-loading" : ""
               }`}
@@ -303,7 +306,7 @@ class CheckoutStepShipping extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
@@ -311,4 +314,4 @@ export default reduxForm({
   form: "CheckoutStepShipping",
   enableReinitialize: true,
   keepDirtyOnReinitialize: false,
-})(CheckoutStepShipping)
+})(CheckoutStepShipping);

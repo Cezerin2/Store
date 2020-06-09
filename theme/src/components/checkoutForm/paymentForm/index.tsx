@@ -1,22 +1,22 @@
-import React from "react"
-import api from "../../../lib/api"
-import PayPalCheckout from "./PayPalCheckout"
-import LiqPay from "./LiqPay"
-import StripeElements from "./StripeElements"
+import React from "react";
+import api from "../../../lib/api";
+import LiqPay from "./LiqPay";
+import PayPalCheckout from "./PayPalCheckout";
+import StripeElements from "./StripeElements";
 
 class PaymentForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       formSettings: null,
       loading: false,
-    }
+    };
   }
 
   fetchFormSettings = () => {
     this.setState({
       loading: true,
-    })
+    });
 
     api.ajax.paymentFormSettings
       .retrieve()
@@ -24,19 +24,19 @@ class PaymentForm extends React.Component {
         this.setState({
           formSettings: json,
           loading: false,
-        })
+        });
       })
-      .catch(e => {
+      .catch((e) => {
         this.setState({
           formSettings: null,
           loading: false,
-        })
-        console.log(e)
-      })
-  }
+        });
+        console.log(e);
+      });
+  };
 
   componentDidMount() {
-    this.fetchFormSettings()
+    this.fetchFormSettings();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,7 +44,7 @@ class PaymentForm extends React.Component {
       nextProps.gateway !== this.props.gateway ||
       nextProps.amount !== this.props.amount
     ) {
-      this.fetchFormSettings()
+      this.fetchFormSettings();
     }
   }
 
@@ -53,15 +53,15 @@ class PaymentForm extends React.Component {
       nextProps.gateway !== this.props.gateway ||
       nextProps.amount !== this.props.amount ||
       this.state !== nextState
-    )
+    );
   }
 
   render() {
-    const { gateway, shopSettings, onPayment, onCreateToken } = this.props
-    const { formSettings, loading } = this.state
+    const { gateway, shopSettings, onPayment, onCreateToken } = this.props;
+    const { formSettings, loading } = this.state;
 
     if (loading) {
-      return null
+      return null;
     }
     if (formSettings && gateway && gateway !== "") {
       switch (gateway) {
@@ -74,7 +74,7 @@ class PaymentForm extends React.Component {
                 onPayment={onPayment}
               />
             </div>
-          )
+          );
         case "liqpay":
           return (
             <div className="payment-form">
@@ -84,7 +84,7 @@ class PaymentForm extends React.Component {
                 onPayment={onPayment}
               />
             </div>
-          )
+          );
         case "stripe-elements":
           return (
             <div className="payment-form">
@@ -95,17 +95,17 @@ class PaymentForm extends React.Component {
                 onCreateToken={onCreateToken}
               />
             </div>
-          )
+          );
         default:
           return (
-            <div>
+            <>
               Payment Gateway <b>{gateway}</b> not found!
-            </div>
-          )
+            </>
+          );
       }
     } else {
-      return null
+      return null;
     }
   }
 }
-export default PaymentForm
+export default PaymentForm;

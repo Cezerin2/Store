@@ -1,8 +1,8 @@
-import React from "react"
 import PropTypes from "prop-types"
+import React from "react"
 import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../lib/settings"
 import * as helper from "../lib/helper"
+import { text, themeSettings } from "../lib/settings"
 
 const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
   const thumbnail = helper.getThumbnailUrl(
@@ -40,9 +40,9 @@ const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
         </div>
       </div>
       <div className="column">
-        <div>
+        <>
           <NavLink to={item.path}>{item.name}</NavLink>
-        </div>
+        </>
         {item.variant_name.length > 0 && (
           <div className="cart-option-name">{item.variant_name}</div>
         )}

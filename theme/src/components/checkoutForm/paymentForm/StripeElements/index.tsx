@@ -1,39 +1,33 @@
-import React from "react"
-import { StripeProvider } from "react-stripe-elements"
-import StoreCheckout from "./StoreCheckout"
+import React, { useEffect, useState } from "react";
+import { StripeProvider } from "react-stripe-elements";
+import StoreCheckout from "./StoreCheckout";
 
-class StripeElements extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { stripe: null }
-  }
+const StripeElements = (props) => {
+  const [stripe, setStripe] = useState(null);
 
-  componentDidMount() {
-    const SCRIPT_URL = "https://js.stripe.com/v3/"
-    const container = document.body || document.head
-    const script = document.createElement("script")
-    script.src = SCRIPT_URL
-    script.async = true
+  useEffect(() => {
+    const SCRIPT_URL = "https://js.stripe.com/v3/";
+    const container = document.body || document.head;
+    const script = document.createElement("script");
+    script.src = SCRIPT_URL;
+    script.async = true;
     script.onload = () => {
-      this.setState({
-        stripe: window.Stripe(this.props.formSettings.public_key),
-      })
-    }
-    container.appendChild(script)
-  }
+      setStripe(window.Stripe(props.formSettings.public_key));
+    };
+    container.appendChild(script);
+  }, []);
 
-  render() {
-    const { formSettings, shopSettings, onPayment, onCreateToken } = this.props
-    return (
-      <StripeProvider stripe={this.state.stripe}>
-        <StoreCheckout
-          formSettings={formSettings}
-          shopSettings={shopSettings}
-          onPayment={onPayment}
-          onCreateToken={onCreateToken}
-        />
-      </StripeProvider>
-    )
-  }
-}
-export default StripeElements
+  const { formSettings, shopSettings, onPayment, onCreateToken } = props;
+  return (
+    <StripeProvider stripe={stripe}>
+      <StoreCheckout
+        formSettings={formSettings}
+        shopSettings={shopSettings}
+        onPayment={onPayment}
+        onCreateToken={onCreateToken}
+      />
+    </StripeProvider>
+  );
+};
+
+export default StripeElements;

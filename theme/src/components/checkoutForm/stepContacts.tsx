@@ -1,47 +1,47 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import Lscache from "lscache"
-import { themeSettings, text } from "../../lib/settings"
-import { formatCurrency } from "../../lib/helper"
-import InputField from "./inputField"
+import Lscache from "lscache";
+import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { formatCurrency } from "../../lib/helper";
+import { text } from "../../lib/settings";
+import InputField from "./inputField";
 
-const validateRequired = value =>
-  value && value.length > 0 ? undefined : text.required
+const validateRequired = (value) =>
+  value && value.length > 0 ? undefined : text.required;
 
-const validateEmail = value =>
+const validateEmail = (value) =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
     ? text.emailInvalid
-    : undefined
+    : undefined;
 
 const ReadOnlyField = ({ name, value }) => (
   <div className="checkout-field-preview">
     <div className="name">{name}</div>
     <div className="value">{value}</div>
   </div>
-)
+);
 
 class CheckoutStepContacts extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       loggedin: false,
       reinitialized: false,
       emailValues: "",
       comparePassword: "",
-    }
+    };
 
-    this.setInitialValues = this.setInitialValues.bind(this)
+    this.setInitialValues = this.setInitialValues.bind(this);
   }
 
   componentDidMount() {
     if (Lscache.get("auth_data") !== null) {
-      this.setState({ loggedin: true })
+      this.setState({ loggedin: true });
     }
   }
 
   setInitialValues() {
-    Lscache.flushExpired()
+    Lscache.flushExpired();
     if (Lscache.get("auth_data") !== null) {
       this.props.initialize({
         first_name: this.props.customerProperties.customer_settings.first_name,
@@ -54,314 +54,325 @@ class CheckoutStepContacts extends React.Component {
             ? this.props.customerProperties.customer_settings.mobile
             : "",
         billing_address: {
-          address1:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+          address1: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .address1 !== "undefined" &&
+                .address1 !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .address1 !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .address1
-              : "",
-          address2:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .address1 !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .address1
+            : "",
+          address2: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .address2 !== "undefined" &&
+                .address2 !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .address2 !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .address2
-              : "",
-          city:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .address2 !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .address2
+            : "",
+          city: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .city !== "undefined" &&
+                .city !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .city !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .city
-              : "",
-          postal_code:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .city !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .city
+            : "",
+          postal_code: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .postal_code !== "undefined" &&
+                .postal_code !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .postal_code !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .postal_code
-              : "",
-          state:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .postal_code !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .postal_code
+            : "",
+          state: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .state !== "undefined" &&
+                .state !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .state !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .state
-              : "",
-          country:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .state !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .state
+            : "",
+          country: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .country !== "undefined" &&
+                .country !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .country !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .country
-              : "",
+                .country !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .country
+            : "",
         },
         shipping_address: {
-          address1:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+          address1: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .address1 !== "undefined" &&
+                .address1 !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .address1 !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .address1
-              : "",
-          address2:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .address1 !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .address1
+            : "",
+          address2: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .address2 !== "undefined" &&
+                .address2 !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .address2 !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .address2
-              : "",
-          city:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .address2 !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .address2
+            : "",
+          city: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .city !== "undefined" &&
+                .city !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .city !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .city
-              : "",
-          postal_code:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .city !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .city
+            : "",
+          postal_code: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .postal_code !== "undefined" &&
+                .postal_code !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .postal_code !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .postal_code
-              : "",
-          state:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .postal_code !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .postal_code
+            : "",
+          state: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .state !== "undefined" &&
+                .state !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .state !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .state
-              : "",
-          country:
-            typeof this.props.customerProperties.customer_settings.addresses !==
+                .state !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .state
+            : "",
+          country: typeof this.props.customerProperties.customer_settings
+                .addresses !==
               "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .country !== "undefined" &&
+                .country !== "undefined" &&
             this.props.customerProperties.customer_settings.addresses.length >
               0 &&
             this.props.customerProperties.customer_settings.addresses[0]
-              .country !== null
-              ? this.props.customerProperties.customer_settings.addresses[0]
-                  .country
-              : "",
+                .country !== null
+            ? this.props.customerProperties.customer_settings.addresses[0]
+              .country
+            : "",
         },
-      })
+      });
     }
 
-    this.setState({ reinitialized: true })
+    this.setState({ reinitialized: true });
     this.setState({
       emailValues: this.props.customerProperties.customer_settings.email,
-    })
+    });
     // this.props.change("input", {disabled: true});
   }
 
-  passwordTemp = value => {
-    this.setState({ comparePassword: value.currentTarget.defaultValue })
-  }
+  passwordTemp = (value) => {
+    this.setState({ comparePassword: value.currentTarget.defaultValue });
+  };
 
-  getField = fieldName => {
-    const fields = this.props.checkoutFields || []
-    const field = fields.find(item => item.name === fieldName)
-    return field
-  }
+  getField = (fieldName) => {
+    const fields = this.props.checkoutFields || [];
+    const field = fields.find((item) => item.name === fieldName);
+    return field;
+  };
 
-  getFieldStatus = fieldName => {
-    const field = this.getField(fieldName)
-    return field && field.status ? field.status : "required"
-  }
+  getFieldStatus = (fieldName) => {
+    const field = this.getField(fieldName);
+    return field && field.status ? field.status : "required";
+  };
 
-  isFieldOptional = fieldName => this.getFieldStatus(fieldName) === "optional"
+  isFieldOptional = (fieldName) =>
+    this.getFieldStatus(fieldName) === "optional";
 
-  isFieldHidden = fieldName => this.getFieldStatus(fieldName) === "hidden"
+  isFieldHidden = (fieldName) => this.getFieldStatus(fieldName) === "hidden";
 
-  getFieldValidators = fieldName => {
-    const isOptional = this.isFieldOptional(fieldName)
-    const validatorsArray = []
+  getFieldValidators = (fieldName) => {
+    const isOptional = this.isFieldOptional(fieldName);
+    const validatorsArray = [];
     if (!isOptional) {
-      validatorsArray.push(validateRequired)
+      validatorsArray.push(validateRequired);
     }
     if (fieldName === "email") {
-      validatorsArray.push(validateEmail)
+      validatorsArray.push(validateEmail);
     }
     if (fieldName === "password_verify") {
-      validatorsArray.push(this.confirmPassword)
+      validatorsArray.push(this.confirmPassword);
     }
 
-    return validatorsArray
-  }
+    return validatorsArray;
+  };
 
-  confirmPassword = value => {
+  confirmPassword = (value) => {
     if (value !== this.state.comparePassword) {
-      return text.password_verify_failed
+      return text.password_verify_failed;
     }
-    return undefined
-  }
+    return undefined;
+  };
 
-  getFieldPlaceholder = fieldName => {
-    const field = this.getField(fieldName)
+  getFieldPlaceholder = (fieldName) => {
+    const field = this.getField(fieldName);
     return field && field.placeholder && field.placeholder.length > 0
       ? field.placeholder
-      : ""
-  }
+      : "";
+  };
 
-  getFieldLabelText = fieldName => {
-    const field = this.getField(fieldName)
+  getFieldLabelText = (fieldName) => {
+    const field = this.getField(fieldName);
     if (field && field.label && field.label.length > 0) {
-      return field.label
+      return field.label;
     }
     switch (fieldName) {
       case "first_name":
-        if (typeof text.first_name !== "undefined" && text.first_name != null)
-          return text.first_name
-        return ""
+        if (typeof text.first_name !== "undefined" && text.first_name != null) {
+          return text.first_name;
+        }
+        return "";
       case "last_name":
-        if (typeof text.last_name !== "undefined" && text.last_name != null)
-          return text.last_name
-        return ""
+        if (typeof text.last_name !== "undefined" && text.last_name != null) {
+          return text.last_name;
+        }
+        return "";
       case "email":
-        if (typeof text.email !== "undefined" && text.email != null)
-          return text.email
-        return ""
+        if (typeof text.email !== "undefined" && text.email != null) {
+          return text.email;
+        }
+        return "";
       case "mobile":
-        if (typeof text.mobile !== "undefined" && text.mobile != null)
-          return text.mobile
-        return ""
+        if (typeof text.mobile !== "undefined" && text.mobile != null) {
+          return text.mobile;
+        }
+        return "";
       case "password":
-        if (typeof text.password !== "undefined" && text.password != null)
-          return text.password
-        return ""
+        if (typeof text.password !== "undefined" && text.password != null) {
+          return text.password;
+        }
+        return "";
       case "password_verify":
         if (
           typeof text.password_verify !== "undefined" &&
           text.password_verify != null
-        )
-          return text.password_verify
-        return ""
+        ) {
+          return text.password_verify;
+        }
+        return "";
       case "address1":
-        if (typeof text.address1 !== "undefined" && text.address1 != null)
-          return text.address1
-        return ""
+        if (typeof text.address1 !== "undefined" && text.address1 != null) {
+          return text.address1;
+        }
+        return "";
       case "address2":
-        if (typeof text.address2 !== "undefined" && text.address2 != null)
-          return text.address2
-        return ""
+        if (typeof text.address2 !== "undefined" && text.address2 != null) {
+          return text.address2;
+        }
+        return "";
       case "country":
-        if (typeof text.country !== "undefined" && text.country != null)
-          return text.country
-        return ""
+        if (typeof text.country !== "undefined" && text.country != null) {
+          return text.country;
+        }
+        return "";
       case "state":
-        if (typeof text.state !== "undefined" && text.state != null)
-          return text.state
-        return ""
+        if (typeof text.state !== "undefined" && text.state != null) {
+          return text.state;
+        }
+        return "";
       case "city":
-        if (typeof text.city !== "undefined" && text.city != null)
-          return text.city
-        return ""
+        if (typeof text.city !== "undefined" && text.city != null) {
+          return text.city;
+        }
+        return "";
       case "postal_code":
-        if (typeof text.postal_code !== "undefined" && text.postal_code != null)
-          return text.postal_code
-        return ""
+        if (
+          typeof text.postal_code !== "undefined" && text.postal_code != null
+        ) {
+          return text.postal_code;
+        }
+        return "";
       default:
-        return "Unnamed field"
+        return "Unnamed field";
     }
-  }
+  };
 
-  getFieldLabel = fieldName => {
-    const labelText = this.getFieldLabelText(fieldName)
+  getFieldLabel = (fieldName) => {
+    const labelText = this.getFieldLabelText(fieldName);
     return this.isFieldOptional(fieldName)
       ? `${labelText} (${text.optional})`
-      : labelText
-  }
+      : labelText;
+  };
 
   render() {
     const {
       handleSubmit,
       customerProperties,
-      pristine,
       invalid,
-      valid,
-      reset,
-      submitting,
       loadingShippingMethods,
       loadingPaymentMethods,
       initialValues,
@@ -377,14 +388,14 @@ class CheckoutStepContacts extends React.Component {
       onEdit,
       isReadOnly,
       title,
-    } = this.props
+    } = this.props;
 
     if (
       customerProperties !== undefined &&
       !this.state.reinitialized &&
       this.state.loggedin
     ) {
-      this.setInitialValues()
+      this.setInitialValues();
     }
 
     if (isReadOnly) {
@@ -468,7 +479,8 @@ class CheckoutStepContacts extends React.Component {
           </div>
 
           <h2>
-            {text.shippingMethods}{" "}
+            {text.shippingMethods}
+            {" "}
             {loadingShippingMethods && <small>{text.loading}</small>}
           </h2>
           <div className="shipping-methods">
@@ -487,15 +499,15 @@ class CheckoutStepContacts extends React.Component {
                   type="radio"
                   value={method.id}
                   onClick={() => {
-                    saveShippingMethod(method.id)
+                    saveShippingMethod(method.id);
                   }}
                 />
-                <div>
+                <>
                   <div className="shipping-method-name">{method.name}</div>
                   <div className="shipping-method-description">
                     {method.description}
                   </div>
-                </div>
+                </>
                 <span className="shipping-method-rate">
                   {formatCurrency(method.price, settings)}
                 </span>
@@ -504,7 +516,8 @@ class CheckoutStepContacts extends React.Component {
           </div>
 
           <h2>
-            {text.paymentMethods}{" "}
+            {text.paymentMethods}
+            {" "}
             {loadingPaymentMethods && <small>{text.loading}</small>}
           </h2>
           <div className="payment-methods">
@@ -522,21 +535,21 @@ class CheckoutStepContacts extends React.Component {
                   type="radio"
                   value={method.id}
                   onClick={() => {
-                    savePaymentMethod(method.id)
+                    savePaymentMethod(method.id);
                   }}
                 />
-                <div>
+                <>
                   <div className="payment-method-name">{method.name}</div>
                   <div className="payment-method-description">
                     {method.description}
                   </div>
-                </div>
+                </>
                 <span className="payment-method-logo" />
               </label>
             ))}
           </div>
         </div>
-      )
+      );
     }
     return (
       <div className="checkout-step">
@@ -573,28 +586,30 @@ class CheckoutStepContacts extends React.Component {
             />
           )}
 
-          {this.state.loggedin ? (
-            <ReadOnlyField
-              name={text.email}
-              value={this.state.emailValues}
-              className="logged-in-email-field"
-              label={this.getFieldLabel("email")}
-            />
-          ) : (
-            !this.isFieldHidden("email") && (
-              <Field
-                className={inputClassName}
-                name="email"
-                id="customer.email"
-                autoComplete="new-password"
-                component={InputField} // this.state.loggedin
-                type="email"
+          {this.state.loggedin
+            ? (
+              <ReadOnlyField
+                name={text.email}
+                value={this.state.emailValues}
+                className="logged-in-email-field"
                 label={this.getFieldLabel("email")}
-                validate={this.getFieldValidators("email")}
-                placeholder={this.getFieldPlaceholder("email")}
               />
             )
-          )}
+            : (
+              !this.isFieldHidden("email") && (
+                <Field
+                  className={inputClassName}
+                  name="email"
+                  id="customer.email"
+                  autoComplete="new-password"
+                  component={InputField} // this.state.loggedin
+                  type="email"
+                  label={this.getFieldLabel("email")}
+                  validate={this.getFieldValidators("email")}
+                  placeholder={this.getFieldPlaceholder("email")}
+                />
+              )
+            )}
 
           {!this.isFieldHidden("mobile") && (
             <Field
@@ -613,41 +628,38 @@ class CheckoutStepContacts extends React.Component {
           {this.state.loggedin
             ? this.isFieldHidden("password")
             : !this.isFieldHidden("password") && (
-                <Field
-                  className={inputClassName}
-                  name="password"
-                  id="customer.password"
-                  autoComplete="new-password"
-                  component={InputField}
-                  type="password"
-                  onBlur={this.passwordTemp}
-                  label={
-                    !this.state.loggedin ? this.getFieldLabel("password") : ""
-                  }
-                  validate={this.getFieldValidators("password")}
-                  placeholder={this.getFieldPlaceholder("password")}
-                />
-              )}
+              <Field
+                className={inputClassName}
+                name="password"
+                id="customer.password"
+                autoComplete="new-password"
+                component={InputField}
+                type="password"
+                onBlur={this.passwordTemp}
+                label={!this.state.loggedin
+                  ? this.getFieldLabel("password")
+                  : ""}
+                validate={this.getFieldValidators("password")}
+                placeholder={this.getFieldPlaceholder("password")}
+              />
+            )}
 
-          {this.state.loggedin
-            ? this.isFieldHidden("password")
-            : !this.isFieldHidden("password") && (
-                <Field
-                  className={inputClassName}
-                  name="password_verify"
-                  id="customer.password_verify"
-                  autoComplete="new-password"
-                  component={InputField}
-                  type="password"
-                  label={
-                    !this.state.loggedin
-                      ? this.getFieldLabel("password_verify")
-                      : ""
-                  }
-                  validate={this.getFieldValidators("password_verify")}
-                  placeholder={this.getFieldPlaceholder("password_verify")}
-                />
-              )}
+          {this.state.loggedin ? this.isFieldHidden("password")
+          : !this.isFieldHidden("password") && (
+            <Field
+              className={inputClassName}
+              name="password_verify"
+              id="customer.password_verify"
+              autoComplete="new-password"
+              component={InputField}
+              type="password"
+              label={!this.state.loggedin
+                ? this.getFieldLabel("password_verify")
+                : ""}
+              validate={this.getFieldValidators("password_verify")}
+              placeholder={this.getFieldPlaceholder("password_verify")}
+            />
+          )}
 
           {!this.isFieldHidden("address1") && (
             <Field
@@ -660,8 +672,7 @@ class CheckoutStepContacts extends React.Component {
               validate={this.getFieldValidators("address1")}
               placeholder={this.getFieldPlaceholder("address1")}
               onBlur={(event, value) =>
-                setTimeout(() => saveShippingLocation({ address1: value }))
-              }
+                setTimeout(() => saveShippingLocation({ address1: value }))}
             />
           )}
           {!this.isFieldHidden("address2") && (
@@ -674,8 +685,7 @@ class CheckoutStepContacts extends React.Component {
               label={this.getFieldLabel("address2")}
               placeholder={this.getFieldPlaceholder("address2")}
               onBlur={(event, value) =>
-                setTimeout(() => saveShippingLocation({ address2: value }))
-              }
+                setTimeout(() => saveShippingLocation({ address2: value }))}
             />
           )}
 
@@ -690,8 +700,7 @@ class CheckoutStepContacts extends React.Component {
               validate={this.getFieldValidators("country")}
               placeholder={this.getFieldPlaceholder("country")}
               onBlur={(event, value) =>
-                setTimeout(() => saveShippingLocation({ country: value }))
-              }
+                setTimeout(() => saveShippingLocation({ country: value }))}
             />
           )}
 
@@ -706,8 +715,7 @@ class CheckoutStepContacts extends React.Component {
               validate={this.getFieldValidators("state")}
               placeholder={this.getFieldPlaceholder("state")}
               onBlur={(event, value) =>
-                setTimeout(() => saveShippingLocation({ state: value }))
-              }
+                setTimeout(() => saveShippingLocation({ state: value }))}
             />
           )}
           {!this.isFieldHidden("postal_code") && (
@@ -721,8 +729,7 @@ class CheckoutStepContacts extends React.Component {
               validate={this.getFieldValidators("postal_code")}
               placeholder={this.getFieldPlaceholder("postal_code")}
               onBlur={(event, value) =>
-                setTimeout(() => saveShippingLocation({ postal_code: value }))
-              }
+                setTimeout(() => saveShippingLocation({ postal_code: value }))}
             />
           )}
           {!this.isFieldHidden("city") && (
@@ -736,8 +743,7 @@ class CheckoutStepContacts extends React.Component {
               validate={this.getFieldValidators("city")}
               placeholder={this.getFieldPlaceholder("city")}
               onBlur={(event, value) =>
-                setTimeout(() => saveShippingLocation({ city: value }))
-              }
+                setTimeout(() => saveShippingLocation({ city: value }))}
             />
           )}
 
@@ -752,7 +758,7 @@ class CheckoutStepContacts extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
@@ -760,4 +766,4 @@ export default reduxForm({
   form: "CheckoutStepContacts",
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
-})(CheckoutStepContacts)
+})(CheckoutStepContacts);
