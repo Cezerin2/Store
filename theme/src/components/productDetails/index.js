@@ -22,7 +22,7 @@ const Description = ({ description }) => (
   />
 )
 
-export default class ProductDetails extends React.Component {
+class ProductDetails extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -212,3 +212,4 @@ export default class ProductDetails extends React.Component {
     return null
   }
 }
+export default ProductDetails

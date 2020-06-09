@@ -4,7 +4,7 @@ import Lscache from "lscache"
 import { themeSettings, text } from "../../lib/settings"
 import Account from "./account"
 
-export default class AccountForm extends React.Component {
+class AccountForm extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -92,3 +92,4 @@ export default class AccountForm extends React.Component {
     )
   }
 }
+export default AccountForm

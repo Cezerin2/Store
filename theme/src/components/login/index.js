@@ -3,7 +3,7 @@ import Lscache from "lscache"
 import { themeSettings, text } from "../../lib/settings"
 import Login from "./login"
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -70,3 +70,4 @@ export default class LoginForm extends React.Component {
     )
   }
 }
+export default LoginForm

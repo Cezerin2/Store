@@ -5,7 +5,7 @@ import Lightbox from "react-image-lightbox"
 import * as helper from "../../lib/helper"
 import { themeSettings, text } from "../../lib/settings"
 
-export default class Gallery extends React.Component {
+class Gallery extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -98,3 +98,4 @@ export default class Gallery extends React.Component {
     return <div className="large-image-placeholder" />
   }
 }
+export default Gallery

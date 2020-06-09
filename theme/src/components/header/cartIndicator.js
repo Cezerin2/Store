@@ -33,7 +33,7 @@ const CartIcon = ({ cartIsActive }) => {
   )
 }
 
-export default class CartIndicator extends React.PureComponent {
+class CartIndicator extends React.PureComponent {
   render() {
     const { cart, onClick, cartIsActive } = this.props
     return (
@@ -44,3 +44,4 @@ export default class CartIndicator extends React.PureComponent {
     )
   }
 }
+export default CartIndicator

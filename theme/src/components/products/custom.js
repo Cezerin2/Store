@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import api from "../../lib/api"
 import ProductList from "../productList"
 
-export default class CustomProducts extends React.Component {
+class CustomProducts extends React.Component {
   static propTypes = {
     ids: PropTypes.oneOfType([
       PropTypes.string,
@@ -149,3 +149,4 @@ export default class CustomProducts extends React.Component {
     )
   }
 }
+export default CustomProducts

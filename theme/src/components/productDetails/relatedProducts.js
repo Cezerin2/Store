@@ -2,7 +2,7 @@ import React, { Fragment } from "react"
 import { themeSettings, text } from "../../lib/settings"
 import CustomProducts from "../products/custom"
 
-export default class RelatedProducts extends React.PureComponent {
+class RelatedProducts extends React.PureComponent {
   render() {
     const { ids, settings, addCartItem, limit } = this.props
     if (ids && ids.length > 0) {
@@ -31,3 +31,4 @@ export default class RelatedProducts extends React.PureComponent {
     return null
   }
 }
+export default RelatedProducts

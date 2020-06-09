@@ -1,7 +1,7 @@
 import React from "react"
 import { themeSettings, text } from "../../lib/settings"
 
-export default class Quantity extends React.PureComponent {
+class Quantity extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -62,3 +62,4 @@ export default class Quantity extends React.PureComponent {
     )
   }
 }
+export default Quantity
