@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { themeSettings, text } from "../lib/settings"
 import MetaTags from "../components/metaTags"
 import ForgotPassword from "../components/forgotPassword/index"
@@ -9,7 +9,7 @@ const ForgotPasswordContainer = props => {
   } = props
 
   return (
-    <Fragment>
+    <>
       <section className="section">
         <div className="container">
           <div className="content">
@@ -17,7 +17,7 @@ const ForgotPasswordContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

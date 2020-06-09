@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { themeSettings, text } from "../lib/settings"
 import MetaTags from "../components/metaTags"
@@ -91,7 +91,7 @@ const CategoryContainer = props => {
   const showFilter = themeSettings.show_product_filter
 
   return (
-    <Fragment>
+    <>
       <MetaTags
         title={title}
         description={categoryDetails.meta_description}
@@ -138,7 +138,7 @@ const CategoryContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

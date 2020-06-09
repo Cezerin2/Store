@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 import * as helper from "../../lib/helper"
 import { themeSettings, text } from "../../lib/settings"
@@ -114,7 +114,7 @@ export default class ProductDetails extends React.Component {
 
     if (product) {
       return (
-        <Fragment>
+        <>
           <section className="section section-product">
             <div className="container">
               <div className="columns">
@@ -206,7 +206,7 @@ export default class ProductDetails extends React.Component {
                 </div>
               </section>
             )}
-        </Fragment>
+        </>
       )
     }
     return null

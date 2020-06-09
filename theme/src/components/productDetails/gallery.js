@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 import ImageGallery from "react-image-gallery"
 import Lightbox from "react-image-lightbox"
@@ -48,7 +48,7 @@ export default class Gallery extends React.Component {
       const showThumbnails = images.length > 1
 
       return (
-        <Fragment>
+        <>
           <ImageGallery
             items={imagesArray}
             showThumbnails={showThumbnails}
@@ -92,7 +92,7 @@ export default class Gallery extends React.Component {
               }
             />
           )}
-        </Fragment>
+        </>
       )
     }
     return <div className="large-image-placeholder" />
