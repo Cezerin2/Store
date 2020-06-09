@@ -1,18 +1,16 @@
-import React from "react"
-import Login from "../components/login/index"
+import React from "react";
+import Login from "../components/login/index";
 
-const LoginContainer = props => {
-  return (
-    <>
-      <section className="section">
-        <div className="container">
-          <div className="content">
-            <Login {...props} />
-          </div>
+const LoginContainer = (props) => (
+  <>
+    <section className="section">
+      <div className="container">
+        <div className="content">
+          <Login {...props} />
         </div>
-      </section>
-    </>
-  )
-}
+      </div>
+    </section>
+  </>
+);
 
-export default LoginContainer
+export default LoginContainer;
