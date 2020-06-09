@@ -1,5 +1,5 @@
 const path = require("path")
-const webpack,{BannerPlugin,SourceMapDevToolPlugin} = require("webpack")
+const webpack = require("webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
@@ -129,12 +129,12 @@ module.exports = {
         },
       ],
     }),
-    new BannerPlugin({
+    new webpack.BannerPlugin({
       banner: `Created: ${new Date().toUTCString()}`,
       raw: false,
       entryOnly: false,
     }),
-    new SourceMapDevToolPlugin({
+    new webpack.SourceMapDevToolPlugin({
       filename: "[name].js.map",
       exclude: ["vendor.js"],
     }),
