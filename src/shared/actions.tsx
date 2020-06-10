@@ -1,9 +1,9 @@
 import queryString from "query-string"
 import { animateScroll } from "react-scroll"
-import * as t from "./actionTypes"
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "./pageTypes"
 import api from "../client/api"
+import * as t from "./actionTypes"
 import * as analytics from "./analytics"
+import { PAGE, PRODUCT, PRODUCT_CATEGORY, SEARCH } from "./pageTypes"
 
 const requestProduct = () => ({ type: t.PRODUCT_REQUEST })
 
