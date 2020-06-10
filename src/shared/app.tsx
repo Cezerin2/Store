@@ -1,26 +1,23 @@
 import React from "react"
-import { Route } from "react-router"
-import { Link } from "react-router-dom"
 import { connect } from "react-redux"
+import { Route } from "react-router"
 import { animateScroll } from "react-scroll"
-
-import IndexContainer from "./containers/index"
-import SharedContainer from "./containers/shared"
+import { setCurrentPage } from "./actions"
+import AccountContainer from "./containers/account"
 import CategoryContainer from "./containers/category"
-import ProductContainer from "./containers/product"
-import PageContainer from "./containers/page"
 import CheckoutContainer from "./containers/checkout"
 import CheckoutSuccessContainer from "./containers/checkoutSuccess"
-import NotFoundContainer from "./containers/notfound"
-import SearchContainer from "./containers/search"
-import LoginContainer from "./containers/login"
-import RegisterContainer from "./containers/register"
-import AccountContainer from "./containers/account"
 import ForgotPasswordContainer from "./containers/forgotPassword"
+import IndexContainer from "./containers/index"
+import LoginContainer from "./containers/login"
+import NotFoundContainer from "./containers/notfound"
+import PageContainer from "./containers/page"
+import ProductContainer from "./containers/product"
+import RegisterContainer from "./containers/register"
 import ResetPasswordContainer from "./containers/resetPassword"
-
-import { setCurrentPage } from "./actions"
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "./pageTypes"
+import SearchContainer from "./containers/search"
+import SharedContainer from "./containers/shared"
+import { PAGE, PRODUCT, PRODUCT_CATEGORY, RESERVED, SEARCH } from "./pageTypes"
 
 class SwitchContainers extends React.Component {
   constructor(props) {
@@ -48,7 +45,7 @@ class SwitchContainers extends React.Component {
   }
 
   render() {
-    const { history, location, currentPage } = this.props
+    const { location, currentPage } = this.props
     const locationPathname =
       location && location.pathname ? location.pathname : "/"
     switch (currentPage.type) {
