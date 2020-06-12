@@ -1,32 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react"
 
-let scriptAdded = false;
-class PayPalButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  addScript = () => {
+let scriptAdded = false
+const PayPalButton = props => {
+  const addScript = () => {
     if (scriptAdded) {
-      this.executeScript();
-      return;
+      executeScript()
+      return
     }
 
-    const SCRIPT_URL = "https://www.paypalobjects.com/api/checkout.min.js";
-    const container = document.body || document.head;
-    const script = document.createElement("script");
-    script.src = SCRIPT_URL;
+    const SCRIPT_URL = "https://www.paypalobjects.com/api/checkout.min.js"
+    const container = document.body || document.head
+    const script = document.createElement("script")
+    script.src = SCRIPT_URL
     script.onload = () => {
-      this.executeScript();
-    };
-    container.appendChild(script);
-    scriptAdded = true;
-  };
+      executeScript()
+    }
+    container.appendChild(script)
+    scriptAdded = true
+  }
 
-  executeScript = () => {
-    const { formSettings, shopSettings, onPayment } = this.props;
+  const executeScript = () => {
+    const { formSettings, onPayment } = props
 
-    document.getElementById("paypal-button-container").innerHTML = null;
+    document.getElementById("paypal-button-container").innerHTML = null
 
     paypal.Button.render(
       {
@@ -63,22 +59,22 @@ class PayPalButton extends React.Component {
             experience: {
               input_fields: { no_shipping: 1 },
             },
-          });
+          })
         },
         // Wait for the payment to be authorized by the customer
 
         onAuthorize(data, actions) {
           // Get the payment details
 
-          return actions.payment.get().then((data) => {
+          return actions.payment.get().then(data => {
             if (
               data.state.toLowerCase() === "created" &&
               data.payer.status.toLowerCase() === "verified"
             ) {
               // Display a confirmation button
               document.querySelector("#paypal-button-container").style.display =
-                "none";
-              document.querySelector("#confirm").style.display = "block";
+                "none"
+              document.querySelector("#confirm").style.display = "block"
 
               // Listen for click on confirm button
 
@@ -87,55 +83,53 @@ class PayPalButton extends React.Component {
                 .addEventListener("click", () => {
                   // Disable the button and show a loading indicator
 
-                  document.querySelector("#confirmButton").innerText = "";
+                  document.querySelector("#confirmButton").innerText = ""
                   document.querySelector("#confirmButton").className =
-                    "loading-process";
-                  document.querySelector("#confirm").disabled = true;
+                    "loading-process"
+                  document.querySelector("#confirm").disabled = true
 
                   // Execute the payment
 
-                  return actions.payment.execute().then((res) => {
+                  return actions.payment.execute().then(res => {
                     if (res.state.toLowerCase() === "approved") {
-                      onPayment();
+                      onPayment()
                     }
-                  });
-                });
+                  })
+                })
             }
-          });
+          })
         },
       },
-      "#paypal-button-container",
-    );
-  };
-
-  componentDidMount() {
-    this.addScript();
+      "#paypal-button-container"
+    )
   }
 
-  componentDidUpdate() {
-    this.executeScript();
-  }
+  useEffect(() => {
+    addScript()
+  }, [])
 
-  render() {
-    const { formSettings, shopSettings, onPayment } = this.props;
+  //componentDidUpdate() {
+  useEffect(() => {
+    executeScript()
+  })
 
-    return (
-      <>
-        <div id="paypal-button-container" />
-        <div
-          id="confirm"
-          className="checkout-button-wrap"
-          style={{ display: "none" }}
+  return (
+    <>
+      <div id="paypal-button-container" />
+      <div
+        id="confirm"
+        className="checkout-button-wrap"
+        style={{ display: "none" }}
+      >
+        <button
+          id="confirmButton"
+          className="checkout-button button confirm-checkout is-primary"
         >
-          <button
-            id="confirmButton"
-            className="checkout-button button confirm-checkout is-primary"
-          >
-            Confirm
-          </button>
-        </div>
-      </>
-    );
-  }
+          Confirm
+        </button>
+      </div>
+    </>
+  )
 }
-export default PayPalButton;
+
+export default PayPalButton
