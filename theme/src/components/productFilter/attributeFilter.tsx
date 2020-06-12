@@ -1,31 +1,28 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
+import React, { useEffect, useState } from "react"
 
-class AttributeValue extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      checked: props.checked,
-    }
-  }
+const AttributeValue = props => {
+  const [checked, setChecked] = useState(props.checked)
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.checked !== this.props.checked) {
-      this.setState({ checked: nextProps.checked })
-    }
-  }
+  //componentWillReceiveProps(nextProps) {
+  useEffect(
+    nextProps => {
+      if (nextProps.checked !== props.checked) {
+        setChecked(nextProps.checked)
+      }
+    },
+    [nextProps]
+  )
 
-  onChange = event => {
+  const onChange = event => {
     const {
       attributeName,
       valueName,
       setFilterAttribute,
       unsetFilterAttribute,
-    } = this.props
+    } = props
     const { checked } = event.target
 
-    this.setState({ checked })
+    setChecked
 
     if (checked) {
       setFilterAttribute(attributeName, valueName)
@@ -34,24 +31,22 @@ class AttributeValue extends React.Component {
     }
   }
 
-  render() {
-    const { valueName, count } = this.props
-    const isDisabled = count === 0
-    const classChecked = this.state.checked ? "attribute-checked" : ""
-    const classDisabled = isDisabled ? "attribute-disabled" : ""
+  const { valueName, count } = props
+  const isDisabled = count === 0
+  const classChecked = checked ? "attribute-checked" : ""
+  const classDisabled = isDisabled ? "attribute-disabled" : ""
 
-    return (
-      <label className={`${classChecked} ${classDisabled}`}>
-        <input
-          type="checkbox"
-          disabled={isDisabled}
-          onChange={this.onChange}
-          checked={this.state.checked}
-        />
-        {valueName} ({count})
-      </label>
-    )
-  }
+  return (
+    <label className={`${classChecked} ${classDisabled}`}>
+      <input
+        type="checkbox"
+        disabled={isDisabled}
+        onChange={onChange}
+        checked={checked}
+      />
+      {valueName} ({count})
+    </label>
+  )
 }
 
 const AttributeSet = ({
