@@ -1,73 +1,54 @@
-import React from "react"
 import Lscache from "lscache"
-import { themeSettings, text } from "../../lib/settings"
+import React from "react"
+import { themeSettings } from "../../lib/settings"
 import Login from "./login"
 
-class LoginForm extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  handleFormSubmit = values => {
+const LoginForm = props => {
+  const handleFormSubmit = values => {
     let cartLayer = false
-    if (
-      this.props.location !== undefined &&
-      this.props.location.state !== undefined
-    ) {
-      if (
-        this.props.location.state.cartLayer &&
-        Lscache.get("auth_data") === null
-      ) {
+    if (props.location !== undefined && props.location.state !== undefined) {
+      if (props.location.state.cartLayer && Lscache.get("auth_data") === null) {
         cartLayer = true
       }
     }
 
-    this.props.loginUser({
+    props.loginUser({
       email: values.email,
       password: values.password,
-      history: this.props.history,
+      history: props.history,
       cartLayer,
     })
   }
 
-  render() {
-    const {
-      settings,
-      customerProperties,
-      cartlayerBtnInitialized,
-    } = this.props.state
+  const { settings, customerProperties, cartlayerBtnInitialized } = props.state
 
-    if (this.props.state.customerProperties !== undefined) {
-      if (this.props.state.customerProperties.authenticated) {
-        const expiryMilliseconds = 1000 // time units is seconds
-        Lscache.setExpiryMilliseconds(expiryMilliseconds)
-        Lscache.set(
-          "auth_data",
-          this.props.state.customerProperties.token,
-          6000
-        )
-        Lscache.set("customer_data", this.props.state.customerProperties, 6000)
-      }
+  if (props.state.customerProperties !== undefined) {
+    if (props.state.customerProperties.authenticated) {
+      const expiryMilliseconds = 1000 // time units is seconds
+      Lscache.setExpiryMilliseconds(expiryMilliseconds)
+      Lscache.set("auth_data", props.state.customerProperties.token, 6000)
+      Lscache.set("customer_data", props.state.customerProperties, 6000)
     }
-
-    const {
-      checkoutInputClass = "checkout-field",
-      checkoutButtonClass = "checkout-button",
-      checkoutEditButtonClass = "checkout-button-edit",
-    } = themeSettings
-
-    return (
-      <Login
-        inputClassName={checkoutInputClass}
-        buttonClassName={checkoutButtonClass}
-        editButtonClassName={checkoutEditButtonClass}
-        settings={settings}
-        customerProperties={customerProperties}
-        cartlayerBtnInitialized={cartlayerBtnInitialized}
-        readOnly={true}
-        onSubmit={this.handleFormSubmit}
-      />
-    )
   }
+
+  const {
+    checkoutInputClass = "checkout-field",
+    checkoutButtonClass = "checkout-button",
+    checkoutEditButtonClass = "checkout-button-edit",
+  } = themeSettings
+
+  return (
+    <Login
+      inputClassName={checkoutInputClass}
+      buttonClassName={checkoutButtonClass}
+      editButtonClassName={checkoutEditButtonClass}
+      settings={settings}
+      customerProperties={customerProperties}
+      cartlayerBtnInitialized={cartlayerBtnInitialized}
+      readOnly={true}
+      onSubmit={handleFormSubmit}
+    />
+  )
 }
+
 export default LoginForm
