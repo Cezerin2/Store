@@ -1,101 +1,91 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
+import React, { useState } from "react"
 import ImageGallery from "react-image-gallery"
 import Lightbox from "react-image-lightbox"
 import * as helper from "../../lib/helper"
-import { themeSettings, text } from "../../lib/settings"
+import { themeSettings } from "../../lib/settings"
 
-class Gallery extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      lightboxIsOpen: false,
-      lightboxPhotoIndex: 0,
-    }
+const Gallery = props => {
+  const [lightboxIsOpen, setLightboxIsOpen] = useState(false)
+  const [lightboxPhotoIndex, setLightboxPhotoIndex] = useState(0)
+
+  const openLightbox = () => {
+    setLightboxIsOpen(true)
   }
 
-  openLightbox = () => {
-    this.setState({ lightboxIsOpen: true })
+  const closeLightbox = () => {
+    setLightboxIsOpen(false)
   }
 
-  closeLightbox = () => {
-    this.setState({ lightboxIsOpen: false })
+  const setPhotoIndex = (index: number) => {
+    setLightboxPhotoIndex(index)
   }
 
-  setPhotoIndex = index => {
-    this.setState({ lightboxPhotoIndex: index })
-  }
+  const { images } = props
 
-  render() {
-    const { images } = this.props
-    const { lightboxIsOpen, lightboxPhotoIndex } = this.state
+  if (images && images.length > 0) {
+    const imagesArray = images.map(image => ({
+      original: helper.getThumbnailUrl(
+        image.url,
+        themeSettings.bigThumbnailWidth
+      ),
+      thumbnail: helper.getThumbnailUrl(
+        image.url,
+        themeSettings.previewThumbnailWidth
+      ),
+      originalAlt: image.alt,
+      thumbnailAlt: image.alt,
+    }))
 
-    if (images && images.length > 0) {
-      const imagesArray = images.map(image => ({
-        original: helper.getThumbnailUrl(
-          image.url,
-          themeSettings.bigThumbnailWidth
-        ),
-        thumbnail: helper.getThumbnailUrl(
-          image.url,
-          themeSettings.previewThumbnailWidth
-        ),
-        originalAlt: image.alt,
-        thumbnailAlt: image.alt,
-      }))
+    const originalImages = images.map(image => image.url)
+    const showThumbnails = images.length > 1
 
-      const originalImages = images.map(image => image.url)
-      const showThumbnails = images.length > 1
-
-      return (
-        <>
-          <ImageGallery
-            items={imagesArray}
-            showThumbnails={showThumbnails}
-            onClick={this.openLightbox}
-            lazyLoad
-            slideInterval={2000}
-            showNav={themeSettings.product_gallery_shownav === true}
-            showBullets={showThumbnails}
-            showPlayButton={false}
-            showFullscreenButton={false}
-            slideOnThumbnailHover
-            thumbnailPosition={themeSettings.product_thumbnail_position}
-            onSlide={this.setPhotoIndex}
+    return (
+      <>
+        <ImageGallery
+          items={imagesArray}
+          showThumbnails={showThumbnails}
+          onClick={openLightbox}
+          lazyLoad
+          slideInterval={2000}
+          showNav={themeSettings.product_gallery_shownav === true}
+          showBullets={showThumbnails}
+          showPlayButton={false}
+          showFullscreenButton={false}
+          slideOnThumbnailHover
+          thumbnailPosition={themeSettings.product_thumbnail_position}
+          onSlide={setPhotoIndex}
+        />
+        {lightboxIsOpen && (
+          <Lightbox
+            reactModalStyle={{ overlay: { zIndex: 1099 } }}
+            mainSrc={originalImages[lightboxPhotoIndex]}
+            nextSrc={
+              originalImages[(lightboxPhotoIndex + 1) % originalImages.length]
+            }
+            prevSrc={
+              originalImages[
+                (lightboxPhotoIndex + originalImages.length - 1) %
+                  originalImages.length
+              ]
+            }
+            onCloseRequest={closeLightbox}
+            onMovePrevRequest={() =>
+              setLightboxPhotoIndex(
+                (lightboxPhotoIndex + originalImages.length - 1) %
+                  originalImages.length
+              )
+            }
+            onMoveNextRequest={() =>
+              setLightboxPhotoIndex(
+                (lightboxPhotoIndex + 1) % originalImages.length
+              )
+            }
           />
-          {lightboxIsOpen && (
-            <Lightbox
-              reactModalStyle={{ overlay: { zIndex: 1099 } }}
-              mainSrc={originalImages[lightboxPhotoIndex]}
-              nextSrc={
-                originalImages[(lightboxPhotoIndex + 1) % originalImages.length]
-              }
-              prevSrc={
-                originalImages[
-                  (lightboxPhotoIndex + originalImages.length - 1) %
-                    originalImages.length
-                ]
-              }
-              onCloseRequest={this.closeLightbox}
-              onMovePrevRequest={() =>
-                this.setState({
-                  lightboxPhotoIndex:
-                    (lightboxPhotoIndex + originalImages.length - 1) %
-                    originalImages.length,
-                })
-              }
-              onMoveNextRequest={() =>
-                this.setState({
-                  lightboxPhotoIndex:
-                    (lightboxPhotoIndex + 1) % originalImages.length,
-                })
-              }
-            />
-          )}
-        </>
-      )
-    }
-    return <div className="large-image-placeholder" />
+        )}
+      </>
+    )
   }
+  return <div className="large-image-placeholder" />
 }
+
 export default Gallery
