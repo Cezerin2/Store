@@ -1,65 +1,62 @@
-import React from "react";
-import { text } from "../../lib/settings";
+import React, { useEffect, useState } from "react"
+import { text } from "../../lib/settings"
 
-class Quantity extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quantity: 1,
-    };
+const Quantity = props => {
+  const [quantity, setQuantity] = useState(1)
+
+  //componentWillReceiveProps(nextProps) {
+  useEffect(
+    nextProps => {
+      if (quantity > nextProps.maxQuantity) {
+        setQuantity(nextProps.maxQuantity)
+      }
+    },
+    [props]
+  )
+
+  const handleChange = event => {
+    setQuantity(event.target.value)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.quantity > nextProps.maxQuantity) {
-      this.setQuantity(nextProps.maxQuantity);
+  const setQuantitys = quantity => {
+    const intQuantity = parseInt(quantity)
+    if (intQuantity > 0 && intQuantity <= props.maxQuantity) {
+      setQuantity(intQuantity)
+      props.onChange(intQuantity)
     }
   }
 
-  handleChange = (event) => {
-    this.setQuantity(event.target.value);
-  };
-
-  setQuantity = (quantity) => {
-    const intQuantity = parseInt(quantity);
-    if (intQuantity > 0 && intQuantity <= this.props.maxQuantity) {
-      this.setState({ quantity: intQuantity });
-      this.props.onChange(intQuantity);
-    }
-  };
-
-  increment = () => {
-    const newQuantity = this.state.quantity + 1;
-    this.setQuantity(newQuantity);
-  };
-
-  decrement = () => {
-    const newQuantity = this.state.quantity - 1;
-    this.setQuantity(newQuantity);
-  };
-
-  render() {
-    const { maxQuantity } = this.props;
-    const { quantity } = this.state;
-    const disabled = maxQuantity === 0;
-    const value = disabled ? 0 : quantity;
-
-    return (
-      <>
-        <>{text.qty}</>
-        <div className="product-quantity">
-          <a className="decrement" onClick={this.decrement} />
-          <input
-            value={value}
-            onChange={this.handleChange}
-            maxLength="3"
-            type="number"
-            pattern="\d*"
-            disabled={disabled}
-          />
-          <a className="increment" onClick={this.increment} />
-        </div>
-      </>
-    );
+  const increment = () => {
+    const newQuantity = quantity + 1
+    setQuantity(newQuantity)
   }
+
+  const decrement = () => {
+    const newQuantity = quantity - 1
+    setQuantity(newQuantity)
+  }
+
+  const { maxQuantity } = props
+  const disabled = maxQuantity === 0
+  const value = disabled ? 0 : quantity
+
+  return (
+    <>
+      <>{text.qty}</>
+      <div className="product-quantity">
+        <a className="decrement" onClick={decrement} />
+        <input
+          value={value}
+          onChange={handleChange}
+          maxLength="3"
+          type="number"
+          pattern="\d*"
+          disabled={disabled}
+        />
+        <a className="increment" onClick={increment} />
+      </div>
+    </>
+  )
 }
-export default Quantity;
+
+export default Quantity
