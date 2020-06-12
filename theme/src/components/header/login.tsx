@@ -1,6 +1,5 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
+import { text } from "../../lib/settings"
 
 const LoginIcon = () => {
   return (
@@ -20,15 +19,14 @@ const LoginIcon = () => {
   )
 }
 
-class Login extends React.PureComponent {
-  render() {
-    const { login, onClick } = this.props
+const Login = props => {
+  const { onClick } = props
 
-    return (
-      <span className="login-button" onClick={onClick}>
-        <LoginIcon />
-      </span>
-    )
-  }
+  return (
+    <span className="login-button" onClick={onClick}>
+      <LoginIcon />
+    </span>
+  )
 }
+
 export default Login
