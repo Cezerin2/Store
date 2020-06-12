@@ -1,76 +1,79 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, { useEffect, useState } from "react"
+// import PropTypes from "prop-types"
 import api from "../../lib/api"
 import ProductList from "../productList"
 
-class CustomProducts extends React.Component {
-  static propTypes = {
-    ids: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.arrayOf(PropTypes.string),
-    ]),
-    sku: PropTypes.string,
-    sort: PropTypes.string,
-    limit: PropTypes.number.isRequired,
-    category_id: PropTypes.string,
-    tags: PropTypes.string,
-    attributes: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-      })
-    ),
-    price_from: PropTypes.number,
-    price_to: PropTypes.number,
-    on_sale: PropTypes.bool,
-    settings: PropTypes.shape({}).isRequired,
-    addCartItem: PropTypes.func.isRequired,
-    isCentered: PropTypes.bool,
-    className: PropTypes.string,
-    columnCountOnMobile: PropTypes.number,
-    columnCountOnTablet: PropTypes.number,
-    columnCountOnDesktop: PropTypes.number,
-    columnCountOnWidescreen: PropTypes.number,
-    columnCountOnFullhd: PropTypes.number,
-  }
+const CustomProducts = props => {
+  // static propTypes = {
+  //   ids: PropTypes.oneOfType([
+  //     PropTypes.string,
+  //     PropTypes.arrayOf(PropTypes.string),
+  //   ]),
+  //   sku: PropTypes.string,
+  //   sort: PropTypes.string,
+  //   limit: PropTypes.number.isRequired,
+  //   category_id: PropTypes.string,
+  //   tags: PropTypes.string,
+  //   attributes: PropTypes.arrayOf(
+  //     PropTypes.shape({
+  //       name: PropTypes.string.isRequired,
+  //       value: PropTypes.string.isRequired,
+  //     })
+  //   ),
+  //   price_from: PropTypes.number,
+  //   price_to: PropTypes.number,
+  //   on_sale: PropTypes.bool,
+  //   settings: PropTypes.shape({}).isRequired,
+  //   addCartItem: PropTypes.func.isRequired,
+  //   isCentered: PropTypes.bool,
+  //   className: PropTypes.string,
+  //   columnCountOnMobile: PropTypes.number,
+  //   columnCountOnTablet: PropTypes.number,
+  //   columnCountOnDesktop: PropTypes.number,
+  //   columnCountOnWidescreen: PropTypes.number,
+  //   columnCountOnFullhd: PropTypes.number,
+  // }
 
-  static defaultProps = {
-    ids: null,
-    sku: null,
-    sort: null,
-    category_id: null,
-    tags: null,
-    attributes: null,
-    price_from: null,
-    price_to: null,
-    on_sale: null,
-    isCentered: true,
-    className: "columns is-multiline is-mobile products",
-    columnCountOnMobile: 2,
-    columnCountOnTablet: 3,
-    columnCountOnDesktop: 4,
-    columnCountOnWidescreen: 4,
-    columnCountOnFullhd: 4,
-  }
+  // static defaultProps = {
+  //   ids: null,
+  //   sku: null,
+  //   sort: null,
+  //   category_id: null,
+  //   tags: null,
+  //   attributes: null,
+  //   price_from: null,
+  //   price_to: null,
+  //   on_sale: null,
+  //   isCentered: true,
+  //   className: "columns is-multiline is-mobile products",
+  //   columnCountOnMobile: 2,
+  //   columnCountOnTablet: 3,
+  //   columnCountOnDesktop: 4,
+  //   columnCountOnWidescreen: 4,
+  //   columnCountOnFullhd: 4,
+  // }
 
-  state = {
-    products: [],
-  }
+  const [products, setProducts] = useState([])
+  const [isCancelled, setIsCancelled] = useState(false)
 
-  componentDidMount() {
-    this.isCancelled = false
-    this.fetchProducts(this.props)
-  }
+  useEffect(() => {
+    setIsCancelled(false)
+    fetchProducts(props)
+  }, [])
 
-  componentWillReceiveProps(nextProps) {
-    this.fetchProducts(nextProps)
-  }
+  //componentWillReceiveProps(nextProps) {
+  useEffect(
+    nextProps => {
+      fetchProducts(nextProps)
+    },
+    [props]
+  )
 
-  componentWillUnmount() {
-    this.isCancelled = true
-  }
+  useEffect(() => {
+    return () => setIsCancelled(true)
+  }, [])
 
-  fetchProducts = ({
+  const fetchProducts = ({
     ids,
     sku,
     sort,
@@ -107,46 +110,41 @@ class CustomProducts extends React.Component {
     api.ajax.products
       .list(filter)
       .then(({ json }) => {
-        if (!this.isCancelled) {
-          this.setState({
-            products: json.data,
-          })
+        if (!isCancelled) {
+          setProducts(json.data)
         }
       })
-      .catch(() => {})
+      .catch(error => console.error(error))
   }
 
-  render() {
-    const {
-      settings,
-      addCartItem,
-      isCentered,
-      className,
-      columnCountOnMobile,
-      columnCountOnTablet,
-      columnCountOnDesktop,
-      columnCountOnWidescreen,
-      columnCountOnFullhd,
-    } = this.props
+  const {
+    settings,
+    addCartItem,
+    isCentered,
+    className,
+    columnCountOnMobile,
+    columnCountOnTablet,
+    columnCountOnDesktop,
+    columnCountOnWidescreen,
+    columnCountOnFullhd,
+  } = props
 
-    const { products } = this.state
-
-    return (
-      <ProductList
-        products={products}
-        addCartItem={addCartItem}
-        settings={settings}
-        loadMoreProducts={null}
-        hasMore={false}
-        columnCountOnMobile={columnCountOnMobile}
-        columnCountOnTablet={columnCountOnTablet}
-        columnCountOnDesktop={columnCountOnDesktop}
-        columnCountOnWidescreen={columnCountOnWidescreen}
-        columnCountOnFullhd={columnCountOnFullhd}
-        isCentered={isCentered}
-        className={className}
-      />
-    )
-  }
+  return (
+    <ProductList
+      products={products}
+      addCartItem={addCartItem}
+      settings={settings}
+      loadMoreProducts={null}
+      hasMore={false}
+      columnCountOnMobile={columnCountOnMobile}
+      columnCountOnTablet={columnCountOnTablet}
+      columnCountOnDesktop={columnCountOnDesktop}
+      columnCountOnWidescreen={columnCountOnWidescreen}
+      columnCountOnFullhd={columnCountOnFullhd}
+      isCentered={isCentered}
+      className={className}
+    />
+  )
 }
+
 export default CustomProducts
