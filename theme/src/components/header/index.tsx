@@ -1,12 +1,12 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
 import Lscache from "lscache"
-import { themeSettings, text } from "../../lib/settings"
+import React, { useEffect, useState } from "react"
+import { NavLink } from "react-router-dom"
+import { text } from "../../lib/settings"
 import Cart from "./cart"
 import CartIndicator from "./cartIndicator"
+import HeadMenu from "./headMenu"
 import Login from "./login"
 import SearchBox from "./searchBox"
-import HeadMenu from "./headMenu"
 
 const Logo = ({ src, onClick, alt }) => (
   <NavLink className="logo-image" to="/" onClick={onClick}>
@@ -35,216 +35,187 @@ const BackButton = ({ onClick }) => (
   </span>
 )
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      mobileMenuIsActive: false,
-      mobileSearchIsActive: false,
-      cartIsActive: false,
-    }
-  }
+const Header = props => {
+  const [mobileMenuIsActive, setMobileMenuIsActive] = useState(false)
+  const [mobileSearchIsActive, setMobileSearchIsActive] = useState(false)
+  const [cartIsActive, setCartIsActive] = useState(false)
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      this.props.state.cart !== nextProps.state.cart &&
-      this.props.state.currentPage.path !== "/checkout"
-    ) {
-      this.showCart()
-    }
-  }
+  //componentWillReceiveProps(nextProps) {
+  useEffect(
+    nextProps => {
+      if (
+        props.cart !== nextProps.cart &&
+        props.currentPage.path !== "/checkout"
+      ) {
+        showCart()
+      }
+    },
+    [nextProps]
+  )
 
-  menuToggle = () => {
-    this.setState({
-      mobileMenuIsActive: !this.state.mobileMenuIsActive,
-      cartIsActive: false,
-    })
+  const menuToggle = () => {
+    setMobileMenuIsActive(!mobileMenuIsActive)
+    setCartIsActive(false)
     document.body.classList.toggle("noscroll")
   }
 
-  searchToggle = () => {
-    this.setState({
-      mobileSearchIsActive: !this.state.mobileSearchIsActive,
-    })
+  const searchToggle = () => {
+    setMobileSearchIsActive(!mobileSearchIsActive)
     document.body.classList.toggle("search-active")
   }
 
-  menuClose = () => {
-    this.setState({ mobileMenuIsActive: false })
+  const menuClose = () => {
+    setMobileMenuIsActive(false)
     document.body.classList.remove("noscroll")
   }
 
-  closeAll = () => {
-    this.setState({
-      cartIsActive: false,
-      mobileMenuIsActive: false,
-    })
+  const closeAll = () => {
+    setCartIsActive(false)
+    setMobileMenuIsActive(false)
     document.body.classList.remove("noscroll")
   }
 
-  cartToggle = () => {
-    this.setState({
-      cartIsActive: !this.state.cartIsActive,
-      mobileMenuIsActive: false,
-    })
+  const cartToggle = () => {
+    setCartIsActive(!cartIsActive)
+    setMobileMenuIsActive(false)
 
-    if (
-      this.props.state.cart &&
-      this.props.state.cart.items &&
-      this.props.state.cart.items.length > 0
-    ) {
-      this.props.cartLayerInitialized({
+    if (props.cart && props.cart.items && props.cart.items.length > 0) {
+      props.cartLayerInitialized({
         cartlayerBtnInitialized: true,
       })
     }
     document.body.classList.toggle("noscroll")
   }
 
-  showCart = () => {
-    this.setState({
-      cartIsActive: true,
-      mobileMenuIsActive: false,
-    })
+  const showCart = () => {
+    setCartIsActive(true)
+    setMobileMenuIsActive(false)
     document.body.classList.add("noscroll")
   }
 
-  handleLogin = () => {
+  const handleLogin = () => {
     Lscache.flushExpired()
     if (Lscache.get("auth_data") === null) {
-      this.props.loggedinUserTimeUp({
+      props.loggedinUserTimeUp({
         authenticated: false,
       })
-      this.props.setLocation("/login")
+      props.setLocation("/login")
     } else {
-      this.props.customerData({
+      props.customerData({
         token: Lscache.get("auth_data"),
       })
-      this.props.setLocation("/customer-account")
+      props.setLocation("/customer-account")
     }
   }
 
-  handleSearch = search => {
-    if (this.props.state.currentPage.path === "/search") {
-      this.props.setSearch(search)
+  const handleSearch = search => {
+    if (props.currentPage.path === "/search") {
+      props.setSearch(search)
     } else if (search && search !== "") {
-      this.props.setLocation(`/search?search=${search}`)
+      props.setLocation(`/search?search=${search}`)
     }
   }
 
-  handleGoBack = () => {
-    this.closeAll()
-    this.props.goBack()
+  const handleGoBack = () => {
+    closeAll()
+    props.goBack()
   }
 
-  render() {
-    const {
-      categories,
-      cart,
-      settings,
-      currentPage,
-      location,
-      productFilter,
-      cartlayerBtnInitialized,
-    } = this.props.state
+  const {
+    categories,
+    cart,
+    settings,
+    currentPage,
+    location,
+    productFilter,
+    cartlayerBtnInitialized,
+  } = props.state
 
-    const classToggle = this.state.mobileMenuIsActive
-      ? "navbar-burger is-hidden-tablet is-active"
-      : "navbar-burger is-hidden-tablet"
-    const showBackButton = currentPage.type === "product" && location.hasHistory
+  const classToggle = mobileMenuIsActive
+    ? "navbar-burger is-hidden-tablet is-active"
+    : "navbar-burger is-hidden-tablet"
+  const showBackButton = currentPage.type === "product" && location.hasHistory
 
-    return (
-      <>
-        <header
-          className={this.state.mobileSearchIsActive ? "search-active" : ""}
-        >
-          <div className="container">
-            <div className="columns is-gapless is-mobile header-container">
-              <div className="column is-4 column-burger">
-                {!showBackButton && (
-                  <BurgerButton
-                    onClick={this.menuToggle}
-                    className={classToggle}
-                  />
-                )}
-                {showBackButton && <BackButton onClick={this.handleGoBack} />}
-              </div>
+  return (
+    <>
+      <header className={mobileSearchIsActive ? "search-active" : ""}>
+        <div className="container">
+          <div className="columns is-gapless is-mobile header-container">
+            <div className="column is-4 column-burger">
+              {!showBackButton && (
+                <BurgerButton onClick={menuToggle} className={classToggle} />
+              )}
+              {showBackButton && <BackButton onClick={handleGoBack} />}
+            </div>
 
-              <div className="column is-4 has-text-centered column-logo">
-                <Logo src={settings.logo} onClick={this.closeAll} alt="logo" />
-              </div>
+            <div className="column is-4 has-text-centered column-logo">
+              <Logo src={settings.logo} onClick={closeAll} alt="logo" />
+            </div>
 
-              <div className="column is-4 has-text-right header-block-right">
-                <span
-                  className="icon icon-search is-hidden-tablet"
-                  onClick={this.searchToggle}
-                >
-                  <img
-                    src="/assets/images/search.svg"
-                    alt={text.search}
-                    title={text.search}
-                    style={{ minWidth: 24 }}
-                  />
-                </span>
-                <SearchBox
-                  value={productFilter.search}
-                  onSearch={this.handleSearch}
-                  className={
-                    this.state.mobileSearchIsActive ? "search-active" : ""
-                  }
+            <div className="column is-4 has-text-right header-block-right">
+              <span
+                className="icon icon-search is-hidden-tablet"
+                onClick={searchToggle}
+              >
+                <img
+                  src="/assets/images/search.svg"
+                  alt={text.search}
+                  title={text.search}
+                  style={{ minWidth: 24 }}
                 />
-                <Login onClick={this.handleLogin} />
-                <CartIndicator
+              </span>
+              <SearchBox
+                value={productFilter.search}
+                onSearch={handleSearch}
+                className={mobileSearchIsActive ? "search-active" : ""}
+              />
+              <Login onClick={handleLogin} />
+              <CartIndicator
+                cart={cart}
+                onClick={cartToggle}
+                cartIsActive={cartIsActive}
+                cartlayerBtnInitialized={cartlayerBtnInitialized}
+              />
+              <div className={cartIsActive ? "mini-cart-open" : ""}>
+                <Cart
                   cart={cart}
-                  onClick={this.cartToggle}
-                  cartIsActive={this.state.cartIsActive}
+                  deleteCartItem={props.deleteCartItem}
+                  settings={settings}
+                  cartToggle={cartToggle}
                   cartlayerBtnInitialized={cartlayerBtnInitialized}
                 />
-                <div
-                  className={this.state.cartIsActive ? "mini-cart-open" : ""}
-                >
-                  <Cart
-                    cart={cart}
-                    deleteCartItem={this.props.deleteCartItem}
-                    settings={settings}
-                    cartToggle={this.cartToggle}
-                    cartlayerBtnInitialized={cartlayerBtnInitialized}
-                  />
-                </div>
               </div>
             </div>
-
-            <div className="primary-nav is-hidden-mobile">
-              <HeadMenu
-                categories={categories}
-                location={location}
-                isMobile={false}
-              />
-            </div>
           </div>
-        </header>
 
-        <div
-          className={
-            this.state.mobileMenuIsActive || this.state.cartIsActive
-              ? "dark-overflow"
-              : ""
-          }
-          onClick={this.closeAll}
-        />
-        <div
-          className={`mobile-nav is-hidden-tablet${
-            this.state.mobileMenuIsActive ? " mobile-nav-open" : ""
-          }`}
-        >
-          <HeadMenu
-            isMobile={true}
-            categories={categories}
-            location={location}
-            onClick={this.menuClose}
-          />
+          <div className="primary-nav is-hidden-mobile">
+            <HeadMenu
+              categories={categories}
+              location={location}
+              isMobile={false}
+            />
+          </div>
         </div>
-      </>
-    )
-  }
+      </header>
+
+      <div
+        className={mobileMenuIsActive || cartIsActive ? "dark-overflow" : ""}
+        onClick={closeAll}
+      />
+      <div
+        className={`mobile-nav is-hidden-tablet${
+          mobileMenuIsActive ? " mobile-nav-open" : ""
+        }`}
+      >
+        <HeadMenu
+          isMobile={true}
+          categories={categories}
+          location={location}
+          onClick={menuClose}
+        />
+      </div>
+    </>
+  )
 }
+
 export default Header
