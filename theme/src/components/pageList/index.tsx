@@ -1,39 +1,34 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import api from "../../lib/api"
 import PageList from "./list"
 
-class CustomPageList extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      pages: [],
-    }
-  }
+const CustomPageList = props => {
+  const [pages, setPages] = useState([])
 
-  componentDidMount() {
-    this.fetchData(this.props)
-  }
+  useEffect(() => {
+    fetchData(props)
+  }, [])
 
-  componentWillReceiveProps(nextProps) {
-    this.fetchData(nextProps)
-  }
+  //componentWillReceiveProps(nextProps) {
+  useEffect(
+    nextProps => {
+      fetchData(nextProps)
+    },
+    [props]
+  )
 
-  fetchData = ({ tags, sort }) => {
+  const fetchData = ({ tags, sort }) => {
     const filter = {
       tags,
       sort,
     }
 
     api.ajax.pages.list(filter).then(({ status, json }) => {
-      this.setState({
-        pages: json,
-      })
+      setPages(json)
     })
   }
 
-  render() {
-    const { pages } = this.state
-    return <PageList pages={pages} />
-  }
+  return <PageList pages={pages} />
 }
+
 export default CustomPageList
