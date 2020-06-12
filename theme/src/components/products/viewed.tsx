@@ -1,45 +1,47 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, { useEffect, useState } from "react"
+// import PropTypes from "prop-types"
 import { text } from "../../lib/settings"
 import CustomProductList from "./custom"
 
-class ViewedProducts extends React.Component {
-  static propTypes = {
-    limit: PropTypes.number.isRequired,
-    settings: PropTypes.shape({}).isRequired,
-    addCartItem: PropTypes.func.isRequired,
-    product: PropTypes.shape({}).isRequired,
-  }
+const ViewedProducts = props => {
+  // static propTypes = {
+  //   limit: PropTypes.number.isRequired,
+  //   settings: PropTypes.shape({}).isRequired,
+  //   addCartItem: PropTypes.func.isRequired,
+  //   product: PropTypes.shape({}).isRequired,
+  // }
 
-  state = {
-    viewedProducts: [],
-  }
+  const [viewedProducts, setViewedProducts] = useState([])
 
-  componentDidMount() {
-    const { product } = this.props
-    const viewedProducts = this.getArrayFromLocalStorage()
-    this.setState({ viewedProducts })
+  useEffect(() => {
+    const { product } = props
+    const viewedProducts = getArrayFromLocalStorage()
+    setViewedProducts(viewedProducts)
 
     if (product && product.id) {
-      this.addProductIdToLocalStorage(product.id)
+      addProductIdToLocalStorage(product.id)
     }
+  }, [])
+
+  //componentWillReceiveProps(nextProps) {
+  useEffect(
+    nextProps => {
+      if (
+        props.product !== nextProps.product &&
+        nextProps.product &&
+        nextProps.product.id
+      ) {
+        addProductIdToLocalStorage(nextProps.product.id)
+      }
+    },
+    [props]
+  )
+
+  function shouldComponentUpdate(nextProps, nextState) {
+    return viewedProducts !== nextState.viewedProducts
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      this.props.product !== nextProps.product &&
-      nextProps.product &&
-      nextProps.product.id
-    ) {
-      this.addProductIdToLocalStorage(nextProps.product.id)
-    }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.viewedProducts !== nextState.viewedProducts
-  }
-
-  getArrayFromLocalStorage = () => {
+  const getArrayFromLocalStorage = () => {
     let values = []
     const viewedProducts = localStorage.getItem("viewedProducts")
 
@@ -50,16 +52,16 @@ class ViewedProducts extends React.Component {
           values = viewedProductsParsed
         }
       }
-    } catch (e) {
-      //
+    } catch (error) {
+      console.error(error)
     }
 
     return values
   }
 
-  addProductIdToLocalStorage = productId => {
+  const addProductIdToLocalStorage = productId => {
     if (productId && productId.length > 0) {
-      const viewedProducts = this.getArrayFromLocalStorage()
+      const viewedProducts = getArrayFromLocalStorage()
 
       if (viewedProducts.includes(productId)) {
         const index = viewedProducts.indexOf(productId)
@@ -70,38 +72,36 @@ class ViewedProducts extends React.Component {
       }
 
       localStorage.setItem("viewedProducts", JSON.stringify(viewedProducts))
-      this.setState({ viewedProducts })
+      setViewedProducts
     }
   }
 
-  render() {
-    const { limit, settings, addCartItem, product } = this.props
-    let { viewedProducts } = this.state
+  const { limit, settings, addCartItem, product } = props
 
-    if (viewedProducts && product && product.id) {
-      viewedProducts = viewedProducts.filter(id => id !== product.id)
-    }
+  if (viewedProducts && product && product.id) {
+    setViewedProducts(viewedProducts.filter(id => id !== product.id))
+  }
 
-    if (viewedProducts && viewedProducts.length > 0) {
-      const ids = viewedProducts.reverse().slice(0, limit)
-      return (
-        <section className="section section-product-related">
-          <div className="container">
-            <div className="title is-4 has-text-centered">
-              {text.recentlyViewed}
-            </div>
-            <CustomProductList
-              ids={ids}
-              settings={settings}
-              addCartItem={addCartItem}
-              limit={limit}
-              isCentered
-            />
+  if (viewedProducts && viewedProducts.length > 0) {
+    const ids = viewedProducts.reverse().slice(0, limit)
+    return (
+      <section className="section section-product-related">
+        <div className="container">
+          <div className="title is-4 has-text-centered">
+            {text.recentlyViewed}
           </div>
-        </section>
-      )
-    }
-    return null
+          <CustomProductList
+            ids={ids}
+            settings={settings}
+            addCartItem={addCartItem}
+            limit={limit}
+            isCentered
+          />
+        </div>
+      </section>
+    )
   }
+  return null
 }
+
 export default ViewedProducts
