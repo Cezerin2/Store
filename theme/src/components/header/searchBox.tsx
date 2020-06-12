@@ -1,90 +1,80 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
+import React, { useState } from "react"
+import { text, themeSettings } from "../../lib/settings"
 
-class SearchBox extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.value,
-      hasFocus: false,
-    }
+const SearchBox = props => {
+  const [value, setValue] = useState(props.value)
+  const [hasFocus, setHasFocus] = useState(false)
+
+  const handleChange = event => {
+    setValue(event.target.value)
   }
 
-  handleChange = event => {
-    this.setState({ value: event.target.value })
-  }
-
-  handleKeyPress = e => {
+  const handleKeyPress = e => {
     if (e.keyCode === 13 || e.which === 13) {
-      this.handleSearch()
+      handleSearch()
     }
   }
 
-  handleKeyDown = e => {
+  const handleKeyDown = e => {
     if (e.keyCode === 27) {
-      this.handleClear()
+      handleClear()
     }
   }
 
-  handleSearch = () => {
-    this.props.onSearch(this.state.value)
+  const handleSearch = () => {
+    props.onSearch(value)
   }
 
-  handleClear = () => {
-    this.setState({ value: "" })
-    this.props.onSearch("")
+  const handleClear = () => {
+    setValue("")
+    props.onSearch("")
   }
 
-  handleFocus = () => {
-    this.setState({ hasFocus: true })
+  const handleFocus = () => {
+    setHasFocus(true)
   }
 
-  handleBlur = () => {
-    this.setState({ hasFocus: false })
+  const handleBlur = () => {
+    setHasFocus(false)
   }
 
-  render() {
-    const { hasFocus } = this.state
-    const placeholderText =
-      themeSettings.search_placeholder &&
-      themeSettings.search_placeholder.length > 0
-        ? themeSettings.search_placeholder
-        : text.searchPlaceholder
+  const placeholderText =
+    themeSettings.search_placeholder &&
+    themeSettings.search_placeholder.length > 0
+      ? themeSettings.search_placeholder
+      : text.searchPlaceholder
 
-    return (
-      <div
-        className={`search-box ${this.props.className}${
-          hasFocus ? " has-focus" : ""
-        }`}
-      >
-        <input
-          className="search-input"
-          type="text"
-          placeholder={placeholderText}
-          value={this.state.value}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-          onKeyDown={this.handleKeyDown}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-        />
+  return (
+    <div
+      className={`search-box ${props.className}${hasFocus ? " has-focus" : ""}`}
+    >
+      <input
+        className="search-input"
+        type="text"
+        placeholder={placeholderText}
+        value={value}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+      <img
+        className="search-icon-search"
+        src="/assets/images/search.svg"
+        alt={text.search}
+        title={text.search}
+        onClick={handleSearch}
+      />
+      {value && value !== "" && (
         <img
-          className="search-icon-search"
-          src="/assets/images/search.svg"
-          alt={text.search}
-          title={text.search}
-          onClick={this.handleSearch}
+          className="search-icon-clear"
+          src="/assets/images/close.svg"
+          onClick={handleClear}
         />
-        {this.state.value && this.state.value !== "" && (
-          <img
-            className="search-icon-clear"
-            src="/assets/images/close.svg"
-            onClick={this.handleClear}
-          />
-        )}
-      </div>
-    )
-  }
+      )}
+    </div>
+  )
 }
+
 export default SearchBox
