@@ -43,7 +43,7 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 
 [![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://demo.cezerin.net/)
 
-- Getting Started
+<!-- - Getting Started
 
   - [Overview](./docs/overview.md)
 
@@ -75,7 +75,7 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 - Help
   - [FAQ](./docs/faq.md)
   - [HowTos](./docs/howtos.md)
-  - [Help and Support](./docs/help-and-support.md)
+  - [Help and Support](./docs/help-and-support.md) -->
 
 ### Requirements
 
@@ -90,8 +90,6 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 
 We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/cezerin2).
 Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
-
-## Credits
 
 ### Contributors
 

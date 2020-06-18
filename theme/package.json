@@ -1,15 +1,24 @@
 {
   "name": "theme",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Theme for cezerin2",
   "main": "dist/index.js",
-  "author": "",
   "license": "Unlicense",
+  "scripts": {
+    "build": "babel theme/src -d theme/dist --presets @babel/preset-typescript --presets @babel/react --plugins transform-class-properties"
+  },
   "dependencies": {
     "bulma": "^0.8.1",
     "rc-slider": "^9.2.4",
     "react-image-gallery": "^1.0.7",
     "react-image-lightbox": "^5.1.1",
     "react-lazyload": "^2.6.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@babel/preset-typescript": "^7.9.0"
   }
 }
