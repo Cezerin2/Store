@@ -5,7 +5,7 @@ import CheckoutStepContacts from "./stepContacts"
 import CheckoutStepShipping from "./stepShipping"
 import CheckoutStepPayment from "./stepPayment"
 
-export default class CheckoutForm extends React.Component {
+class CheckoutForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -237,3 +237,4 @@ export default class CheckoutForm extends React.Component {
     return <p>{text.emptyCheckout}</p>
   }
 }
+export default CheckoutForm

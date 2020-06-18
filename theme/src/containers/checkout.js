@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import MetaTags from "../components/metaTags"
 import OrderSummary from "../components/orderSummary"
@@ -10,7 +10,7 @@ const CheckoutContainer = props => {
   } = props
 
   return (
-    <Fragment>
+    <>
       <MetaTags
         title={pageDetails.meta_title}
         description={pageDetails.meta_description}
@@ -31,7 +31,7 @@ const CheckoutContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

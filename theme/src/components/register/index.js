@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom"
 import { themeSettings, text } from "../../lib/settings"
 import Register from "./register"
 
-export default class RegisterForm extends React.Component {
+class RegisterForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -57,3 +57,4 @@ export default class RegisterForm extends React.Component {
     )
   }
 }
+export default RegisterForm

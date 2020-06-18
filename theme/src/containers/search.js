@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { text } from "../lib/settings"
 import MetaTags from "../components/metaTags"
@@ -19,7 +19,7 @@ const SearchContainer = props => {
     : text.search
 
   return (
-    <Fragment>
+    <>
       <MetaTags title={title} />
 
       <section className="hero is-light">
@@ -41,7 +41,7 @@ const SearchContainer = props => {
           />
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

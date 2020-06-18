@@ -2,7 +2,7 @@ import React from "react"
 import { NavLink } from "react-router-dom"
 import { themeSettings, text } from "../../lib/settings"
 
-export default class DiscountCountdown extends React.Component {
+class DiscountCountdown extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -82,3 +82,4 @@ export default class DiscountCountdown extends React.Component {
     return null
   }
 }
+export default DiscountCountdown

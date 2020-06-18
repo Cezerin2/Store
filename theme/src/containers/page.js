@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { themeSettings } from "../lib/settings"
 import MetaTags from "../components/metaTags"
@@ -14,7 +14,7 @@ const PageContainer = props => {
   const showPageList = pageListTagDefined && pageDetails.path === pageListPath
 
   return (
-    <Fragment>
+    <>
       <MetaTags
         title={pageDetails.meta_title}
         description={pageDetails.meta_description}
@@ -39,7 +39,7 @@ const PageContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 
