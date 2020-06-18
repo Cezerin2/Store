@@ -26,7 +26,7 @@ function copyProps(context, props, prefix = "") {
   }
 }
 
-export default class Disqus extends React.PureComponent {
+class Disqus extends React.PureComponent {
   constructor(props) {
     super(props)
   }
@@ -94,3 +94,4 @@ export default class Disqus extends React.PureComponent {
     return <div id="disqus_thread" />
   }
 }
+export default Disqus

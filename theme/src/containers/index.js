@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { themeSettings } from "../lib/settings"
 import MetaTags from "../components/metaTags"
@@ -12,7 +12,7 @@ const IndexContainer = props => {
   } = props
 
   return (
-    <Fragment>
+    <>
       <MetaTags
         title={pageDetails.meta_title}
         description={pageDetails.meta_description}
@@ -53,7 +53,7 @@ const IndexContainer = props => {
           />
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

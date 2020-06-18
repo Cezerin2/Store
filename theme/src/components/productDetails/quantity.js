@@ -1,7 +1,7 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { themeSettings, text } from "../../lib/settings"
 
-export default class Quantity extends React.PureComponent {
+class Quantity extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -44,7 +44,7 @@ export default class Quantity extends React.PureComponent {
     const value = disabled ? 0 : quantity
 
     return (
-      <Fragment>
+      <>
         <div>{text.qty}</div>
         <div className="product-quantity">
           <a className="decrement" onClick={this.decrement} />
@@ -58,7 +58,8 @@ export default class Quantity extends React.PureComponent {
           />
           <a className="increment" onClick={this.increment} />
         </div>
-      </Fragment>
+      </>
     )
   }
 }
+export default Quantity

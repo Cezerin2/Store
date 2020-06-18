@@ -4,7 +4,7 @@ import { Range } from "rc-slider"
 import { themeSettings, text } from "../../lib/settings"
 import * as helper from "../../lib/helper"
 
-export default class PriceSlider extends React.Component {
+class PriceSlider extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -63,3 +63,4 @@ export default class PriceSlider extends React.Component {
     )
   }
 }
+export default PriceSlider

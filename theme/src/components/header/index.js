@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 import Lscache from "lscache"
 import { themeSettings, text } from "../../lib/settings"
@@ -35,7 +35,7 @@ const BackButton = ({ onClick }) => (
   </span>
 )
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -153,7 +153,7 @@ export default class Header extends React.Component {
     const showBackButton = currentPage.type === "product" && location.hasHistory
 
     return (
-      <Fragment>
+      <>
         <header
           className={this.state.mobileSearchIsActive ? "search-active" : ""}
         >
@@ -243,7 +243,8 @@ export default class Header extends React.Component {
             onClick={this.menuClose}
           />
         </div>
-      </Fragment>
+      </>
     )
   }
 }
+export default Header

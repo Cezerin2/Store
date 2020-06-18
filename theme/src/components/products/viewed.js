@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { text } from "../../lib/settings"
 import CustomProductList from "./custom"
 
-export default class ViewedProducts extends React.Component {
+class ViewedProducts extends React.Component {
   static propTypes = {
     limit: PropTypes.number.isRequired,
     settings: PropTypes.shape({}).isRequired,
@@ -104,3 +104,4 @@ export default class ViewedProducts extends React.Component {
     return null
   }
 }
+export default ViewedProducts
