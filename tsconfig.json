@@ -5,10 +5,10 @@
     "noUnusedLocals": false,
     "outDir": "build",
     "sourceMap": true,
-    "strict": false,
+    "strict": true,
     "target": "es2017",
     "esModuleInterop": true,
-    "noEmitOnError": false,
+    "noEmitOnError": true,
     "removeComments": true,
     "jsx": "react"
   },
