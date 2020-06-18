@@ -138,7 +138,11 @@ module.exports = {
       filename: "[name].js.map",
       exclude: ["vendor.js"],
     }),
-    new webpack.EnvironmentPlugin(['LANGUAGE', 'AJAX_BASE_URL', 'CLIENT_AJAX_BASE_URL']),
+    new webpack.EnvironmentPlugin([
+      "LANGUAGE",
+      "AJAX_BASE_URL",
+      "CLIENT_AJAX_BASE_URL",
+    ]),
   ],
 
   stats: {
