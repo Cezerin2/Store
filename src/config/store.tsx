@@ -3,7 +3,10 @@ const Config = {
   // store UI language
   language: process.env.LANGUAGE || "en",
   // used by Store (server side)
-  ajaxBaseUrl: process.env.CLIENT_AJAX_BASE_URL || process.env.AJAX_BASE_URL || "http://localhost:3001/ajax",
+  ajaxBaseUrl:
+    process.env.CLIENT_AJAX_BASE_URL ||
+    process.env.AJAX_BASE_URL ||
+    "http://localhost:3001/ajax",
 }
 
 export default Config
