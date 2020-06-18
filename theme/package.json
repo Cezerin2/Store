@@ -1,9 +1,8 @@
 {
   "name": "theme",
   "version": "1.0.0",
-  "description": "",
+  "description": "cezerin2-theme",
   "main": "dist/index.js",
-  "author": "",
   "license": "Unlicense",
   "dependencies": {
     "bulma": "^0.8.1",
