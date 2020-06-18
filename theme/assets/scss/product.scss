@@ -119,9 +119,7 @@
   text-decoration: underline;
 }
 
-/*
-Mobile
-*/
+// Mobile
 @media screen and (max-width: 769px) {
   .section-product .image-gallery-thumbnails-wrapper {
     display: none !important;
