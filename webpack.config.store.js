@@ -3,7 +3,7 @@ const webpack = require("webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const WorkboxPlugin = require("workbox-webpack-plugin")
+const { GenerateSW } = require("workbox-webpack-plugin")
 
 module.exports = {
   entry: {
@@ -102,7 +102,7 @@ module.exports = {
       inject: "body",
       filename: "assets/index.html",
     }),
-    new WorkboxPlugin.GenerateSW({
+    new GenerateSW({
       swDest: "assets/sw.js",
       clientsClaim: true,
       skipWaiting: true,
