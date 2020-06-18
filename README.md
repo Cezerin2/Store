@@ -45,37 +45,38 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 
 - Getting Started
 
-  - [Overview](./docs/overview.md)
+  - [Overview](https://cezerin.org/docs/#/)
 
 - Installation Guides
 
-  - [Prerequisites](./docs/prerequisites.md)
-  - [Setup Database](./docs/setup-database.md)
-  - [Using source code](./docs/using-source-code.md)
-  - [Using docker](./docs/using-docker.md)
+  - [Prerequisites](https://cezerin.org/docs/#/prerequisites)
+  - [Setup Database](https://cezerin.org/docs/#/setup-database)
+  - [Using source code](https://cezerin.org/docs/#/using-source-code)
+  - [Using docker](https://cezerin.org/docs/#/using-docker)
 
 - Deploy on Web
 
-  - [Hosting](./docs/deploy-on-web-hosting.md)
-  - [Create droplet](./docs/deploy-on-web-droplet.md)
-  - [Install NGinx Web Server + MERN Stack](./docs/deploy-on-web-mern.md)
-  - [Run MongoDB](./docs/deploy-on-web-mongodb.md)
-  - [Run Cezerin](./docs/deploy-on-web-cezerin.md)
-  - [Run NGinx](./docs/deploy-on-web-nginx.md)
-  - [Setup domain with Cloudflare](./docs/deploy-on-web-cloudflare.md)
-  - [Cezerin configs changes](./docs/deploy-on-web-cezerin-configs.md)
-  - [Final checks](./docs/deploy-on-web-final-checks.md)
-  - [Turn off Developer Mode](./docs/deploy-on-web-production-mode.md)
+  - [Hosting](https://cezerin.org/docs/#/deploy-on-web-hosting)
+  - [Create droplet](https://cezerin.org/docs/#/deploy-on-web-droplet)
+  - [Install NGinx Web Server + MERN Stack](https://cezerin.org/docs/#/deploy-on-web-mern)
+  - [Run MongoDB](https://cezerin.org/docs/#/deploy-on-web-mongodb)
+  - [Run Cezerin](https://cezerin.org/docs/#/deploy-on-web-cezerin)
+  - [Run NGinx](https://cezerin.org/docs/#/deploy-on-web-nginx)
+  - [Setup domain with Cloudflare](https://cezerin.org/docs/#/deploy-on-web-cloudflare)
+  - [Cezerin configs changes](https://cezerin.org/docs/#/deploy-on-web-cezerin-configs)
+  - [Final checks](https://cezerin.org/docs/#/deploy-on-web-final-checks)
+  - [Turn off Developer Mode](https://cezerin.org/docs/#/deploy-on-web-production-mode)
 
 - API
 
-  - [API Reference](./docs/api)
+  <!-- - [API Reference](./docs/api) -->
+
   - [API Client](https://github.com/cezerin/client)
 
 - Help
-  - [FAQ](./docs/faq.md)
-  - [HowTos](./docs/howtos.md)
-  - [Help and Support](./docs/help-and-support.md)
+  - [FAQ](https://cezerin.org/docs/#/faq)
+  - [HowTos](https://cezerin.org/docs/#/howtos)
+  - [Help and Support](https://cezerin.org/docs/#/help-and-support)
 
 ### Requirements
 
