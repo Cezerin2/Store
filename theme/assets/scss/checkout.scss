@@ -147,23 +147,11 @@
   border-bottom: none;
 }
 
-.payment-method-name {
-
-}
-
-.shipping-method-name {
-
-}
-
 .shipping-method-rate {
   white-space: nowrap;
   font-size: 0.9rem;
   font-weight: 500;
   padding-left: 10px;
-}
-
-.payment-method-logo {
-
 }
 
 .checkout-box, .checkout-step {
@@ -231,8 +219,6 @@
   padding-left: 10px;
 }
 
-.checkout-success-details {}
-
 .checkout-success-title {
   text-align: center;
 }
@@ -242,7 +228,6 @@
   padding-bottom: 20px;
 }
 
-.checkout-success-totals {}
 .checkout-success-totals div {
   display: flex;
   justify-content: space-between;
@@ -297,10 +282,10 @@ Mobile
     padding-right: 20px;
   }
 
-  .checkout-box, .checkout-step {
-    // border-radius: 0px;
-    // box-shadow: none;
-  }
+  // .checkout-box, .checkout-step {
+  //    border-radius: 0px;
+  //    box-shadow: none;
+  // }
 
   .checkout-box .summary-block {
     margin: 0 -20px 0 -20px;
@@ -320,9 +305,8 @@ Mobile
   }
 }
 
-/*
-StripeElement
-*/
+// StripeElement
+
 .StripeElement {
   background-color: white;
   height: 40px;
