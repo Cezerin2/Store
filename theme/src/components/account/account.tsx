@@ -1,25 +1,25 @@
-import Lscache from "lscache";
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { Field, reduxForm } from "redux-form";
-import { text } from "../../lib/settings";
+import Lscache from "lscache"
+import React, { useState } from "react"
+import { Link, Redirect } from "react-router-dom"
+import { Field, reduxForm } from "redux-form"
+import { text } from "../../lib/settings"
 
-const validateRequired = (value) =>
-  value && value.length > 0 ? undefined : text.required;
+const validateRequired = value =>
+  value && value.length > 0 ? undefined : text.required
 
-const validateEmail = (value) =>
+const validateEmail = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
     ? text.emailInvalid
-    : undefined;
+    : undefined
 
 const ReadOnlyField = ({ name, value }) => (
   <div className="checkout-field-preview">
     <div className="name">{name}</div>
     <div className="value">{value}</div>
   </div>
-);
+)
 
-const InputField = (field) => (
+const InputField = field => (
   <div className={field.className}>
     <label htmlFor={field.id}>
       {field.label}
@@ -35,13 +35,13 @@ const InputField = (field) => (
       className={field.meta.touched && field.meta.error ? "invalid" : ""}
     />
   </div>
-);
+)
 
-const Account = (props) => {
-  const [profileSection, setProfileSection] = useState(1);
-  const [profileEdit, setProfileEdit] = useState(false);
-  const [reinitialized, setReinitialized] = useState(false);
-  const [emailValues, setEmailValues] = useState(false);
+const Account = props => {
+  const [profileSection, setProfileSection] = useState(1)
+  const [profileEdit, setProfileEdit] = useState(false)
+  const [reinitialized, setReinitialized] = useState(false)
+  const [emailValues, setEmailValues] = useState(false)
 
   function setInitialValues() {
     props.initialize({
@@ -49,367 +49,337 @@ const Account = (props) => {
       last_name: props.customerProperties.customer_settings.last_name,
       email: props.customerProperties.customer_settings.email,
       password: props.customerProperties.customer_settings.password,
-      mobile: typeof props.customerProperties.customer_settings.mobile !==
+      mobile:
+        typeof props.customerProperties.customer_settings.mobile !==
           "undefined" &&
         props.customerProperties.customer_settings.mobile !== null
-        ? props.customerProperties.customer_settings.mobile
-        : "",
+          ? props.customerProperties.customer_settings.mobile
+          : "",
       billing_address: {
         address1:
           typeof props.customerProperties.customer_settings.addresses !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .address1 !== "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .address1 !== null
-            ? props.customerProperties.customer_settings.addresses[0]
-              .address1
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].address1 !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].address1 !==
+            null
+            ? props.customerProperties.customer_settings.addresses[0].address1
             : "",
         address2:
           typeof props.customerProperties.customer_settings.addresses !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .address2 !== "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .address2 !== null
-            ? props.customerProperties.customer_settings.addresses[0]
-              .address2
-            : "",
-        city: typeof props.customerProperties.customer_settings.addresses !==
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].address2 !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0].city !==
-            "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0].city !==
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].address2 !==
             null
-          ? props.customerProperties.customer_settings.addresses[0].city
-          : "",
+            ? props.customerProperties.customer_settings.addresses[0].address2
+            : "",
+        city:
+          typeof props.customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].city !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].city !== null
+            ? props.customerProperties.customer_settings.addresses[0].city
+            : "",
         postal_code:
           typeof props.customerProperties.customer_settings.addresses !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
           props.customerProperties.customer_settings.addresses[0]
-              .postal_code !== "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
+            .postal_code !== "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
           props.customerProperties.customer_settings.addresses[0]
-              .postal_code !== null
+            .postal_code !== null
             ? props.customerProperties.customer_settings.addresses[0]
-              .postal_code
+                .postal_code
             : "",
-        state: typeof props.customerProperties.customer_settings.addresses !==
+        state:
+          typeof props.customerProperties.customer_settings.addresses !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
           props.customerProperties.customer_settings.addresses[0].state !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0].state !==
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].state !== null
+            ? props.customerProperties.customer_settings.addresses[0].state
+            : "",
+        country:
+          typeof props.customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].country !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].country !==
             null
-          ? props.customerProperties.customer_settings.addresses[0].state
-          : "",
-        country: typeof props.customerProperties.customer_settings.addresses !==
-            "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .country !== "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .country !== null
-          ? props.customerProperties.customer_settings.addresses[0]
-            .country
-          : "",
+            ? props.customerProperties.customer_settings.addresses[0].country
+            : "",
       },
       shipping_address: {
         address1:
           typeof props.customerProperties.customer_settings.addresses !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .address1 !== "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .address1 !== null
-            ? props.customerProperties.customer_settings.addresses[0]
-              .address1
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].address1 !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].address1 !==
+            null
+            ? props.customerProperties.customer_settings.addresses[0].address1
             : "",
         address2:
           typeof props.customerProperties.customer_settings.addresses !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .address2 !== "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .address2 !== null
-            ? props.customerProperties.customer_settings.addresses[0]
-              .address2
-            : "",
-        city: typeof props.customerProperties.customer_settings.addresses !==
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].address2 !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0].city !==
-            "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0].city !==
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].address2 !==
             null
-          ? props.customerProperties.customer_settings.addresses[0].city
-          : "",
+            ? props.customerProperties.customer_settings.addresses[0].address2
+            : "",
+        city:
+          typeof props.customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].city !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].city !== null
+            ? props.customerProperties.customer_settings.addresses[0].city
+            : "",
         postal_code:
           typeof props.customerProperties.customer_settings.addresses !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
           props.customerProperties.customer_settings.addresses[0]
-              .postal_code !== "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
+            .postal_code !== "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
           props.customerProperties.customer_settings.addresses[0]
-              .postal_code !== null
+            .postal_code !== null
             ? props.customerProperties.customer_settings.addresses[0]
-              .postal_code
+                .postal_code
             : "",
-        state: typeof props.customerProperties.customer_settings.addresses !==
+        state:
+          typeof props.customerProperties.customer_settings.addresses !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
           props.customerProperties.customer_settings.addresses[0].state !==
             "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0].state !==
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].state !== null
+            ? props.customerProperties.customer_settings.addresses[0].state
+            : "",
+        country:
+          typeof props.customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].country !==
+            "undefined" &&
+          props.customerProperties.customer_settings.addresses.length > 0 &&
+          props.customerProperties.customer_settings.addresses[0].country !==
             null
-          ? props.customerProperties.customer_settings.addresses[0].state
-          : "",
-        country: typeof props.customerProperties.customer_settings.addresses !==
-            "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .country !== "undefined" &&
-          props.customerProperties.customer_settings.addresses.length >
-            0 &&
-          props.customerProperties.customer_settings.addresses[0]
-              .country !== null
-          ? props.customerProperties.customer_settings.addresses[0]
-            .country
-          : "",
+            ? props.customerProperties.customer_settings.addresses[0].country
+            : "",
       },
-    });
-    setReinitialized(true);
-    setEmailValues(props.customerProperties.customer_settings.email);
+    })
+    setReinitialized(true)
+    setEmailValues(props.customerProperties.customer_settings.email)
   }
 
-  const getField = (fieldName) => {
-    const fields = props.checkoutFields || [];
-    const field = fields.find((item) => item.name === fieldName);
-    return field;
-  };
+  const getField = fieldName => {
+    const fields = props.checkoutFields || []
+    const field = fields.find(item => item.name === fieldName)
+    return field
+  }
 
-  const getFieldStatus = (fieldName) => {
-    const field = getField(fieldName);
-    return field && field.status ? field.status : "required";
-  };
+  const getFieldStatus = fieldName => {
+    const field = getField(fieldName)
+    return field && field.status ? field.status : "required"
+  }
 
-  const isFieldOptional = (fieldName) =>
-    getFieldStatus(fieldName) === "optional";
+  const isFieldOptional = fieldName => getFieldStatus(fieldName) === "optional"
 
-  const isFieldHidden = (fieldName) => getFieldStatus(fieldName) === "hidden";
+  const isFieldHidden = fieldName => getFieldStatus(fieldName) === "hidden"
 
-  const getFieldValidators = (fieldName) => {
-    const isOptional = isFieldOptional(fieldName);
-    const validatorsArray = [];
+  const getFieldValidators = fieldName => {
+    const isOptional = isFieldOptional(fieldName)
+    const validatorsArray = []
     if (!isOptional) {
-      validatorsArray.push(validateRequired);
+      validatorsArray.push(validateRequired)
     }
     if (fieldName === "email") {
-      validatorsArray.push(validateEmail);
+      validatorsArray.push(validateEmail)
     }
 
-    return validatorsArray;
-  };
+    return validatorsArray
+  }
 
-  const getFieldPlaceholder = (fieldName) => {
-    const field = getField(fieldName);
+  const getFieldPlaceholder = fieldName => {
+    const field = getField(fieldName)
     return field && field.placeholder && field.placeholder.length > 0
       ? field.placeholder
-      : "";
-  };
+      : ""
+  }
 
-  const getFieldLabelText = (fieldName) => {
-    const field = getField(fieldName);
+  const getFieldLabelText = fieldName => {
+    const field = getField(fieldName)
     if (field && field.label && field.label.length > 0) {
-      return field.label;
+      return field.label
     }
     switch (fieldName) {
       case "first_name":
         if (typeof text.first_name !== "undefined" && text.first_name != null) {
-          return text.first_name;
+          return text.first_name
         }
-        return "";
+        return ""
       case "last_name":
         if (typeof text.last_name !== "undefined" && text.last_name != null) {
-          return text.last_name;
+          return text.last_name
         }
-        return "";
+        return ""
       case "email":
         if (typeof text.email !== "undefined" && text.email != null) {
-          return text.email;
+          return text.email
         }
-        return "";
+        return ""
       case "mobile":
         if (typeof text.mobile !== "undefined" && text.mobile != null) {
-          return text.mobile;
+          return text.mobile
         }
-        return "";
+        return ""
       case "password":
         if (typeof text.password !== "undefined" && text.password != null) {
-          return text.password;
+          return text.password
         }
-        return "";
+        return ""
       case "password_verify":
         if (
           typeof text.password_verify !== "undefined" &&
           text.password_verify != null
         ) {
-          return text.password_verify;
+          return text.password_verify
         }
-        return "";
+        return ""
       case "address1":
         if (typeof text.address1 !== "undefined" && text.address1 != null) {
-          return text.address1;
+          return text.address1
         }
-        return "";
+        return ""
       case "address2":
         if (typeof text.address2 !== "undefined" && text.address2 != null) {
-          return text.address2;
+          return text.address2
         }
-        return "";
+        return ""
       case "country":
         if (typeof text.country !== "undefined" && text.country != null) {
-          return text.country;
+          return text.country
         }
-        return "";
+        return ""
       case "state":
         if (typeof text.state !== "undefined" && text.state != null) {
-          return text.state;
+          return text.state
         }
-        return "";
+        return ""
       case "city":
         if (typeof text.city !== "undefined" && text.city != null) {
-          return text.city;
+          return text.city
         }
-        return "";
+        return ""
       case "postal_code":
         if (
-          typeof text.postal_code !== "undefined" && text.postal_code != null
+          typeof text.postal_code !== "undefined" &&
+          text.postal_code != null
         ) {
-          return text.postal_code;
+          return text.postal_code
         }
-        return "";
+        return ""
       default:
-        return "Unnamed field";
+        return "Unnamed field"
     }
-  };
+  }
 
-  const getTableHeaderLabel = (tableHeaderLabel) => {
+  const getTableHeaderLabel = tableHeaderLabel => {
     switch (tableHeaderLabel) {
       case "product_image":
-        return text.product_image;
+        return text.product_image
       case "product_id":
-        return text.order_line_id;
+        return text.order_line_id
       case "variant_id":
-        return text.product_variant_id;
+        return text.product_variant_id
       case "quantity":
-        return text.product_qty;
+        return text.product_qty
       case "discount_total":
-        return text.product_discount_total;
+        return text.product_discount_total
       case "name":
-        return text.product_name;
+        return text.product_name
       case "price":
-        return text.product_price;
+        return text.product_price
       case "price_total":
-        return text.product_price_total;
+        return text.product_price_total
       case "sku":
-        return text.product_sku;
+        return text.product_sku
       case "tax_class":
-        return text.product_tax_class;
+        return text.product_tax_class
       case "tax_total":
-        return text.product_tax_total;
+        return text.product_tax_total
       case "variant_name":
-        return text.product_variant_name;
+        return text.product_variant_name
       case "weight":
-        return text.product_weight;
+        return text.product_weight
       default:
-        return "Unnamed field";
+        return "Unnamed field"
     }
-  };
+  }
 
-  const getFieldLabel = (fieldName) => {
-    const labelText = getFieldLabelText(fieldName);
+  const getFieldLabel = fieldName => {
+    const labelText = getFieldLabelText(fieldName)
     return isFieldOptional(fieldName)
       ? `${labelText} (${text.optional})`
-      : labelText;
-  };
+      : labelText
+  }
 
   const handleProfile = () => {
-    setProfileSection(1);
-    setProfileEdit(false);
-  };
+    setProfileSection(1)
+    setProfileEdit(false)
+  }
 
   const handleOrderHistory = () => {
-    setProfileSection(2);
-  };
+    setProfileSection(2)
+  }
 
   function handleLogout() {
-    Lscache.flush();
+    Lscache.flush()
   }
 
   const handleContactsEdit = () => {
-    setProfileEdit(true);
-  };
+    setProfileEdit(true)
+  }
 
-  const {
-    handleSubmit,
-    customerProperties,
-  } = props;
+  const { handleSubmit, customerProperties } = props
 
-  Lscache.flushExpired();
+  Lscache.flushExpired()
 
-  const accountInputField = "account-field";
-  const accountForm = "account-form";
-  const titleClassName = "login-title";
-  const accountEditButtonClass = "account-button button";
-  const accountHeaderMenueContainer = "account-header-menue-container";
-  const accountHeaderMenueItems = "account-header-menue-items";
-  const accountProfileContainer = "account-profile-container";
-  const accountProfileList = "account-profile-list";
-  const accountButtonContainer = "account-button-container";
+  const accountInputField = "account-field"
+  const accountForm = "account-form"
+  const titleClassName = "login-title"
+  const accountEditButtonClass = "account-button button"
+  const accountHeaderMenueContainer = "account-header-menue-container"
+  const accountHeaderMenueItems = "account-header-menue-items"
+  const accountProfileContainer = "account-profile-container"
+  const accountProfileList = "account-profile-list"
+  const accountButtonContainer = "account-button-container"
   const continueShoppingButton =
-    "continue-shopping-button account-button button";
-  const accountProfileHeadline = "account-profile-headline";
-  const isActive = "is-active";
+    "continue-shopping-button account-button button"
+  const accountProfileHeadline = "account-profile-headline"
+  const isActive = "is-active"
 
   const billingAddress = {
     address1,
@@ -418,7 +388,7 @@ const Account = (props) => {
     postal_code,
     state,
     country,
-  };
+  }
   const shippingAddress = {
     address1,
     address2,
@@ -426,12 +396,12 @@ const Account = (props) => {
     postal_code,
     state,
     country,
-  };
-  let orderHistory = {};
-  const list = [];
-  let tableStyle = null;
-  let keyCounter = 0;
-  let listHeader = [];
+  }
+  let orderHistory = {}
+  const list = []
+  let tableStyle = null
+  let keyCounter = 0
+  let listHeader = []
 
   if (customerProperties === undefined || Lscache.get("auth_data") === null) {
     return (
@@ -440,7 +410,7 @@ const Account = (props) => {
           pathname: "/login",
         }}
       />
-    );
+    )
   }
 
   if (
@@ -454,7 +424,7 @@ const Account = (props) => {
           pathname: "/checkout",
         }}
       />
-    );
+    )
   }
 
   if (customerProperties !== undefined) {
@@ -462,40 +432,40 @@ const Account = (props) => {
       customerProperties.customer_settings &&
       customerProperties.customer_settings.addresses
     ) {
-      [].slice
+      ;[].slice
         .call(customerProperties.customer_settings.addresses)
         .forEach((key, i) => {
           if (i < 1) {
-            billingAddress.address1 = key.address1;
-            billingAddress.address2 = key.address2;
-            billingAddress.city = key.city;
-            billingAddress.postal_code = key.postal_code;
-            billingAddress.state = key.state;
-            billingAddress.country = key.country;
+            billingAddress.address1 = key.address1
+            billingAddress.address2 = key.address2
+            billingAddress.city = key.city
+            billingAddress.postal_code = key.postal_code
+            billingAddress.state = key.state
+            billingAddress.country = key.country
           }
           if (i > 0) {
-            shippingAddress.address1 = key.address1;
-            shippingAddress.address2 = key.address2;
-            shippingAddress.city = key.city;
-            shippingAddress.postal_code = key.postal_code;
-            shippingAddress.state = key.state;
-            shippingAddress.country = key.country;
+            shippingAddress.address1 = key.address1
+            shippingAddress.address2 = key.address2
+            shippingAddress.city = key.city
+            shippingAddress.postal_code = key.postal_code
+            shippingAddress.state = key.state
+            shippingAddress.country = key.country
           }
-        });
+        })
 
       orderHistory = customerProperties.order_statuses.data
-        .filter((obj) => obj.draft !== true)
+        .filter(obj => obj.draft !== true)
         .reduce((map, obj, i) => {
-          obj.items.forEach((element) => {
-            element.product_id = obj.number;
-          });
-          map[`ordered_items${i}`] = obj.items;
-          return map;
-        }, {});
+          obj.items.forEach(element => {
+            element.product_id = obj.number
+          })
+          map[`ordered_items${i}`] = obj.items
+          return map
+        }, {})
     }
 
     // get all orders
-    keyCounter = 0;
+    keyCounter = 0
     for (var i in orderHistory) {
       listHeader = orderHistory[i].map((p, j) => {
         if (j < 1) {
@@ -507,26 +477,26 @@ const Account = (props) => {
                     <th className="td-header" key={keyCounter + l}>
                       {getTableHeaderLabel(k)}
                     </th>
-                  );
+                  )
                 }
               })}
             </tr>
-          );
+          )
         }
-      });
-      keyCounter++;
+      })
+      keyCounter++
     }
-    keyCounter = 0;
+    keyCounter = 0
     for (var i in orderHistory) {
       list.push(
-        orderHistory[i].map((p) => (
+        orderHistory[i].map(p => (
           <tr className="tr-body" key={`${p.id}${i}`}>
             {Object.keys(p).map((k, d) => {
               if (k.indexOf("product_image") !== -1) {
-                const setCounter = i.replace(/^\D+/g, "");
+                const setCounter = i.replace(/^\D+/g, "")
                 const urlContent = customerProperties.order_statuses.data[
                   setCounter
-                ].landing_url.split(",");
+                ].landing_url.split(",")
                 if (p.product_image === null) {
                   return (
                     <td className="td-body" key={`${p.id}${k}`}>
@@ -536,17 +506,19 @@ const Account = (props) => {
                         value={k}
                       >
                         <a
-                          href={urlContent.length <= 1
-                            ? customerProperties.order_statuses.data[
-                              setCounter
-                            ].landing_url
-                            : urlContent[keyCounter++]}
+                          href={
+                            urlContent.length <= 1
+                              ? customerProperties.order_statuses.data[
+                                  setCounter
+                                ].landing_url
+                              : urlContent[keyCounter++]
+                          }
                         >
                           <span key={`${p.id}${k}`}>{text.no_image}</span>
                         </a>
                       </div>
                     </td>
-                  );
+                  )
                 }
                 return (
                   <td className="td-body" key={`${p.id}${k}`}>
@@ -556,17 +528,18 @@ const Account = (props) => {
                       value={k}
                     >
                       <a
-                        href={urlContent.length <= 1
-                          ? customerProperties.order_statuses.data[
-                            setCounter
-                          ].landing_url
-                          : urlContent[keyCounter++]}
+                        href={
+                          urlContent.length <= 1
+                            ? customerProperties.order_statuses.data[setCounter]
+                                .landing_url
+                            : urlContent[keyCounter++]
+                        }
                       >
                         <img src={p[k][0].url} alt="thumbnail" />
                       </a>
                     </div>
                   </td>
-                );
+                )
               }
 
               if (!["id", "variant_id"].includes(k)) {
@@ -580,21 +553,21 @@ const Account = (props) => {
                       {p[k]}
                     </div>
                   </td>
-                );
+                )
               }
             })}
           </tr>
-        )),
-      );
+        ))
+      )
     }
 
     if (profileEdit && !reinitialized) {
-      setInitialValues();
+      setInitialValues()
     }
 
     tableStyle = {
       align: "center",
-    };
+    }
 
     return (
       <div className="account-container">
@@ -645,7 +618,7 @@ const Account = (props) => {
               <ReadOnlyField
                 name={text.member_since}
                 value={new Date(
-                  customerProperties.customer_settings.date_created,
+                  customerProperties.customer_settings.date_created
                 ).toLocaleDateString("de-DE")}
               />
               <ReadOnlyField
@@ -693,10 +666,7 @@ const Account = (props) => {
                 />
               )}
               {Object.keys(billingAddress).length > 0 && (
-                <ReadOnlyField
-                  name={text.state}
-                  value={billingAddress.state}
-                />
+                <ReadOnlyField name={text.state} value={billingAddress.state} />
               )}
               <p>
                 {Object.keys(billingAddress).length === 0 ? text.empty : ""}
@@ -725,10 +695,7 @@ const Account = (props) => {
                 />
               )}
               {Object.keys(shippingAddress).length > 0 && (
-                <ReadOnlyField
-                  name={text.city}
-                  value={shippingAddress.city}
-                />
+                <ReadOnlyField name={text.city} value={shippingAddress.city} />
               )}
               {Object.keys(shippingAddress).length > 0 && (
                 <ReadOnlyField
@@ -1008,12 +975,12 @@ const Account = (props) => {
           </button>
         </div>
       </div>
-    );
+    )
   }
-};
+}
 
 export default reduxForm({
   form: "Account",
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
-})(Account);
+})(Account)

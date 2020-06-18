@@ -1,7 +1,7 @@
-import React from "react";
-import Register from "../components/register";
+import React from "react"
+import Register from "../components/register"
 
-const RegisterContainer = (props) => (
+const RegisterContainer = props => (
   <>
     <section className="section">
       <div className="container">
@@ -11,6 +11,6 @@ const RegisterContainer = (props) => (
       </div>
     </section>
   </>
-);
+)
 
-export default RegisterContainer;
+export default RegisterContainer

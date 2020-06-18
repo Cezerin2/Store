@@ -1,7 +1,7 @@
-import React from "react";
-import Login from "../components/login/index";
+import React from "react"
+import Login from "../components/login/index"
 
-const LoginContainer = (props) => (
+const LoginContainer = props => (
   <>
     <section className="section">
       <div className="container">
@@ -11,6 +11,6 @@ const LoginContainer = (props) => (
       </div>
     </section>
   </>
-);
+)
 
-export default LoginContainer;
+export default LoginContainer

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { themeSettings } from "../lib/settings";
+import React, { useState } from "react"
+import { NavLink } from "react-router-dom"
+import { themeSettings } from "../lib/settings"
 
-const FooterMenu = (props) => {
-  const [isActive, setIsActive] = useState(false);
+const FooterMenu = props => {
+  const [isActive, setIsActive] = useState(false)
 
   const isActiveToggle = () => {
-    setIsActive(!isActive);
-  };
+    setIsActive(!isActive)
+  }
 
-  const { title, items } = props;
-  let ulItems = null;
+  const { title, items } = props
+  let ulItems = null
 
   if (items && items.length > 0) {
     ulItems = items.map((item, index) => (
       <li key={index}>
         <NavLink to={item.url || ""}>{item.text}</NavLink>
       </li>
-    ));
+    ))
   }
 
   return (
@@ -33,8 +33,8 @@ const FooterMenu = (props) => {
       </div>
       <ul className="footer-menu">{ulItems}</ul>
     </div>
-  );
-};
+  )
+}
 
 const SocialIcons = ({ icons }) => {
   if (icons && icons.length > 0) {
@@ -47,39 +47,38 @@ const SocialIcons = ({ icons }) => {
         title={icon.type}
         className={icon.type}
       />
-    ));
-    return <p className="social-icons">{items}</p>;
+    ))
+    return <p className="social-icons">{items}</p>
   }
-  return null;
-};
+  return null
+}
 
 const Contacts = ({ contacts }) => {
   if (contacts && contacts.length > 0) {
     const items = contacts.map((item, index) => {
-      const contact = item ? item.text : null;
+      const contact = item ? item.text : null
       if (contact && contact.indexOf("@") > 0) {
         return (
           <li key={index}>
             <a href={`mailto:${contact}`}>{contact}</a>
           </li>
-        );
+        )
       }
-      return <li key={index}>{contact}</li>;
-    });
-    return <ul className="footer-contacts">{items}</ul>;
+      return <li key={index}>{contact}</li>
+    })
+    return <ul className="footer-contacts">{items}</ul>
   }
-  return null;
-};
+  return null
+}
 
-const Footer = (props) => {
+const Footer = props => {
   // static propTypes = {
   //   settings: PropTypes.shape({}).isRequired,
   // }
 
-  const { settings } = props;
-  const footerLogoUrl = settings.logo && settings.logo.length > 0
-    ? settings.logo
-    : null;
+  const { settings } = props
+  const footerLogoUrl =
+    settings.logo && settings.logo.length > 0 ? settings.logo : null
 
   return (
     <section className="section section-footer">
@@ -114,7 +113,7 @@ const Footer = (props) => {
         </div>
       </footer>
     </section>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

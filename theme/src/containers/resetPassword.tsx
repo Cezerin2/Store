@@ -1,7 +1,7 @@
-import React from "react";
-import ResetPassword from "../components/resetPassword/index";
+import React from "react"
+import ResetPassword from "../components/resetPassword/index"
 
-const ResetPasswordContainer = (props) => {
+const ResetPasswordContainer = props => {
   return (
     <>
       <section className="section">
@@ -12,7 +12,7 @@ const ResetPasswordContainer = (props) => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default ResetPasswordContainer;
+export default ResetPasswordContainer

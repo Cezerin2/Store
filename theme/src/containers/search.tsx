@@ -1,22 +1,22 @@
-import PropTypes from "prop-types";
-import React from "react";
-import MetaTags from "../components/metaTags";
-import ProductList from "../components/productList";
-import { text } from "../lib/settings";
+import PropTypes from "prop-types"
+import React from "react"
+import MetaTags from "../components/metaTags"
+import ProductList from "../components/productList"
+import { text } from "../lib/settings"
 
-const SearchContainer = (props) => {
+const SearchContainer = props => {
   const {
     addCartItem,
     loadMoreProducts,
     state: { products, settings, productFilter, productsHasMore },
-  } = props;
-  const searchNotEmpty = productFilter.search && productFilter.search !== "";
+  } = props
+  const searchNotEmpty = productFilter.search && productFilter.search !== ""
   const searchDescription = searchNotEmpty
     ? `${text.resultsFor} "${productFilter.search}"`
-    : text.search;
+    : text.search
   const title = searchNotEmpty
     ? `${productFilter.search} - ${text.search}`
-    : text.search;
+    : text.search
 
   return (
     <>
@@ -42,8 +42,8 @@ const SearchContainer = (props) => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
 SearchContainer.propTypes = {
   addCartItem: PropTypes.func.isRequired,
@@ -54,6 +54,6 @@ SearchContainer.propTypes = {
     productFilter: PropTypes.shape({}),
     productsHasMore: PropTypes.bool,
   }).isRequired,
-};
+}
 
-export default SearchContainer;
+export default SearchContainer

@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { injectStripe } from "react-stripe-elements";
-import CardSection from "./CardSection";
+import React, { useState } from "react"
+import { injectStripe } from "react-stripe-elements"
+import CardSection from "./CardSection"
 
-const CheckoutForm = (props) => {
-  const [inProgress, setInProgress] = useState(false);
+const CheckoutForm = props => {
+  const [inProgress, setInProgress] = useState(false)
   // submit = submit.bind(this)
 
   async function submit() {
-    setInProgress(true);
-    const { formSettings, onCreateToken, stripe } = props;
+    setInProgress(true)
+    const { formSettings, onCreateToken, stripe } = props
     const { token } = await stripe.createToken({
       name: formSettings.email,
-    });
+    })
     if (token && token !== "undefined") {
-      onCreateToken(token.id);
+      onCreateToken(token.id)
     } else {
-      setInProgress(false);
+      setInProgress(false)
     }
   }
 
@@ -34,7 +34,7 @@ const CheckoutForm = (props) => {
         </button>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default injectStripe(CheckoutForm);
+export default injectStripe(CheckoutForm)
