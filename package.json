@@ -83,7 +83,7 @@
     "response-time": "^2.3.2",
     "sitemap": "^6.1.5",
     "slug": "^3.3.0",
-    "stripe": "^8.63.0",
+    "stripe": "^8.64.0",
     "theme": "./theme",
     "typescript": "^3.9.5",
     "ua-parser-js": "^0.7.21",
