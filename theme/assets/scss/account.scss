@@ -240,14 +240,16 @@ tbody tr td:first-child {
     word-break: break-all;
 }
   
-/* for custom scrollbar for webkit browser*/  
+// for custom scrollbar for webkit browser
 ::-webkit-scrollbar {
     width: 1px;
 } 
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3); 
+    box-shadow: inset;
 } 
 ::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3); 
+    box-shadow: inset;
 }
 

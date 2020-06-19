@@ -135,9 +135,7 @@
 
 .products .image img {
   display: inline;
-  height: auto;
   max-height: 100%;
-  width: auto;
   max-width: 100%;
 }
 
@@ -203,9 +201,7 @@
   font-size: 0.9rem;
 }
 
-/*
-Mobile
-*/
+// Mobile
 @media screen and (max-width: 769px) {
   .category-title {
     font-size: 1.25rem;

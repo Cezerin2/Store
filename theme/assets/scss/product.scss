@@ -14,8 +14,6 @@
   font-weight: 500;
 }
 
-.attribute-value {}
-
 .section-product h1.product-name {
   margin-bottom: 0.75rem;
 }
@@ -53,7 +51,7 @@
   max-width: 300px;
   margin: 2rem 0;
 }
-.discount-title {}
+
 .discount-numbers {
   font-size: 1.5rem;
   font-weight: 500;
@@ -121,9 +119,7 @@
   text-decoration: underline;
 }
 
-/*
-Mobile
-*/
+// Mobile
 @media screen and (max-width: 769px) {
   .section-product .image-gallery-thumbnails-wrapper {
     display: none !important;

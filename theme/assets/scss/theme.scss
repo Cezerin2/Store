@@ -88,11 +88,7 @@ hr.separator {
   font-weight: 300;
 }
 
-.shipping-address2 {}
-.shipping-postalcode {}
-.shipping-phone {}
 .shipping-company { display:none; }
-.shipping-comments {}
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -104,9 +100,7 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/*
-MOBILE
-*/
+// MOBILE
 @media screen and (max-width: 769px) {
   body.search-active {
     margin-top: 6.25rem;
