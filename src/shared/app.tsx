@@ -86,7 +86,7 @@ const mapStateToProps = (state, ownProps) => ({
   currentPage: state.app.currentPage,
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch: Function, ownProps) => ({
   setCurrentPage: location => {
     dispatch(setCurrentPage(location))
   },
