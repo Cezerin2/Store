@@ -1,7 +1,18 @@
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "../pageTypes"
+import { PAGE, PRODUCT, SEARCH } from "../pageTypes"
 import * as googleAnalytics from "./googleAnalytics"
 
-export const onPageLoad = ({ state }) => {
+export const onPageLoad = ({
+  state,
+}: {
+  state: {
+    app: {
+      currentPage: { type: string; path: string }
+      productDetails: string
+      productFilter: string
+      cart: string
+    }
+  }
+}) => {
   const { currentPage, productDetails, productFilter, cart } = state.app
 
   switch (currentPage.type) {
@@ -41,13 +52,13 @@ export const deleteCartItem = ({ itemId, cart }) => {
   googleAnalytics.removeFromCart({ itemId, cart })
 }
 
-export const checkoutView = ({ order }) => {
+export const checkoutView = ({ order }: { order: { items: string } }) => {
   if (order && order.items && order.items.length > 0) {
     googleAnalytics.beginCheckout({ order })
   }
 }
 
-export const checkoutSuccess = ({ order }) => {
+export const checkoutSuccess = ({ order }: { order: { items: string } }) => {
   if (order && order.items && order.items.length > 0) {
     googleAnalytics.purchase({ order })
   }
