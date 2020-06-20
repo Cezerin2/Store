@@ -1,41 +1,33 @@
-import React from "react"
-import { Route } from "react-router"
-import { Link } from "react-router-dom"
+import React, { useEffect } from "react"
 import { connect } from "react-redux"
+import { Route } from "react-router"
 import { animateScroll } from "react-scroll"
-
-import IndexContainer from "./containers/index"
-import SharedContainer from "./containers/shared"
+import { setCurrentPage } from "./actions"
+import AccountContainer from "./containers/account"
 import CategoryContainer from "./containers/category"
-import ProductContainer from "./containers/product"
-import PageContainer from "./containers/page"
 import CheckoutContainer from "./containers/checkout"
 import CheckoutSuccessContainer from "./containers/checkoutSuccess"
-import NotFoundContainer from "./containers/notfound"
-import SearchContainer from "./containers/search"
-import LoginContainer from "./containers/login"
-import RegisterContainer from "./containers/register"
-import AccountContainer from "./containers/account"
 import ForgotPasswordContainer from "./containers/forgotPassword"
+import IndexContainer from "./containers/index"
+import LoginContainer from "./containers/login"
+import NotFoundContainer from "./containers/notfound"
+import PageContainer from "./containers/page"
+import ProductContainer from "./containers/product"
+import RegisterContainer from "./containers/register"
 import ResetPasswordContainer from "./containers/resetPassword"
+import SearchContainer from "./containers/search"
+import SharedContainer from "./containers/shared"
+import { PAGE, PRODUCT, PRODUCT_CATEGORY, RESERVED, SEARCH } from "./pageTypes"
 
-import { setCurrentPage } from "./actions"
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "./pageTypes"
+const SwitchContainers = props => {
+  useEffect(() => {
+    props.setCurrentPage(props.location)
 
-class SwitchContainers extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.props.setCurrentPage(nextProps.location)
-
-    if (nextProps.location && this.props.location) {
+    if (props.location && props.location) {
       const pathnameChanged =
-        nextProps.location.pathname !== this.props.location.pathname
-      const queryChanged =
-        nextProps.location.search !== this.props.location.search
-      const isSearchPage = nextProps.location.pathname === "/search"
+        props.location.pathname !== props.location.pathname
+      const queryChanged = props.location.search !== props.location.search
+      const isSearchPage = props.location.pathname === "/search"
 
       if (pathnameChanged || (queryChanged && isSearchPage)) {
         animateScroll.scrollToTop({
@@ -45,50 +37,48 @@ class SwitchContainers extends React.Component {
         })
       }
     }
-  }
+  }, [props.location])
 
-  render() {
-    const { history, location, currentPage } = this.props
-    const locationPathname =
-      location && location.pathname ? location.pathname : "/"
-    switch (currentPage.type) {
-      case PRODUCT:
-        return <ProductContainer />
-      case PRODUCT_CATEGORY:
-        return <CategoryContainer />
-      case SEARCH:
-        return <SearchContainer />
-      case RESERVED:
-      case PAGE:
-        if (locationPathname === "/login") {
-          return <LoginContainer />
-        }
-        if (locationPathname === "/register") {
-          return <RegisterContainer />
-        }
-        if (locationPathname === "/customer-account") {
-          return <AccountContainer />
-        }
-        if (locationPathname === "/forgot-password") {
-          return <ForgotPasswordContainer />
-        }
-        if (locationPathname === "/reset-password") {
-          return <ResetPasswordContainer />
-        }
-        if (locationPathname === "/") {
-          return <IndexContainer />
-        }
-        if (locationPathname === "/checkout") {
-          return <CheckoutContainer />
-        }
-        if (locationPathname === "/checkout-success") {
-          return <CheckoutSuccessContainer />
-        }
-        return <PageContainer />
+  const { location, currentPage } = props
+  const locationPathname =
+    location && location.pathname ? location.pathname : "/"
+  switch (currentPage.type) {
+    case PRODUCT:
+      return <ProductContainer />
+    case PRODUCT_CATEGORY:
+      return <CategoryContainer />
+    case SEARCH:
+      return <SearchContainer />
+    case RESERVED:
+    case PAGE:
+      if (locationPathname === "/login") {
+        return <LoginContainer />
+      }
+      if (locationPathname === "/register") {
+        return <RegisterContainer />
+      }
+      if (locationPathname === "/customer-account") {
+        return <AccountContainer />
+      }
+      if (locationPathname === "/forgot-password") {
+        return <ForgotPasswordContainer />
+      }
+      if (locationPathname === "/reset-password") {
+        return <ResetPasswordContainer />
+      }
+      if (locationPathname === "/") {
+        return <IndexContainer />
+      }
+      if (locationPathname === "/checkout") {
+        return <CheckoutContainer />
+      }
+      if (locationPathname === "/checkout-success") {
+        return <CheckoutSuccessContainer />
+      }
+      return <PageContainer />
 
-      default:
-        return <NotFoundContainer />
-    }
+    default:
+      return <NotFoundContainer />
   }
 }
 
