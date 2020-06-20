@@ -2,7 +2,7 @@ import api from "./api"
 
 const IGNORE_PATH = ["/"]
 
-const getRedirect = req => {
+const getRedirect = (req: Request) => {
   const absoluteUrl = `${req.protocol}://${req.hostname}${req.url}`
   const relativeUrl = req.url
   const relativePath = req.path
@@ -28,19 +28,19 @@ const getRedirect = req => {
   })
 }
 
-const redirectUrlIsValid = url =>
+const redirectUrlIsValid = (url: { length: number; startsWith: Function }) =>
   url &&
   url.length > 0 &&
   (url.startsWith("/") ||
     url.startsWith("https://") ||
     url.startsWith("http://"))
 
-const redirects = (req, res, next) => {
+const redirects = (req: Request, res: Response, next: Function) => {
   if (IGNORE_PATH.includes(req.url)) {
     next()
   } else {
     getRedirect(req)
-      .then(redirect => {
+      .then((redirect: { status: string; to: string }) => {
         if (redirect && redirectUrlIsValid(redirect.to)) {
           res.redirect(redirect.status, redirect.to)
         } else {

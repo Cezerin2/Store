@@ -1,13 +1,14 @@
 import queryString from "query-string"
 import { animateScroll } from "react-scroll"
-import * as t from "./actionTypes"
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "./pageTypes"
 import api from "../client/api"
+import * as t from "./actionTypes"
 import * as analytics from "./analytics"
+import { PAGE, PRODUCT, PRODUCT_CATEGORY, SEARCH } from "./pageTypes"
 
-const requestProduct = () => ({ type: t.PRODUCT_REQUEST })
-
-const receiveProduct = product => ({ type: t.PRODUCT_RECEIVE, product })
+const receiveProduct = (product: string) => ({
+  type: t.PRODUCT_RECEIVE,
+  product,
+})
 
 export const fetchProducts = () => async (dispatch, getState) => {
   dispatch(requestProducts())
@@ -225,32 +226,35 @@ export const checkout = (cart, history) => async (dispatch, getState) => {
 
 const requestCheckout = () => ({ type: t.CHECKOUT_REQUEST })
 
-const receiveCheckout = order => ({ type: t.CHECKOUT_RECEIVE, order })
+const receiveCheckout = (order: string) => ({ type: t.CHECKOUT_RECEIVE, order })
 
-const handleRegisterProperties = data => ({
+const handleRegisterProperties = (data: string) => ({
   type: t.REGISTER_PROPERTIES,
   data,
 })
-const handleAccountProperties = data => ({ type: t.ACCOUNT_RECEIVE, data })
-const handleCartLayerInitialized = data => ({
+const handleAccountProperties = (data: string) => ({
+  type: t.ACCOUNT_RECEIVE,
+  data,
+})
+const handleCartLayerInitialized = (data: string) => ({
   type: t.CART_LAYER_INITIALIZED,
   data,
 })
-const handleForgotPassword = data => ({
+const handleForgotPassword = (data: string) => ({
   type: t.FORGOT_PASSWORD_PROPERTIES,
   data,
 })
-const handleResetPassword = data => ({
+const handleResetPassword = (data: string) => ({
   type: t.RESET_PASSWORD_PROPERTIES,
   data,
 })
 
-export const receiveSitemap = currentPage => ({
+export const receiveSitemap = (currentPage: string) => ({
   type: t.SITEMAP_RECEIVE,
   currentPage,
 })
 
-export const setCurrentLocation = location => ({
+export const setCurrentLocation = (location: string) => ({
   type: t.LOCATION_CHANGED,
   location,
 })
@@ -265,7 +269,7 @@ export const setCategory = categoryId => (dispatch, getState) => {
   }
 }
 
-const setCurrentCategory = category => ({
+const setCurrentCategory = (category: string) => ({
   type: t.SET_CURRENT_CATEGORY,
   category,
 })
@@ -275,12 +279,15 @@ export const setSort = sort => (dispatch, getState) => {
   dispatch(fetchProducts())
 }
 
-const setProductsFilter = filter => ({
+const setProductsFilter = (filter: string) => ({
   type: t.SET_PRODUCTS_FILTER,
   filter,
 })
 
-export const analyticsSetShippingMethod = method_id => (dispatch, getState) => {
+export const analyticsSetShippingMethod = (method_id: string) => (
+  dispatch,
+  getState
+) => {
   const { app } = getState()
   analytics.setShippingMethod({
     methodId: method_id,
@@ -288,7 +295,10 @@ export const analyticsSetShippingMethod = method_id => (dispatch, getState) => {
   })
 }
 
-export const analyticsSetPaymentMethod = method_id => (dispatch, getState) => {
+export const analyticsSetPaymentMethod = (method_id: string) => (
+  dispatch,
+  getState
+) => {
   const { app } = getState()
   analytics.setPaymentMethod({
     methodId: method_id,
@@ -320,10 +330,7 @@ export const loginUser = (data, callback) => async (dispatch, getState) => {
   }
 }
 
-export const loggedinUserTimeUp = (data, callback) => async (
-  dispatch,
-  getState
-) => {
+export const loggedinUserTimeUp = () => async (dispatch, getState) => {
   const customerProps = {
     token: "",
     authenticated: false,
@@ -368,7 +375,11 @@ export const forgotPassword = (data, callback) => async (
   dispatch(handleForgotPassword(response.json))
 }
 
-export const setCurrentPage = location => async (dispatch, getState) => {
+export const setCurrentPage = (location: {
+  pathname: string
+  search: string
+  hash: string
+}) => async (dispatch, getState) => {
   let locationPathname = "/404"
   let locationSearch = ""
   let locationHash = ""

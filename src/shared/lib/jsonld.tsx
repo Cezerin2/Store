@@ -1,5 +1,5 @@
+import { PRODUCT, PRODUCT_CATEGORY } from "../pageTypes"
 import { getParentIds } from "./helper"
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED } from "../pageTypes"
 
 const getBreadcrumbsForProduct = (product, categories) => {
   if (product && product.category_id) {
