@@ -18,7 +18,7 @@ export const formatCurrency = (number = 0, settings) =>
     formatNumber(number, settings)
   )
 
-export const getThumbnailUrl = (originalUrl, width) => {
+export const getThumbnailUrl = (originalUrl: string, width: string) => {
   if (originalUrl && originalUrl.length > 0) {
     const pos = originalUrl.lastIndexOf("/")
     const thumbnailUrl = `${originalUrl.substring(
@@ -30,7 +30,7 @@ export const getThumbnailUrl = (originalUrl, width) => {
   return ""
 }
 
-export const getParentIds = (categories, categoryId) => {
+export const getParentIds = (categories, categoryId: string) => {
   const parentIds = []
   let parentExists = false
 
