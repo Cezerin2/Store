@@ -103,6 +103,7 @@
     "@types/react-helmet": "^6.0.0",
     "@types/react-redux": "^7.1.9",
     "@types/react-router": "^5.1.7",
+    "@types/react-scroll": "^1.5.5",
     "@types/response-time": "^2.3.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
