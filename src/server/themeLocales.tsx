@@ -3,9 +3,9 @@ import path from "path"
 import winston from "winston"
 
 const THEME_LOCALES_PATH = "theme/locales/"
-let text = null
+let text: string = ""
 
-export const getText = locale => {
+export const getText = (locale: string) => {
   if (text) {
     return Promise.resolve(text)
   }

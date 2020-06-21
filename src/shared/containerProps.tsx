@@ -1,26 +1,29 @@
 import queryString from "query-string"
-import { getJSONLD } from "./lib/jsonld"
 import {
   addCartItem,
-  deleteCartItem,
-  updateCartItemQuantiry,
-  fetchMoreProducts,
-  setSort,
-  fetchShippingMethods,
-  fetchPaymentMethods,
-  updateCart,
-  customerData,
-  checkout,
-  loginUser,
-  loggedinUserTimeUp,
-  changecustomerProperties,
-  registerUser,
   cartLayerInitialized,
+  changecustomerProperties,
+  checkout,
+  customerData,
+  deleteCartItem,
+  fetchMoreProducts,
+  fetchPaymentMethods,
+  fetchShippingMethods,
   forgotPassword,
+  loggedinUserTimeUp,
+  loginUser,
+  registerUser,
   resetPassword,
+  setSort,
+  updateCart,
+  updateCartItemQuantiry,
 } from "./actions"
+import { getJSONLD } from "./lib/jsonld"
 
-const setQuery = (history, query) => {
+const setQuery = (
+  history: { location: { pathname: string }; push: Function },
+  query
+) => {
   if (history && history.location) {
     const newLocation = `${history.location.pathname}?${queryString.stringify(
       query
@@ -29,48 +32,48 @@ const setQuery = (history, query) => {
   }
 }
 
-export const mapStateToProps = (state, ownProps) => ({
+export const mapStateToProps = (state: { app: string }) => ({
   state: state.app,
 })
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  addCartItem: item => {
+export const mapDispatchToProps = (dispatch: Function, ownProps) => ({
+  addCartItem: (item: string) => {
     dispatch(addCartItem(item))
   },
-  deleteCartItem: item_id => {
-    dispatch(deleteCartItem(item_id))
+  deleteCartItem: (itemId: string) => {
+    dispatch(deleteCartItem(itemId))
   },
-  updateCartItemQuantiry: (item_id, quantity) => {
-    dispatch(updateCartItemQuantiry(item_id, quantity))
+  updateCartItemQuantiry: (itemId: string, quantity: string) => {
+    dispatch(updateCartItemQuantiry(itemId, quantity))
   },
-  updateCart: (data, callback) => {
+  updateCart: (data: string, callback: string) => {
     dispatch(updateCart(data, callback))
   },
-  loginUser: (data, callback) => {
+  loginUser: (data: string, callback: string) => {
     dispatch(loginUser(data, callback))
   },
-  loggedinUserTimeUp: (data, callback) => {
+  loggedinUserTimeUp: (data: string, callback: string) => {
     dispatch(loggedinUserTimeUp(data, callback))
   },
-  changecustomerProperties: (data, callback) => {
+  changecustomerProperties: (data: string, callback: string) => {
     dispatch(changecustomerProperties(data, callback))
   },
-  customerData: (data, callback) => {
+  customerData: (data: string, callback: string) => {
     dispatch(customerData(data, callback))
   },
-  registerUser: (data, callback) => {
+  registerUser: (data: string, callback: string) => {
     dispatch(registerUser(data, callback))
   },
-  cartLayerInitialized: (data, callback) => {
+  cartLayerInitialized: (data: string, callback: string) => {
     dispatch(cartLayerInitialized(data, callback))
   },
-  forgotPassword: (data, callback) => {
+  forgotPassword: (data: string, callback: string) => {
     dispatch(forgotPassword(data, callback))
   },
-  resetPassword: (data, callback) => {
+  resetPassword: (data: string, callback: string) => {
     dispatch(resetPassword(data, callback))
   },
-  checkout: data => {
+  checkout: (data: string) => {
     dispatch(checkout(data, ownProps.history))
   },
   loadMoreProducts: () => {
@@ -82,31 +85,31 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   loadPaymentMethods: () => {
     dispatch(fetchPaymentMethods())
   },
-  setSearch: search => {
+  setSearch: (search: string) => {
     const query = queryString.parse(ownProps.history.location.search)
     query.search = search
     setQuery(ownProps.history, query)
   },
-  setSort: sort => {
+  setSort: (sort: string) => {
     dispatch(setSort(sort))
   },
-  setPriceFromAndTo: (priceFrom, priceTo) => {
+  setPriceFromAndTo: (priceFrom: string, priceTo: string) => {
     const query = queryString.parse(ownProps.history.location.search)
     query.price_from = priceFrom
     query.price_to = priceTo
     setQuery(ownProps.history, query)
   },
-  setPriceFrom: priceFrom => {
+  setPriceFrom: (priceFrom: string) => {
     const query = queryString.parse(ownProps.history.location.search)
     query.price_from = priceFrom
     setQuery(ownProps.history, query)
   },
-  setPriceTo: priceTo => {
+  setPriceTo: (priceTo: string) => {
     const query = queryString.parse(ownProps.history.location.search)
     query.price_to = priceTo
     setQuery(ownProps.history, query)
   },
-  setFilterAttribute: (name, value) => {
+  setFilterAttribute: (name: string, value: string) => {
     const query = queryString.parse(ownProps.history.location.search)
     const queryKey = `attributes.${name}`
 
@@ -122,7 +125,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 
     setQuery(ownProps.history, query)
   },
-  unsetFilterAttribute: (name, value) => {
+  unsetFilterAttribute: (name: string, value: string) => {
     const query = queryString.parse(ownProps.history.location.search)
     const queryKey = `attributes.${name}`
     const values = query[queryKey]
@@ -137,7 +140,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 
     setQuery(ownProps.history, query)
   },
-  setLocation: path => {
+  setLocation: (path: string) => {
     ownProps.history.push(path)
   },
   goBack: () => {
@@ -145,5 +148,5 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       ownProps.history.goBack()
     }
   },
-  getJSONLD: state => getJSONLD(state),
+  getJSONLD: (state: string) => getJSONLD(state),
 })

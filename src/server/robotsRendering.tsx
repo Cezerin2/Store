@@ -4,7 +4,7 @@ import api from "./api"
 
 const ROBOTS_TEMPLATE_PATH = "public/robots.template"
 
-const robotsRendering = (req, res) => {
+const robotsRendering = (_req: Request, res: Response) => {
   api.settings.retrieve().then(settingsResponse => {
     fs.readFile(path.resolve(ROBOTS_TEMPLATE_PATH), "utf8", (err, data) => {
       if (err) {

@@ -11,7 +11,7 @@ import winston from "winston"
 import App from "../shared/app"
 import reducers from "../shared/reducers"
 import { loadState } from "./loadState"
-import { indexHtml } from "./readIndexHtml"
+import indexHtml from "./readIndexHtml"
 import serverSettings from "./settings"
 
 initOnServer({
@@ -35,7 +35,7 @@ const getHead = () => {
   }
 }
 
-const getReferrerCookieOptions = isHttps => ({
+const getReferrerCookieOptions = (isHttps: boolean) => ({
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   httpOnly: true,
   signed: true,
@@ -43,7 +43,7 @@ const getReferrerCookieOptions = isHttps => ({
   sameSite: "strict",
 })
 
-const renderError = (req, res, err) => {
+const renderError = (req: Request, res: Response, err: Error) => {
   winston.error(
     `Error on page rendering\n\tpath: ${req.url}\n\terror: ${err.toString()}`
   )
@@ -65,7 +65,7 @@ const getAppHtml = (store, location, context = {}) => {
   return html
 }
 
-const getPlaceholder = placeholders => {
+const getPlaceholder = (placeholders: {}) => {
   const placeholder = {
     head_start: "",
     head_end: "",
@@ -95,7 +95,13 @@ const getPlaceholder = placeholders => {
   return placeholder
 }
 
-const renderPage = (req, res, store, themeText, placeholders) => {
+const renderPage = (
+  req: Request,
+  res: Response,
+  store: { getState: Function },
+  themeText,
+  placeholders
+) => {
   const appHtml = getAppHtml(store, req.url)
   const state = store.getState()
   const head = getHead()
@@ -133,7 +139,7 @@ const renderPage = (req, res, store, themeText, placeholders) => {
   res.status(httpStatusCode).send(html)
 }
 
-const pageRendering = (req, res) => {
+const pageRendering = (req: Request, res: Response) => {
   loadState(req, serverSettings.language)
     .then(({ state, themeText, placeholders }) => {
       initOnServer({

@@ -17,7 +17,7 @@ RUN echo "deb http://nginx.org/packages/debian/ ${NGINX_CODENAME} nginx" >> /etc
 	nginx
 
 # install PM2
-RUN npm i pm2 -g
+RUN yarn global add pm2
 
 WORKDIR /var/www/cezerin2-store 
 
@@ -33,8 +33,8 @@ RUN chmod +x "/usr/local/bin/docker-entrypoint.sh"
 
 # build project
 RUN cd /var/www/cezerin2-store \
-	&& npm install \
-	&& npm run build
+	&& yarn \
+	&& yarn build
 
 
 EXPOSE 80
