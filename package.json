@@ -87,7 +87,7 @@
     "theme": "./theme",
     "typescript": "^3.9.5",
     "ua-parser-js": "^0.7.21",
-    "winston": "^3.2.1"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
