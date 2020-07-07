@@ -11,18 +11,14 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
 
-      #- run:
-      #    name: Install Dependencies
-      #    command: npm i
+      - run:
+          name: Install Dependencies
+          command: yarn
 
       - save_cache:
           paths:
             - node_modules
           key: dependency-cache-{{ checksum "package.json" }}
-    #   - run:
-  #        name: TS Compile
-  #         command: npm run tscompile
-#
-#  - run:
-#    name: Build
-#     command: npm run build
+      # - run:
+      #    name: Build
+      #    command: npm run build

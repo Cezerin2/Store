@@ -1,4 +1,2 @@
-dist/
-theme/assets/
-theme/dist/
-build
+.cache
+public
