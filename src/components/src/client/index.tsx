@@ -1,15 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
-import thunkMiddleware from "redux-thunk"
 import { BrowserRouter } from "react-router-dom"
-import { initOnClient } from "theme"
-import clientSettings from "./settings"
-import reducers from "../shared/reducers"
+import { applyMiddleware, createStore } from "redux"
+import thunkMiddleware from "redux-thunk"
+import { initOnClient } from "../../theme"
 import * as analytics from "../shared/analytics"
 import App from "../shared/app"
+import reducers from "../shared/reducers"
 import api from "./api"
+import clientSettings from "./settings"
 
 const initialState = window.__APP_STATE__
 const themeText = window.__APP_TEXT__
