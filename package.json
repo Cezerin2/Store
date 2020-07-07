@@ -5,6 +5,7 @@
   "version": "0.36.0",
   "author": "Restmount, Himadu, Community, Kyle",
   "dependencies": {
+    "@types/react-router": "^5.1.8",
     "add": "^2.0.6",
     "cezerin2-client": "^0.38.0",
     "gatsby": "^2.23.12",
@@ -27,7 +28,9 @@
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.0",
+    "react-router": "^5.2.0",
     "redux": "^4.0.5",
+    "redux-form": "^8.3.6",
     "yarn": "^1.22.4"
   },
   "devDependencies": {

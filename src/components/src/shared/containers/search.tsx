@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
-import { SearchContainer } from "theme"
+import { SearchContainer } from "../../../theme"
 import { mapDispatchToProps, mapStateToProps } from "../containerProps"
 
 export default withRouter(

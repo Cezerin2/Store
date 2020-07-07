@@ -1,7 +1,6 @@
 import React from "react"
-import { themeSettings, text } from "../lib/settings"
-import MetaTags from "../components/metaTags"
 import Account from "../components/account/index"
+import MetaTags from "../components/metaTags"
 
 const AccountContainer = props => {
   const {
