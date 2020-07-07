@@ -1,2 +1,0 @@
-yarn add gatsby-plugin-react-redux react-redux redux gatsby-plugin-nprogress gatsby-plugin-robots-txt yarn add gatsby-plugin-offline gatsby-plugin-sitemap node-sass gatsby-plugin-sass gatsby-plugin-google-analytics
-yarn add -D cross-env dotenv

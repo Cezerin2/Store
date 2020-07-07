@@ -3,7 +3,7 @@ module.exports = {
     title: `Cezerin Store`,
     description: `This is cezerin store.`,
     author: `@himadu`,
-    siteUrl: `cezerin.net`,
+    siteUrl: `https://www.cezerin.net`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -75,7 +75,7 @@ module.exports = {
         // Any additional optional fields
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        cookieDomain: "ansiglobal.com",
+        cookieDomain: "cezerin.net",
       },
     },
   ],
