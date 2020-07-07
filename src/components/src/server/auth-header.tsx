@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import serverConfigs from "./settings"
+import serverConfigs from "../../Config"
 
 const cert = serverConfigs.jwtSecretKey
 class AuthHeader {
