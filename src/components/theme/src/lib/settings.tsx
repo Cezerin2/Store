@@ -1,5 +1,7 @@
+import Text from "./text"
+
 export let themeSettings = null
-export let text = null
+export const text = Text
 export let language = null
 export let api = null
 
