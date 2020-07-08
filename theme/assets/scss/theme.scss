@@ -12,6 +12,10 @@
 @use "login.scss";
 @use "account.scss";
 
+@use "~react-image-gallery/styles/scss/image-gallery.scss";
+@use "~bulma";
+@use "~rc-slider/assets/index.css";
+
 $green: #00b366;
 $login: #116363;
 $registry: orange;
@@ -27,10 +31,7 @@ $breadcrumb-item-separator-color: #7a7a7a;
 
 $error-alert-text: #e5443e;
 
-@import "~bulma";
-@import "~rc-slider/assets/index.css";
 $ig-blue: #636363 !default;
-@import "~react-image-gallery/styles/scss/image-gallery.scss";
 
 .image-gallery-bullets .image-gallery-bullets-container {
   background-color: rgba(0,0,0,0.2);
