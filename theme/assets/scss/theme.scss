@@ -1,4 +1,16 @@
-@import "~bulma/sass/utilities/initial-variables";
+@use "~bulma/sass/utilities/initial-variables";
+
+@use "homeSlider.scss";
+@use "checkout.scss";
+@use "cart.scss";
+@use "header.scss";
+@use "footer.scss";
+@use "category.scss";
+@use "product.scss";
+@use "page.scss";
+@use "custom.scss";
+@use "login.scss";
+@use "account.scss";
 
 $green: #00b366;
 $login: #116363;
@@ -111,15 +123,3 @@ input[type="number"] {
     overflow:hidden;
   }
 }
-
-@import "homeSlider.scss";
-@import "checkout.scss";
-@import "cart.scss";
-@import "header.scss";
-@import "footer.scss";
-@import "category.scss";
-@import "product.scss";
-@import "page.scss";
-@import "custom.scss";
-@import "login.scss";
-@import "account.scss";
