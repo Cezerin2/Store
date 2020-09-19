@@ -62,7 +62,7 @@
     "sitemap": "^6.1.5",
     "stripe": "^8.64.0",
     "theme": "./theme",
-    "typescript": "^3.9.5",
+    "typescript": "^4.0.3",
     "winston": "^3.3.3"
   },
   "devDependencies": {
